@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {View, Text, Pressable, ScrollView} from 'react-native';
+import {View, Text, ScrollView} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import BackButtonTitle from '../../Components/BackButtonTitle';
@@ -9,24 +9,21 @@ import {cardData} from '../../Utils/arrays';
 import ScaleAnimation from '../../Components/ScaleAnimation';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Button from '../../Components/Button';
-import Animated, {
-  Transitioning,
-  Transition,
-  EasingNode,
-} from 'react-native-reanimated';
+import Animated, {EasingNode} from 'react-native-reanimated';
 import EntryAnimation from '../../Components/EntryAnimation';
 
 const SavedCardsScreen = ({navigation, route}) => {
   const [cards, setCards] = useState(cardData);
   const scrollRef = useRef();
   const [scrollY, setScrollY] = useState(0);
-  const savedScreenRef = useRef();
   const subTextOpacity = new Animated.Value(0);
   let lottieAnimation;
   const scaleLottie = new Animated.Value(0.4);
+
   const handleScroll = e => {
     setScrollY(e.nativeEvent.contentOffset.y);
   };
+
   useEffect(() => {
     if (route.params?.cards) {
       setCards(route.params.cards);
@@ -47,11 +44,7 @@ const SavedCardsScreen = ({navigation, route}) => {
       }, 1000);
     }
   }, [route.params?.cards, cards]);
-  const transition = (
-    <Transition.Sequence>
-      <Transition.Out type="fade" durationMs={400} interpolation="easeOut" />
-    </Transition.Sequence>
-  );
+
   const getContent = () => {
     return (
       <>
@@ -133,10 +126,7 @@ const SavedCardsScreen = ({navigation, route}) => {
             onScroll={handleScroll}
             scrollEventThrottle={16}
             bounces={false}>
-            <Transitioning.View
-              style={{paddingHorizontal: hp(2), paddingVertical: hp(2)}}
-              transition={transition}
-              ref={savedScreenRef}>
+            <View style={{paddingHorizontal: hp(2), paddingVertical: hp(2)}}>
               <View style={{paddingHorizontal: hp(2)}}>
                 <ScaleAnimation
                   onPress={() =>
@@ -183,13 +173,12 @@ const SavedCardsScreen = ({navigation, route}) => {
                         setCards={setCards}
                         scrollY={scrollY}
                         scrollRef={scrollRef}
-                        savedScreenRef={savedScreenRef}
                       />
                     </EntryAnimation>
                   );
                 })}
               </View>
-            </Transitioning.View>
+            </View>
           </ScrollView>
         )}
       </>

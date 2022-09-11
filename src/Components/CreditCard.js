@@ -5,15 +5,7 @@ import {CreditCardsLogo} from '../Utils/arrays';
 import {useNavigation} from '@react-navigation/native';
 import ConfirmModal from './ConfirmModal';
 
-const CreditCard = ({
-  data,
-  index,
-  cards,
-  setCards,
-  scrollY,
-  scrollRef,
-  savedScreenRef,
-}) => {
+const CreditCard = ({data, index, cards, setCards, scrollY, scrollRef}) => {
   const navigation = useNavigation();
   const [showRemoveCardModal, setShowRemoveCardModal] = useState(false);
   const getLogo = type => {
@@ -180,7 +172,6 @@ const CreditCard = ({
           index={index}
           scrollY={scrollY}
           scrollRef={scrollRef}
-          screenRef={savedScreenRef}
         />
       </View>
     </View>

@@ -15,23 +15,18 @@ import RemoveAllModal from '../../Components/RemoveAllModal';
 import ShowSimilarModal from '../../Components/ShowSimilarModal';
 import LottieView from 'lottie-react-native';
 import {wishlistItems, outOfStockItems} from '../../Utils/arrays';
-import Animated, {
-  Transitioning,
-  Transition,
-  EasingNode,
-  Extrapolate,
-} from 'react-native-reanimated';
+import Animated, {EasingNode, Layout} from 'react-native-reanimated';
 
 const WishlistScreen = ({route}) => {
   const [showSimilarModal, setShowSimilarModal] = useState(false);
   const [showRemoveModal, setShowRemoveModal] = useState(false);
   const [outOfStock, setOutOfStock] = useState(outOfStockItems);
   const [wishlist, setWishlist] = useState(wishlistItems);
-  const wishlistRef = useRef();
   const translateTitle = useRef(new Animated.Value(hp(-13)));
   const titleOpacity = new Animated.Value(0);
   const subTitleOpacity = new Animated.Value(0);
   const scrollRef = useRef();
+
   useEffect(() => {
     if (wishlist.length == 0 && outOfStock.length == 0) {
       Animated.timing(translateTitle.current, {
@@ -51,30 +46,13 @@ const WishlistScreen = ({route}) => {
       }).start();
     }
   });
-  const transition = (
-    <Transition.Sequence>
-      <Transition.Together>
-        <Transition.Out type="scale" durationMs={400} interpolation="easeOut" />
-        <Transition.Out
-          type="fade"
-          durationMs={400}
-          interpolation="easeOut"
-          delayMs={20}
-        />
-      </Transition.Together>
-      <Transition.Change interpolation="easeOut" durationMs={400} />
-      <Transition.In type="fade" durationMs={400} />
-    </Transition.Sequence>
-  );
+
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={{flex: 0.8}}>
         <BackButtonTitle title="WISHLIST" />
       </View>
-      <Transitioning.View
-        style={{flex: 8, backgroundColor: 'white'}}
-        ref={wishlistRef}
-        transition={transition}>
+      <View style={{flex: 8, backgroundColor: 'white'}}>
         {outOfStock.length > 0 || wishlist.length > 0 ? (
           <ScrollView
             showsVerticalScrollIndicator={false}
@@ -95,7 +73,6 @@ const WishlistScreen = ({route}) => {
                     key={index}
                     data={data}
                     index={index}
-                    wishlistRef={wishlistRef}
                     wishlist={wishlist}
                     setWishlist={setWishlist}
                   />
@@ -103,7 +80,7 @@ const WishlistScreen = ({route}) => {
               })}
             </View>
             {outOfStock.length > 0 && (
-              <View>
+              <Animated.View layout={Layout.easing().duration(500)}>
                 <View
                   style={{
                     display: 'flex',
@@ -162,13 +139,12 @@ const WishlistScreen = ({route}) => {
                         outOfStock={outOfStock}
                         setOutOfStock={setOutOfStock}
                         scrollRef={scrollRef}
-                        wishlistRef={wishlistRef}
                         setShowSimilarModal={() => setShowSimilarModal(true)}
                       />
                     );
                   })}
                 </View>
-              </View>
+              </Animated.View>
             )}
           </ScrollView>
         ) : (
@@ -209,7 +185,7 @@ const WishlistScreen = ({route}) => {
             <Animated.Text></Animated.Text>
           </View>
         )}
-      </Transitioning.View>
+      </View>
       <RemoveAllModal
         showModal={showRemoveModal}
         setOutOfStock={setOutOfStock}

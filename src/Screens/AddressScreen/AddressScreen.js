@@ -9,11 +9,7 @@ import Button from '../../Components/Button';
 import ScaleAnimation from '../../Components/ScaleAnimation';
 import {addresses} from '../../Utils/arrays';
 import LottieView from 'lottie-react-native';
-import Animated, {
-  Transitioning,
-  Transition,
-  EasingNode,
-} from 'react-native-reanimated';
+import Animated, {EasingNode} from 'react-native-reanimated';
 import EntryAnimation from '../../Components/EntryAnimation';
 
 const CustomButton = ({navigation, viewStyle, textStyle, userAddresses}) => {
@@ -39,10 +35,10 @@ const CustomButton = ({navigation, viewStyle, textStyle, userAddresses}) => {
 
 const AddressScreen = ({navigation, route}) => {
   const [userAddresses, setUserAddresses] = useState(addresses);
-  const addressRef = useRef();
   const [scrollY, setScrollY] = useState(0);
   const scrollRef = useRef();
   const opacity = new Animated.Value(0);
+
   useEffect(() => {
     if (route.params?.userAddresses) {
       setUserAddresses(route.params.userAddresses);
@@ -55,6 +51,7 @@ const AddressScreen = ({navigation, route}) => {
       }).start();
     }
   }, [route.params?.userAddresses, userAddresses]);
+
   const getAddress = () => {
     return userAddresses.map((data, index) => (
       <EntryAnimation index={index + 1} key={index}>
@@ -63,7 +60,6 @@ const AddressScreen = ({navigation, route}) => {
           index={index}
           scrollY={scrollY}
           scrollRef={scrollRef}
-          addressRef={addressRef}
           userAddresses={userAddresses}
           setUserAddresses={setUserAddresses}
         />
@@ -74,20 +70,6 @@ const AddressScreen = ({navigation, route}) => {
     setScrollY(e.nativeEvent.contentOffset.y);
   };
 
-  const transition = (
-    <Transition.Sequence>
-      <Transition.Together>
-        <Transition.Out
-          type="slide-bottom"
-          durationMs={400}
-          interpolation="linear"
-        />
-        <Transition.Out type="fade" durationMs={300} interpolation="easeOut" />
-      </Transition.Together>
-      <Transition.Change interpolation="easeOut" durationMs={400} />
-      <Transition.In type="fade" durationMs={400} />
-    </Transition.Sequence>
-  );
   const getContent = () => {
     if (userAddresses.length > 0) {
       return (
@@ -120,12 +102,7 @@ const AddressScreen = ({navigation, route}) => {
             scrollEventThrottle={16}
             showsVerticalScrollIndicator={false}
             bounces={false}>
-            <Transitioning.View
-              style={{marginBottom: hp(1), flex: 1}}
-              ref={addressRef}
-              transition={transition}>
-              {getAddress()}
-            </Transitioning.View>
+            <View style={{marginBottom: hp(1), flex: 1}}>{getAddress()}</View>
           </ScrollView>
         </>
       );

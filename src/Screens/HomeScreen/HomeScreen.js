@@ -210,6 +210,8 @@ const styles = StyleSheet.create({
     zIndex: 1000,
     height: hp(7),
     backgroundColor: 'white',
+    borderBottomColor: '#e8e8e8',
+    borderBottomWidth: hp(0.2),
   },
   carousel: {
     height: hp(50),

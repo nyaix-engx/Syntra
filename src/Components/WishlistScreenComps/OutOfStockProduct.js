@@ -8,16 +8,18 @@ import {
   Platform,
 } from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import Animated, {
+  FadeInLeft,
+  SequencedTransition,
+} from 'react-native-reanimated';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 const OutOfStockProduct = props => {
   const {width} = useWindowDimensions();
-  // console.log(props)
   const handlePress = () => {
     let x = props.outOfStock.filter((data, index) => {
       return props.index !== index;
     });
-    props.wishlistRef.current.animateNextTransition();
     props.setOutOfStock([...x]);
     if (props.outOfStock.length == 1) {
       Platform.OS === 'ios' &&
@@ -25,7 +27,7 @@ const OutOfStockProduct = props => {
     }
   };
   return (
-    <View
+    <Animated.View
       style={{
         width: (width - hp(4.6)) / 2,
         height: Platform.OS === 'ios' ? hp(40) : hp(45),
@@ -33,7 +35,9 @@ const OutOfStockProduct = props => {
         borderWidth: hp(0.1),
         margin: hp(0.65),
         borderColor: '#c7c7c7',
-      }}>
+      }}
+      entering={FadeInLeft.duration(200).delay(props.index * 150)}
+      layout={SequencedTransition.duration(200)}>
       <View style={{flex: 4.2, position: 'relative'}}>
         <Image
           style={{
@@ -164,7 +168,7 @@ const OutOfStockProduct = props => {
           </Text>
         </Pressable>
       </View>
-    </View>
+    </Animated.View>
   );
 };
 

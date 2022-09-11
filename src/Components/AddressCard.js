@@ -26,7 +26,6 @@ const AddressCard = props => {
       }
     });
     swapArray(newArray, defaultIndex, setDefaultIndex);
-    props.addressRef.current.animateNextTransition();
     props.setUserAddresses([...newArray]);
   };
 

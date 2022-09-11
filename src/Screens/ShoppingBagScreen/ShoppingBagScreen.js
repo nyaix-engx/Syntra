@@ -11,8 +11,6 @@ import Animated, {
   EasingNode,
   Easing,
   Extrapolate,
-  Transitioning,
-  Transition,
   useSharedValue,
   withTiming,
   withRepeat,
@@ -43,7 +41,6 @@ const ShoppingBagScreen = ({navigation}) => {
   const [showCouponModal, setShowCouponModal] = useState(false);
   const [scrollY, setScrollY] = useState(0);
   const subtitleOpacity = useSharedValue(0);
-  const screenRef = useRef();
   const translateY = useSharedValue(0);
 
   const style = useAnimatedStyle(() => {
@@ -92,13 +89,6 @@ const ShoppingBagScreen = ({navigation}) => {
       opacity: subtitleOpacity.value,
     };
   });
-  const transition = (
-    <Transition.Sequence>
-      <Transition.Out type="slide-left" durationMs={500} />
-      <Transition.Change interpolation="easeIn" durationMs={500} />
-      <Transition.In type="fade" durationMs={500} />
-    </Transition.Sequence>
-  );
 
   const handleScroll = e => {
     setScrollY(e.nativeEvent.contentOffset.y);
@@ -180,10 +170,7 @@ const ShoppingBagScreen = ({navigation}) => {
   const getContent = () => {
     if (shoppingItems.length > 0) {
       return (
-        <Transitioning.View
-          ref={screenRef}
-          transition={transition}
-          style={{flex: 1}}>
+        <View style={{flex: 1}}>
           <View style={{flex: 8}}>
             <ScrollView
               style={{flex: 1}}
@@ -398,7 +385,6 @@ const ShoppingBagScreen = ({navigation}) => {
                 {shoppingItems.map((data, index) => {
                   return (
                     <ShoppingBagCard
-                      screenRef={screenRef}
                       data={data}
                       key={index}
                       index={index}
@@ -641,7 +627,7 @@ const ShoppingBagScreen = ({navigation}) => {
             setShowModal={() => setShowCouponModal(false)}
             setCouponApplied={setCouponApplied}
           />
-        </Transitioning.View>
+        </View>
       );
     } else {
       return (

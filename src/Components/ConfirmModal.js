@@ -13,7 +13,6 @@ const ConfirmModal = props => {
     let x = props.items.filter((data, itemIndex) => {
       return itemIndex !== props.index;
     });
-    props.screenRef.current.animateNextTransition();
     props.setItems([...x]);
     props.setShowModal();
     Platform.OS === 'ios' &&

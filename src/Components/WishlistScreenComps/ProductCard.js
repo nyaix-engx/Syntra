@@ -8,6 +8,10 @@ import {
   Text,
 } from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import Animated, {
+  FadeInLeft,
+  SequencedTransition,
+} from 'react-native-reanimated';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 const ProductCard = props => {
@@ -19,17 +23,17 @@ const ProductCard = props => {
       props.data.price + props.data.discount * 0.01 * props.data.price,
     );
   }, []);
-  // console.log("Props",props)
   const handlePress = () => {
     let x = props.wishlist.filter((item, index) => {
       return props.index !== index;
     });
-    props.wishlistRef.current.animateNextTransition();
     props.setWishlist([...x]);
   };
 
   return (
-    <View
+    <Animated.View
+      entering={FadeInLeft.duration(300).delay(props.index * 150)}
+      layout={SequencedTransition.duration(200)}
       style={{
         width: (width - hp(4.6)) / 2,
         height: Platform.OS === 'ios' ? hp(40) : hp(45),
@@ -141,7 +145,7 @@ const ProductCard = props => {
           </Text>
         </Pressable>
       </View>
-    </View>
+    </Animated.View>
   );
 };
 

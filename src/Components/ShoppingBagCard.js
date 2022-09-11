@@ -13,7 +13,6 @@ const ShoppingBagCard = ({
   shoppingItems,
   scrollRef,
   scrollY,
-  screenRef,
 }) => {
   const [showSizeModal, setShowSizeModal] = useState(false);
   const [showQuantityModal, setShowQuantityModal] = useState(false);
@@ -222,7 +221,6 @@ const ShoppingBagCard = ({
         index={index}
         scrollY={scrollY}
         scrollRef={scrollRef}
-        screenRef={screenRef}
         image={data.image}
       />
     </View>

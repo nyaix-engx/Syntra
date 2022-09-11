@@ -102,7 +102,7 @@ const AddressRemoveModal = props => {
             flexDirection: 'row',
             width: '100%',
             justifyContent: 'space-around',
-            marginBottom: insets.bottom,
+            marginBottom: Platform.OS === 'ios' ? insets.bottom : hp(4),
           }}>
           <View style={{width: '45%'}}>
             <ScaleAnimation onPress={() => props.setShowModal()} scaleTo={0.9}>
