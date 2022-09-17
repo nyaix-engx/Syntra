@@ -14,7 +14,6 @@ const AddressRemoveModal = props => {
       return itemIndex !== props.index;
     });
     x.length > 0 ? (x[0].default = true) : null;
-    props.screenRef.current.animateNextTransition();
     props.setItems([...x]);
     props.setShowModal();
     Platform.OS === 'ios' &&

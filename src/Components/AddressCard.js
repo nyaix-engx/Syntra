@@ -201,7 +201,6 @@ const AddressCard = props => {
             index={props.index}
             scrollY={props.scrollY}
             scrollRef={props.scrollRef}
-            screenRef={props.addressRef}
           />
         </View>
       </View>

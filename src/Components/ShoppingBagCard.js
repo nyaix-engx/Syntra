@@ -109,7 +109,11 @@ const ShoppingBagCard = ({
                   }}>
                   Size : {size}
                 </Text>
-                <Ionicons name="caret-down-sharp" size={hp(1.5)} />
+                <Ionicons
+                  name="caret-down-sharp"
+                  size={hp(1.5)}
+                  style={{color: 'black'}}
+                />
               </View>
             </Pressable>
             <Pressable
@@ -136,7 +140,11 @@ const ShoppingBagCard = ({
                   }}>
                   Qty: {quantity}
                 </Text>
-                <Ionicons name="caret-down-sharp" size={hp(1.5)} />
+                <Ionicons
+                  name="caret-down-sharp"
+                  size={hp(1.5)}
+                  style={{color: 'black'}}
+                />
               </View>
             </Pressable>
           </View>

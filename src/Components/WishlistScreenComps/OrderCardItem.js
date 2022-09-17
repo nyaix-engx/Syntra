@@ -57,7 +57,7 @@ const OrderCardItem = ({data}) => {
         </Text>
       </View>
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Fontisto name="angle-right" size={hp(1.5)} />
+        <Fontisto name="angle-right" size={hp(1.5)} style={{color: 'black'}} />
       </View>
     </Pressable>
   );

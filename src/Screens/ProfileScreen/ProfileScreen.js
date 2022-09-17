@@ -30,7 +30,7 @@ const ProfileScreen = props => {
       description: 'Check your order status',
       accessory: () => (
         <SimpleLineIcons
-          style={{paddingHorizontal: hp(1)}}
+          style={{paddingHorizontal: hp(1), color: 'black'}}
           name="social-dropbox"
           size={hp(3)}
         />
@@ -41,7 +41,7 @@ const ProfileScreen = props => {
       description: 'Your most loved styles',
       accessory: () => (
         <AntDesign
-          style={{paddingHorizontal: hp(1)}}
+          style={{paddingHorizontal: hp(1), color: 'black'}}
           name="hearto"
           size={hp(3)}
         />
@@ -52,7 +52,7 @@ const ProfileScreen = props => {
       description: 'Save your cards for faster checkout',
       accessory: () => (
         <MaterialIcons
-          style={{paddingHorizontal: hp(1)}}
+          style={{paddingHorizontal: hp(1), color: 'black'}}
           name="credit-card"
           size={hp(3)}
         />
@@ -63,7 +63,7 @@ const ProfileScreen = props => {
       description: 'Save addresses for a hassle-free checkout',
       accessory: () => (
         <Ionicons
-          style={{paddingHorizontal: hp(1)}}
+          style={{paddingHorizontal: hp(1), color: 'black'}}
           name="location-outline"
           size={hp(3)}
         />
@@ -74,7 +74,7 @@ const ProfileScreen = props => {
       description: 'Change your profile details & password',
       accessory: () => (
         <AntDesign
-          style={{paddingHorizontal: hp(1)}}
+          style={{paddingHorizontal: hp(1), color: 'black'}}
           name="profile"
           size={hp(3)}
         />
@@ -84,7 +84,7 @@ const ProfileScreen = props => {
   const renderItemAccessory = props => (
     <Entypo
       size={hp(3)}
-      style={{paddingHorizontal: hp(1)}}
+      style={{paddingHorizontal: hp(1), color: 'black'}}
       name="chevron-small-right"
     />
   );
@@ -184,11 +184,11 @@ const ProfileScreen = props => {
             </View>
           }
           ListHeaderComponent={
-            <View
+            <ImageBackground
+              source={require('../../Assets/Images/Categories/banner_2.jpg')}
               style={{
                 height: hp(25),
                 position: 'relative',
-                backgroundColor: 'grey',
                 marginBottom: hp(2),
               }}>
               <View
@@ -213,14 +213,14 @@ const ProfileScreen = props => {
                   <Text
                     style={{
                       fontFamily: 'Poppins-Medium',
-                      fontSize: hp(2),
-                      color: 'black',
+                      fontSize: hp(2.3),
+                      color: 'white',
                     }}>
                     Hugh Jackman
                   </Text>
                 </View>
               </View>
-            </View>
+            </ImageBackground>
           }
           renderItem={renderItem}
         />
@@ -234,6 +234,8 @@ const styles = StyleSheet.create({
     width: hp(14),
     height: hp(14),
     borderRadius: hp(1),
+    borderColor: '#fb7ca0',
+    borderWidth: 1,
   },
   container: {
     maxHeight: hp(15),

@@ -646,28 +646,46 @@ export const DeliveryTime = [
 export const categoryImages = [
   {
     img: require('../Assets/Images/1.png'),
+    width: 20,
+    height: 20,
+  },
+  {
+    img: require('../Assets/Images/2.png'),
     width: 15,
     height: 15,
   },
   {
-    img: require('../Assets/Images/2.png'),
-    width: 12,
-    height: 9,
-  },
-  {
     img: require('../Assets/Images/3.png'),
-    width: 12,
-    height: 10,
+    width: 13,
+    height: 15,
   },
   {
     img: require('../Assets/Images/4.png'),
-    width: 12,
-    height: 8,
+    width: 13,
+    height: 13,
   },
   {
     img: require('../Assets/Images/5.png'),
     width: 12,
-    height: 7,
+    height: 13,
+  },
+];
+
+export const categoryBanner = [
+  {
+    img: require('../Assets/Images/Categories/banner_1.jpg'),
+  },
+  {
+    img: require('../Assets/Images/Categories/banner_2.jpg'),
+  },
+  {
+    img: require('../Assets/Images/Categories/banner_3.jpg'),
+  },
+  {
+    img: require('../Assets/Images/Categories/banner_4.jpg'),
+  },
+  {
+    img: require('../Assets/Images/Categories/banner_5.jpg'),
   },
 ];
 

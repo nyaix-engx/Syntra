@@ -1,10 +1,17 @@
 import React, {useState, useRef, useEffect} from 'react';
 import Animated, {EasingNode, Extrapolate} from 'react-native-reanimated';
-import {View, Text, Pressable, Platform, Image} from 'react-native';
+import {
+  View,
+  Text,
+  Pressable,
+  Platform,
+  Image,
+  ImageBackground,
+} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import CategorySubComp from './CategorySubComp';
-import {categoryImages} from '../../Utils/arrays';
+import {categoryImages, categoryBanner} from '../../Utils/arrays';
 
 const CategoryComp = props => {
   const rowHeight1 = useRef(new Animated.Value(hp(0)));
@@ -113,9 +120,10 @@ const CategoryComp = props => {
   };
 
   return (
-    <Animated.View>
+    <Animated.View style={{marginBottom: hp(0.3)}}>
       <Pressable onPress={props.category.subCategory && _onSingleTap}>
-        <View
+        <ImageBackground
+          source={categoryBanner[props.index].img}
           style={{
             height: props.height,
             display: 'flex',
@@ -127,13 +135,13 @@ const CategoryComp = props => {
           <View
             style={{
               height: '100%',
-              width: '30%',
+              width: '35%',
               display: 'flex',
             }}>
             <View style={{display: 'flex', flexDirection: 'row', flex: 1}}>
               <View
                 style={{
-                  flex: 2.5,
+                  flex: 8,
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'flex-start',
@@ -141,10 +149,15 @@ const CategoryComp = props => {
                 }}>
                 <Text
                   style={{
-                    fontSize: Platform.ios === 'android' ? hp(2) : hp(1.8),
+                    fontSize: Platform.OS === 'android' ? hp(2.2) : hp(2.2),
                     fontFamily: 'Poppins-Medium',
                     fontWeight: '300',
                     color: 'black',
+                    backgroundColor: 'white',
+                    paddingVertical: hp(0.3),
+                    paddingHorizontal: hp(1.2),
+                    borderRadius: 10,
+                    lineHeight: 25,
                   }}>
                   {props.category.title}
                 </Text>
@@ -168,6 +181,7 @@ const CategoryComp = props => {
                       style={{
                         fontSize:
                           Platform.ios === 'android' ? hp(1.6) : hp(1.4),
+                        color: 'black',
                       }}
                     />
                   </Animated.View>
@@ -192,7 +206,7 @@ const CategoryComp = props => {
               }}
             />
           </View>
-        </View>
+        </ImageBackground>
       </Pressable>
       {props.category.subCategory && (
         <Animated.ScrollView
