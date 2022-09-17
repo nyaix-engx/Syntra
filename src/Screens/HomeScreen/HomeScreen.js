@@ -93,7 +93,7 @@ const HomeScreen = props => {
             </Pressable>
           </View>
           <View style={styles.logoWrap}>
-            <Logo width={hp(12)} height={hp(12)} />
+            {/* <Logo width={hp(12)} height={hp(12)} /> */}
           </View>
           <View style={styles.headerIconsWrap}>
             <View style={styles.headerIconWrap}>
