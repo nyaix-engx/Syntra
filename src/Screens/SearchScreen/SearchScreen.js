@@ -117,7 +117,7 @@ const SearchScreen = () => {
                 <Pressable
                   onPress={() => navigation.goBack()}
                   style={{
-                    flex: 0.5,
+                    width: hp(5),
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
