@@ -12,7 +12,7 @@ import Apple from '../../Components/SVG/Socials/Apple';
 import SocialIconWrapper from '../../Components/Authentication/SocialIconWrapper';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 
-const SigninScreen = () => {
+const SigninScreen = props => {
   return (
     <View style={styles.wrapper}>
       <View
@@ -38,7 +38,9 @@ const SigninScreen = () => {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-        <Pressable style={styles.button}>
+        <Pressable
+          style={styles.button}
+          onPress={() => props.setIsSigned(true)}>
           <Text style={styles.signin}>LOG IN</Text>
         </Pressable>
       </View>

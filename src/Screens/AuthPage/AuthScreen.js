@@ -12,10 +12,10 @@ import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import SignupScreen from '../SignupScreen/SignupScreen';
 import SigninScreen from '../SigninScreen/SigninScreen';
 
-const authArray = [
-  {id: 1, component: <SigninScreen />},
-  {id: 2, component: <SignupScreen />},
-];
+// const authArray = [
+//   {id: 1, component: <SigninScreen />},
+//   {id: 2, component: <SignupScreen />},
+// ];
 
 const Paginator = ({data, scrollX}) => {
   const {width} = useWindowDimensions();
@@ -27,7 +27,7 @@ const Paginator = ({data, scrollX}) => {
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row',
-        width:hp(20)
+        width: hp(20),
       }}>
       {data.map((item, index) => {
         const inputRange = [
@@ -65,7 +65,7 @@ const Paginator = ({data, scrollX}) => {
   );
 };
 
-const AuthScreen = (props) => {
+const AuthScreen = props => {
   const scrollX = useRef(new Animated.Value(0)).current;
   const [currentIndex, setCurrentIndex] = useState(0);
   const viewConfig = useRef({viewAreaCoveragePercentThreshold: 50}).current;
@@ -80,15 +80,22 @@ const AuthScreen = (props) => {
     setCurrentIndex(viewableItems[0].index);
   }).current;
 
+  const getData = () => {
+    return [
+      {id: 1, component: <SigninScreen setIsSigned={props.setIsSigned} />},
+      {id: 2, component: <SignupScreen setIsSigned={props.setIsSigned} />},
+    ];
+  };
+
   return (
-    <View style={{flex:1,position:'relative'}}>
+    <View style={{flex: 1, position: 'relative'}}>
       <ImageBackground source={image} style={styles.image}>
         <View style={{flex: 1}}>
           <FlatList
-            style={{flex:1}}
-            data={authArray}
+            style={{flex: 1}}
+            data={getData()}
             renderItem={renderItem}
-            keyExtractor={(item) => item.id}
+            keyExtractor={item => item.id}
             horizontal
             pagingEnabled
             showsHorizontalScrollIndicator={false}
@@ -111,8 +118,15 @@ const AuthScreen = (props) => {
             viewabilityConfig={viewConfig}
             ref={slidesRef}
           />
-          <View style={{position:'absolute',bottom:0, paddingVertical:hp(2),left:(width-hp(20))/2,bottom:Platform.OS=='ios'?hp(4):0}}>
-            <Paginator data={authArray} scrollX={scrollX} />
+          <View
+            style={{
+              position: 'absolute',
+              bottom: 0,
+              paddingVertical: hp(2),
+              left: (width - hp(20)) / 2,
+              bottom: Platform.OS == 'ios' ? hp(4) : 0,
+            }}>
+            <Paginator data={getData()} scrollX={scrollX} />
           </View>
         </View>
       </ImageBackground>

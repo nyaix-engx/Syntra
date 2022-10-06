@@ -593,10 +593,7 @@ const ShoppingBagScreen = ({navigation}) => {
               paddingHorizontal: hp(4),
               paddingVertical: hp(1),
             }}>
-            <ScaleAnimation
-              onPress={() => console.log('hello')}
-              disabled={false}
-              scaleTo={0.9}>
+            <ScaleAnimation onPress={() => {}} disabled={false} scaleTo={0.9}>
               <Button
                 viewProps={{
                   borderRadius: hp(0.5),

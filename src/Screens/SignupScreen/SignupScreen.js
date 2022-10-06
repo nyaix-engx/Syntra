@@ -9,7 +9,7 @@ import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import AuthInput from '../../Components/Authentication/AuthInput';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 
-const SignupScreen = () => {
+const SignupScreen = ({setIsSigned}) => {
   return (
     <View style={styles.wrapper}>
       <View
@@ -67,7 +67,10 @@ const SignupScreen = () => {
             alignItems: 'center',
             justifyContent: 'center',
           }}>
-          <Pressable style={styles.button} size="medium">
+          <Pressable
+            style={styles.button}
+            size="medium"
+            onPress={() => setIsSigned(true)}>
             <Text style={styles.signup}>SIGN UP</Text>
           </Pressable>
         </View>

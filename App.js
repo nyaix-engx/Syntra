@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {ApplicationProvider, IconRegistry} from '@ui-kitten/components';
@@ -73,8 +73,8 @@ const ScreenPage = () => {
 
 const App = () => {
   const dimensions = useWindowDimensions();
+  const [isSigned, setIsSigned] = useState(false);
   const isLargeScreen = dimensions.width >= 768;
-  const isSigned = true;
   return (
     <SafeAreaProvider>
       <IconRegistry icons={EvaIconsPack} />
@@ -95,7 +95,12 @@ const App = () => {
             </Drawer.Navigator>
           ) : (
             <Stack.Navigator screenOptions={{headerShown: false}}>
-              <Stack.Screen name="Authpage" component={AuthScreen} />
+              <Stack.Screen
+                name="Authpage"
+                component={props => (
+                  <AuthScreen {...props} setIsSigned={setIsSigned} />
+                )}
+              />
             </Stack.Navigator>
           )}
         </NavigationContainer>

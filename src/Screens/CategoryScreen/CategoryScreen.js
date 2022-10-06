@@ -1,4 +1,4 @@
-import React, { useState, useRef} from 'react';
+import React, {useState, useRef} from 'react';
 import {ScrollView} from 'react-native-gesture-handler';
 import CategoryComp from '../../Components/CategoryScreenComps/CategoryComp';
 import TitleHeader from '../../Components/CategoryScreenComps/TitleHeader';
@@ -17,11 +17,11 @@ const CategoryScreen = () => {
   const getCategories = () => {
     return categories.map((category, index) => {
       return (
-        <EntryAnimation index={index+1} key={index} direction="BOTTOM">
+        <EntryAnimation index={index + 1} key={index} direction="BOTTOM">
           <CategoryComp
             height={
               Platform.OS === 'android'
-                ? (height - hp(11.7)) / categories.length
+                ? (height - hp(12.7)) / categories.length
                 : (height - hp(22.7)) / categories.length
             }
             index={index}
@@ -41,7 +41,7 @@ const CategoryScreen = () => {
       <ScrollView
         showsVerticalScrollIndicator={false}
         bounces={false}
-        style={{flex:1}}
+        style={{flex: 1}}
         ref={scrollRef}>
         {getCategories()}
       </ScrollView>

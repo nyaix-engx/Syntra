@@ -50,7 +50,6 @@ const AddCardScreen = ({route, navigation}) => {
         });
       }
     } else {
-      console.log('here');
       if (
         nameBorder === 'green' &&
         cardBorder === 'green' &&
@@ -65,7 +64,6 @@ const AddCardScreen = ({route, navigation}) => {
             item.type = cardType;
           }
         });
-        console.log('NewArr', newArray);
         navigation.navigate({
           name: 'SavedCardsPage',
           params: {cards: newArray},
@@ -77,7 +75,6 @@ const AddCardScreen = ({route, navigation}) => {
 
   const handleName = cardHolderName => {
     setName(cardHolderName);
-    console.log(valid.cardholderName(cardHolderName));
     if (valid.cardholderName(cardHolderName).isValid) {
       setNameBorder('green');
     } else {
@@ -93,7 +90,6 @@ const AddCardScreen = ({route, navigation}) => {
     valid.number(cardNumb).card
       ? setCardType(valid.number(cardNumb).card.type)
       : setCardType('');
-    console.log(valid.number(cardNumb));
     if (valid.number(cardNumb).isValid) {
       setCardBorder('green');
     } else {
@@ -112,7 +108,6 @@ const AddCardScreen = ({route, navigation}) => {
     } else {
       setExpiry(newDate);
     }
-    console.log(valid.expirationDate(date));
     if (valid.expirationDate(date).isValid) {
       setExpiryBorder('green');
     } else {

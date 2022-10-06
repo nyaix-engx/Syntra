@@ -19,6 +19,7 @@ import Feather from 'react-native-vector-icons/Feather';
 
 const HomeScreen = props => {
   const scrollY = useRef(new Animated.Value(0));
+
   const diffClampScrollY = useRef(
     new Animated.diffClamp(scrollY.current, 0, hp(15)),
   );
