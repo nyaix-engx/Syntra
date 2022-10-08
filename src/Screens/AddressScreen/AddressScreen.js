@@ -1,16 +1,18 @@
 import React, {useState, useRef, useEffect} from 'react';
-import {View, Text, ScrollView} from 'react-native';
+import {View, Text, ScrollView, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import Animated, {EasingNode} from 'react-native-reanimated';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Entypo from 'react-native-vector-icons/Entypo';
+import LottieView from 'lottie-react-native';
+
 import AddressCard from '../../Components/AddressCard';
 import BackButtonTitle from '../../Components/BackButtonTitle';
 import Button from '../../Components/Button';
 import ScaleAnimation from '../../Components/ScaleAnimation';
-import {addresses} from '../../Utils/arrays';
-import LottieView from 'lottie-react-native';
-import Animated, {EasingNode} from 'react-native-reanimated';
 import EntryAnimation from '../../Components/EntryAnimation';
+
+import {addresses} from '../../Utils/arrays';
 
 const CustomButton = ({navigation, viewStyle, textStyle, userAddresses}) => {
   return (
@@ -24,7 +26,7 @@ const CustomButton = ({navigation, viewStyle, textStyle, userAddresses}) => {
           <Entypo
             name="add-to-list"
             size={hp(3)}
-            style={{marginRight: hp(1), color: '#ffffff'}}
+            style={styles.addToListIcon}
           />
           <Text style={textStyle}>ADD NEW ADDRESS</Text>
         </>
@@ -43,13 +45,14 @@ const AddressScreen = ({navigation, route}) => {
     if (route.params?.userAddresses) {
       setUserAddresses(route.params.userAddresses);
     }
-    if (userAddresses.length == 0) {
+    if (userAddresses.length === 0) {
       Animated.timing(opacity, {
         duration: 1000,
         toValue: 1,
         easing: EasingNode.ease,
       }).start();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [route.params?.userAddresses, userAddresses]);
 
   const getAddress = () => {
@@ -78,72 +81,46 @@ const AddressScreen = ({navigation, route}) => {
             <CustomButton
               userAddresses={userAddresses}
               navigation={navigation}
-              textStyle={{
-                fontFamily: 'Raleway-Medium',
-                fontSize: hp(1.8),
-                fontWeight: '600',
-                textAlign: 'center',
-                color: '#ffffff',
-              }}
-              viewStyle={{
-                padding: hp(1.8),
-                backgroundColor: '#fb7ca0',
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'center',
-                borderRadius: hp(0.5),
-              }}
+              textStyle={styles.customButtonTextStyle}
+              viewStyle={styles.customButtonViewStyle}
             />
           </View>
           <ScrollView
-            style={{flex: 1}}
+            style={styles.scrollViewStyle}
             ref={scrollRef}
             onScroll={handleScroll}
             scrollEventThrottle={16}
             showsVerticalScrollIndicator={false}
             bounces={false}>
-            <View style={{marginBottom: hp(1), flex: 1}}>{getAddress()}</View>
+            <View style={styles.scrollViewContentWrapperStyle}>
+              {getAddress()}
+            </View>
           </ScrollView>
         </>
       );
     } else {
       return (
         <>
-          <View style={{height: hp(15), marginVertical: hp(5)}}>
+          <View style={styles.lottieWrapper}>
             <LottieView
               source={require('../../Assets/lottie/address.json')}
               autoPlay
               loop={false}
             />
           </View>
-          <View
-            style={{
-              justifyContent: 'center',
-              alignItems: 'center',
-              paddingHorizontal: hp(4),
-            }}>
-            <Text
-              style={{
-                fontFamily: 'Raleway-Medium',
-                fontSize: hp(1.8),
-                fontWeight: '600',
-                color: 'black',
-              }}>
-              SAVE YOUR ADDRESSES NOW
-            </Text>
+          <View style={styles.saveAddressWrapper}>
+            <Text style={styles.saveAddressText}>SAVE YOUR ADDRESSES NOW</Text>
             <Animated.Text
-              style={{
-                fontFamily: 'ArchitectsDaughter-Regular',
-                fontSize: hp(1.8),
-                textAlign: 'center',
-                marginTop: hp(2),
-                color: 'grey',
-                opacity,
-              }}>
+              style={[
+                styles.saveAddressTag,
+                {
+                  opacity,
+                },
+              ]}>
               Add your home and office addresses and enjoy faster checkout
             </Animated.Text>
           </View>
-          <View style={{marginVertical: hp(5), paddingHorizontal: hp(9)}}>
+          <View style={styles.animationContainer}>
             <ScaleAnimation
               onPress={() =>
                 navigation.navigate('AddNewAddressPage', {
@@ -152,32 +129,13 @@ const AddressScreen = ({navigation, route}) => {
                 })
               }
               scaleTo={0.9}>
-              <View
-                style={{
-                  backgroundColor: 'white',
-                  paddingVertical: hp(1.5),
-                  borderRadius: hp(0.3),
-                  borderWidth: hp(0.1),
-                  borderColor: '#e6e6e6',
-                  flexDirection: 'row',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}>
+              <View style={styles.addButtonWrapper}>
                 <Entypo
                   name="plus"
                   size={hp(3)}
-                  style={{marginRight: hp(1), color: 'blue'}}
+                  style={styles.plusIconWrapper}
                 />
-                <Text
-                  style={{
-                    textAlign: 'center',
-                    fontFamily: 'Raleway-Medium',
-                    fontWeight: '600',
-                    color: 'blue',
-                    fontSize: hp(1.8),
-                  }}>
-                  ADD NEW ADDRESS
-                </Text>
+                <Text style={styles.addButtonText}>ADD NEW ADDRESS</Text>
               </View>
             </ScaleAnimation>
           </View>
@@ -186,20 +144,79 @@ const AddressScreen = ({navigation, route}) => {
     }
   };
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <View style={{flex: 0.8}}>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.header}>
         <BackButtonTitle title="ADDRESS" />
       </View>
-      <View
-        style={{
-          flex: 8,
-          backgroundColor: '#F4F4F4 ',
-          paddingHorizontal: hp(2),
-        }}>
-        {getContent()}
-      </View>
+      <View style={styles.contentWrapper}>{getContent()}</View>
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {flex: 1},
+  header: {flex: 0.8},
+  contentWrapper: {
+    flex: 8,
+    backgroundColor: '#F4F4F4',
+    paddingHorizontal: hp(2),
+  },
+  customButtonTextStyle: {
+    fontFamily: 'Raleway-Medium',
+    fontSize: hp(1.8),
+    fontWeight: '600',
+    textAlign: 'center',
+    color: '#ffffff',
+  },
+  customButtonViewStyle: {
+    padding: hp(1.8),
+    backgroundColor: '#fb7ca0',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: hp(0.5),
+  },
+  scrollViewStyle: {flex: 1},
+  scrollViewContentWrapperStyle: {marginBottom: hp(1), flex: 1},
+  lottieWrapper: {height: hp(15), marginVertical: hp(5)},
+  saveAddressWrapper: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: hp(4),
+  },
+  saveAddressText: {
+    fontFamily: 'Raleway-Medium',
+    fontSize: hp(1.8),
+    fontWeight: '600',
+    color: 'black',
+  },
+  saveAddressTag: {
+    fontFamily: 'ArchitectsDaughter-Regular',
+    fontSize: hp(1.8),
+    textAlign: 'center',
+    marginTop: hp(2),
+    color: 'grey',
+  },
+  animationContainer: {marginVertical: hp(5), paddingHorizontal: hp(9)},
+  addButtonWrapper: {
+    backgroundColor: 'white',
+    paddingVertical: hp(1.5),
+    borderRadius: hp(0.3),
+    borderWidth: hp(0.1),
+    borderColor: '#e6e6e6',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  plusIconWrapper: {marginRight: hp(1), color: 'blue'},
+  addButtonText: {
+    textAlign: 'center',
+    fontFamily: 'Raleway-Medium',
+    fontWeight: '600',
+    color: 'blue',
+    fontSize: hp(1.8),
+  },
+  addToListIcon: {marginRight: hp(1), color: '#ffffff'},
+});
 
 export default AddressScreen;

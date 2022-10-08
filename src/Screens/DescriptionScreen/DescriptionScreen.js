@@ -6,24 +6,26 @@ import {
   useWindowDimensions,
   Platform,
   Pressable,
+  StyleSheet,
 } from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import Animated from 'react-native-reanimated';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
 import Entypo from 'react-native-vector-icons/Entypo';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
+
 import DescCarousel from '../../Components/DescCarousel';
-import {imageArray} from '../../Utils/arrays';
 import CustomerReview from '../../Components/CustomerReviewComp';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import Animated from 'react-native-reanimated';
 import SimilarStylesCard from '../../Components/WishlistScreenComps/SimilarStylesCard';
 import ScaleAnimation from '../../Components/ScaleAnimation';
 import Button from '../../Components/Button';
-import {addresses} from '../../Utils/arrays';
 import ChangeDeliveryModal from '../../Components/ChangeDeliveryModal';
+
+import {imageArray, addresses} from '../../Utils/arrays';
 
 const DescriptionScreen = () => {
   const {width} = useWindowDimensions();

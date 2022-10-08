@@ -1,41 +1,29 @@
 import React from 'react';
 import {StyleSheet, ImageBackground, View} from 'react-native';
 import {Layout, ViewPager} from '@ui-kitten/components';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
+
 import {SigninScreen} from '../SigninScreen/SigninScreen';
 import SignupScreen from '../SignupScreen/SignupScreen';
-import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
-const AuthPage = (props) => {
+const AuthPage = props => {
   const image = require('../../Assets/Images/theme_bg.jpg');
 
   return (
     <ViewPager
       selectedIndex={props.selectedIndex}
-      onSelect={(index) => props.setSelectedIndex(index)}
-      style={{flex: 1, display: 'flex'}}>
+      onSelect={index => props.setSelectedIndex(index)}
+      style={styles.container}>
       <Layout style={styles.tab}>
         <ImageBackground source={image} style={styles.image}>
-          <View
-            style={{
-              flex: 1,
-              display: 'flex',
-              marginVertical: hp(8),
-              marginHorizontal: hp(4.5),
-              display: 'flex',
-            }}>
+          <View style={styles.authScreenWrapper}>
             <SigninScreen />
           </View>
         </ImageBackground>
       </Layout>
       <Layout style={styles.tab}>
         <ImageBackground source={image} style={styles.image}>
-          <View style={{
-              flex: 1,
-              display: 'flex',
-              marginVertical: hp(8),
-              marginHorizontal: hp(4.5),
-              display: 'flex',
-            }}>
+          <View style={styles.authScreenWrapper}>
             <SignupScreen />
           </View>
         </ImageBackground>
@@ -45,6 +33,13 @@ const AuthPage = (props) => {
 };
 
 const styles = StyleSheet.create({
+  container: {flex: 1, display: 'flex'},
+  authScreenWrapper: {
+    flex: 1,
+    display: 'flex',
+    marginVertical: hp(8),
+    marginHorizontal: hp(4.5),
+  },
   tab: {
     flex: 1,
     justifyContent: 'center',
@@ -52,8 +47,6 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     resizeMode: 'cover',
-    // justifyContent: 'center',
-    // zIndex:2
   },
 });
 

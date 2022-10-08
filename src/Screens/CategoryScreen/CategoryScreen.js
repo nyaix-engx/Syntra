@@ -1,11 +1,18 @@
 import React, {useState, useRef} from 'react';
+import {
+  Platform,
+  SafeAreaView,
+  useWindowDimensions,
+  StyleSheet,
+} from 'react-native';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {ScrollView} from 'react-native-gesture-handler';
+
 import CategoryComp from '../../Components/CategoryScreenComps/CategoryComp';
 import TitleHeader from '../../Components/CategoryScreenComps/TitleHeader';
-import {categories} from '../../Utils/arrays';
-import {Platform, SafeAreaView, useWindowDimensions} from 'react-native';
-import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import EntryAnimation from '../../Components/EntryAnimation';
+
+import {categories} from '../../Utils/arrays';
 
 const CategoryScreen = () => {
   const [categoryTitleState, setCategoryTitleState] = useState(
@@ -36,17 +43,22 @@ const CategoryScreen = () => {
   };
 
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
+    <SafeAreaView style={styles.container}>
       <TitleHeader title="CATEGORIES" />
       <ScrollView
         showsVerticalScrollIndicator={false}
         bounces={false}
-        style={{flex: 1}}
+        style={styles.scrollViewStyle}
         ref={scrollRef}>
         {getCategories()}
       </ScrollView>
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {flex: 1, backgroundColor: 'white'},
+  scrollViewStyle: {flex: 1},
+});
 
 export default CategoryScreen;

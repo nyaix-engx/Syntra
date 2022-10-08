@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useRef} from 'react';
 import {
   FlatList,
   StyleSheet,
@@ -20,15 +20,7 @@ import SigninScreen from '../SigninScreen/SigninScreen';
 const Paginator = ({data, scrollX}) => {
   const {width} = useWindowDimensions();
   return (
-    <View
-      style={{
-        height: hp(5),
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'row',
-        width: hp(20),
-      }}>
+    <View style={styles.paginatorContentWrapper}>
       {data.map((item, index) => {
         const inputRange = [
           (index - 1) * width,
@@ -50,14 +42,13 @@ const Paginator = ({data, scrollX}) => {
         return (
           <Animated.View
             key={index}
-            style={{
-              height: hp(1),
-              width: dotWidth,
-              borderRadius: hp(1),
-              backgroundColor: '#949494',
-              marginHorizontal: hp(0.7),
-              opacity: dotOpacity,
-            }}
+            style={[
+              styles.paginatorView,
+              {
+                width: dotWidth,
+                opacity: dotOpacity,
+              },
+            ]}
           />
         );
       })}
@@ -67,7 +58,7 @@ const Paginator = ({data, scrollX}) => {
 
 const AuthScreen = props => {
   const scrollX = useRef(new Animated.Value(0)).current;
-  const [currentIndex, setCurrentIndex] = useState(0);
+  // const [currentIndex, setCurrentIndex] = useState(0);
   const viewConfig = useRef({viewAreaCoveragePercentThreshold: 50}).current;
   const slidesRef = useRef(null);
   const image = require('../../Assets/Images/theme_bg.jpg');
@@ -76,9 +67,9 @@ const AuthScreen = props => {
     return <View style={{width: width}}>{item.component}</View>;
   };
 
-  const viewableItemsChanged = useRef(({viewableItems}) => {
-    setCurrentIndex(viewableItems[0].index);
-  }).current;
+  // const viewableItemsChanged = useRef(({viewableItems}) => {
+  //   setCurrentIndex(viewableItems[0].index);
+  // }).current;
 
   const getData = () => {
     return [
@@ -88,11 +79,11 @@ const AuthScreen = props => {
   };
 
   return (
-    <View style={{flex: 1, position: 'relative'}}>
+    <View style={styles.container}>
       <ImageBackground source={image} style={styles.image}>
-        <View style={{flex: 1}}>
+        <View style={styles.contentWrapper}>
           <FlatList
-            style={{flex: 1}}
+            style={styles.flatlistStyle}
             data={getData()}
             renderItem={renderItem}
             keyExtractor={item => item.id}
@@ -114,18 +105,11 @@ const AuthScreen = props => {
                 useNativeDriver: false,
               },
             )}
-            onViewableItemsChanged={viewableItemsChanged}
+            onViewableItemsChanged={() => {}}
             viewabilityConfig={viewConfig}
             ref={slidesRef}
           />
-          <View
-            style={{
-              position: 'absolute',
-              bottom: 0,
-              paddingVertical: hp(2),
-              left: (width - hp(20)) / 2,
-              bottom: Platform.OS == 'ios' ? hp(4) : 0,
-            }}>
+          <View style={[styles.paginatorWrapper, {left: (width - hp(20)) / 2}]}>
             <Paginator data={getData()} scrollX={scrollX} />
           </View>
         </View>
@@ -135,19 +119,36 @@ const AuthScreen = props => {
 };
 
 const styles = StyleSheet.create({
+  container: {flex: 1, position: 'relative'},
+  contentWrapper: {flex: 1},
+  flatlistStyle: {flex: 1},
   tab: {
     height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   image: {
     flex: 1,
     resizeMode: 'cover',
+  },
+  paginatorWrapper: {
+    position: 'absolute',
+    paddingVertical: hp(2),
+    bottom: Platform.OS === 'ios' ? hp(4) : 0,
+  },
+  paginatorContentWrapper: {
+    height: hp(5),
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    width: hp(20),
+  },
+  paginatorView: {
+    height: hp(1),
+    borderRadius: hp(1),
+    backgroundColor: '#949494',
+    marginHorizontal: hp(0.7),
   },
 });
 
