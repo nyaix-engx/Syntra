@@ -80,7 +80,9 @@ const MyTabBar = ({state, descriptors, navigation}) => {
 const tabBarStyles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    marginBottom: Platform.OS === 'ios' ? hp(2.5) : 0,
+    marginBottom: Platform.OS === 'ios' ? hp(2) : 0,
+    borderTopColor: '#ededed',
+    borderTopWidth: 1.5,
   },
   button_style: {
     flex: 1,

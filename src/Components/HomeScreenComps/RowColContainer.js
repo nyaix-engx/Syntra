@@ -1,6 +1,9 @@
 import React from 'react';
 import {View, Image, useWindowDimensions, Platform} from 'react-native';
-import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
 import {topBrandsArray} from '../../Utils/arrays';
 
 const RowColContainer = () => {
@@ -13,19 +16,24 @@ const RowColContainer = () => {
             key={index}
             style={{
               marginHorizontal:
+                Platform.OS === 'android' ? wp(3) : (width - wp(29) * 3) / 3,
+              marginVertical:
                 Platform.OS === 'android'
-                  ? (width - hp(13) * 3 - hp(4)) / 6
+                  ? (width - hp(13) * 3 - hp(8)) / 6
                   : (width - hp(13) * 3 - hp(1.1)) / 6,
-              marginVertical:Platform.OS === 'android'
-              ? (width - hp(13) * 3 - hp(8)) / 6
-              : (width - hp(13) * 3 - hp(1.1)) / 6,
             }}>
             <Image
               source={brand.img}
               style={{
-                width: Platform.OS === 'android' ? hp(13) : hp(12),
+                width:
+                  Platform.OS === 'android'
+                    ? (width - wp(19)) / 3
+                    : width -
+                      wp(22.5) * 3 -
+                      wp(2.5) * 2.5 -
+                      (width - wp(30) * 3) / 3,
                 height: Platform.OS === 'android' ? hp(13) : hp(12),
-                aspectRatio: 1,
+                // aspectRatio: 1,
                 borderRadius: hp(1),
               }}
             />
@@ -44,17 +52,15 @@ const RowColContainer = () => {
     }
   };
   return (
-    <View style={{paddingHorizontal: hp(2)}}>
-      <View
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          flexWrap: 'wrap',
-          // backgroundColor:'orange',
-          alignItems: 'center',
-        }}>
-        {getComp()}
-      </View>
+    <View
+      style={{
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+      }}>
+      {getComp()}
     </View>
   );
 };

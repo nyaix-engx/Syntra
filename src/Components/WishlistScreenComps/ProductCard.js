@@ -7,7 +7,10 @@ import {
   Platform,
   Text,
 } from 'react-native';
-import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
 import Animated, {
   FadeInLeft,
   SequencedTransition,
@@ -35,17 +38,18 @@ const ProductCard = props => {
       entering={FadeInLeft.duration(300).delay(props.index * 150)}
       layout={SequencedTransition.duration(200)}
       style={{
-        width: (width - hp(4.6)) / 2,
+        width:
+          Platform.OS === 'ios' ? (width - wp(6)) / 2 : (width - wp(6)) / 2,
         height: Platform.OS === 'ios' ? hp(40) : hp(45),
         borderRadius: hp(0.5),
-        margin: hp(0.65),
+        marginBottom: Platform.OS === 'ios' ? wp(2.5) : wp(2.5),
         borderWidth: hp(0.1),
         borderColor: '#c7c7c7',
       }}>
       <View style={{flex: 4.2, position: 'relative'}}>
         <Image
           style={{
-            width: (width - hp(5)) / 2,
+            width: '100%',
             height: '100%',
             borderTopLeftRadius: hp(0.5),
             borderTopRightRadius: hp(0.5),

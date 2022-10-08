@@ -7,7 +7,10 @@ import {
   Text,
   Platform,
 } from 'react-native';
-import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
 import Animated, {
   FadeInLeft,
   SequencedTransition,
@@ -29,11 +32,12 @@ const OutOfStockProduct = props => {
   return (
     <Animated.View
       style={{
-        width: (width - hp(4.6)) / 2,
+        width:
+          Platform.OS === 'ios' ? (width - wp(6)) / 2 : (width - wp(6)) / 2,
         height: Platform.OS === 'ios' ? hp(40) : hp(45),
         borderRadius: hp(0.5),
         borderWidth: hp(0.1),
-        margin: hp(0.65),
+        marginBottom: Platform.OS === 'ios' ? wp(2.5) : wp(2.5),
         borderColor: '#c7c7c7',
       }}
       entering={FadeInLeft.duration(200).delay(props.index * 150)}
@@ -41,7 +45,7 @@ const OutOfStockProduct = props => {
       <View style={{flex: 4.2, position: 'relative'}}>
         <Image
           style={{
-            width: (width - hp(5)) / 2,
+            width: '100%',
             height: '100%',
             borderTopLeftRadius: hp(0.5),
             borderTopRightRadius: hp(0.5),
@@ -56,7 +60,7 @@ const OutOfStockProduct = props => {
             right: 0,
             bottom: 0,
             backgroundColor: 'rgba(255, 255, 255, 0.7)',
-            width: (width - hp(5)) / 2,
+            width: '100%',
             height: '100%',
             display: 'flex',
             justifyContent: 'center',

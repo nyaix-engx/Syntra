@@ -7,7 +7,10 @@ import {
   Pressable,
   Platform,
 } from 'react-native';
-import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
 import OutOfStockProduct from '../../Components/WishlistScreenComps/OutOfStockProduct';
 import ProductCard from '../../Components/WishlistScreenComps/ProductCard';
 import BackButtonTitle from '../../Components/BackButtonTitle';
@@ -57,15 +60,16 @@ const WishlistScreen = ({route}) => {
           <ScrollView
             showsVerticalScrollIndicator={false}
             bounces={false}
+            style={{marginHorizontal: wp(2)}}
             ref={scrollRef}>
             <View
               style={{
-                paddingHorizontal: hp(1),
                 marginBottom: hp(1),
                 display: 'flex',
                 flexDirection: 'row',
                 flexWrap: 'wrap',
-                backgroundColor: 'white',
+                paddingTop: wp(2.5),
+                justifyContent: 'space-between',
               }}>
               {wishlist.map((data, index) => {
                 return (
@@ -123,12 +127,12 @@ const WishlistScreen = ({route}) => {
                 </View>
                 <View
                   style={{
-                    paddingHorizontal: hp(1),
                     paddingVertical: hp(0.5),
                     marginBottom: hp(2),
                     display: 'flex',
                     flexDirection: 'row',
                     flexWrap: 'wrap',
+                    justifyContent: 'space-between',
                   }}>
                   {outOfStock.map((data, index) => {
                     return (

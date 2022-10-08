@@ -140,7 +140,7 @@ const ProfileScreen = props => {
     </EntryAnimation>
   );
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
+    <SafeAreaView style={{flex: 1}}>
       <TitleHeader title="PROFILE" />
       <View style={{marginBottom: hp(2)}}>
         <List
@@ -149,7 +149,7 @@ const ProfileScreen = props => {
           showsVerticalScrollIndicator={false}
           bounces={false}
           contentContainerStyle={{
-            paddingBottom: Platform.OS === 'android' ? hp(5) : hp(1),
+            paddingBottom: Platform.OS === 'android' ? hp(5) : hp(4),
           }}
           ListFooterComponent={
             <View

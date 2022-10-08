@@ -11,8 +11,9 @@ const SortByModal = props => {
   const insets = useSafeAreaInsets();
   const renderItem = ({item, index}) => (
     <ListItem
+      key={`index_${index}`}
       style={{
-        height: Platform.OS === 'android' ? hp(7) : hp(6.4),
+        height: Platform.OS === 'android' ? hp(7) : hp(7),
         paddingHorizontal: hp(2.5),
       }}
       title={props => (
@@ -125,12 +126,12 @@ const SortByModal = props => {
       </View>
       <View
         style={{
-          height: hp(36),
+          height: hp(35),
           backgroundColor: 'white',
           paddingBottom: insets.bottom,
         }}>
         <List
-          style={{flex: 1}}
+          style={{flex: 1, backgroundColor: 'white'}}
           data={sortData}
           renderItem={renderItem}
           ItemSeparatorComponent={Divider}

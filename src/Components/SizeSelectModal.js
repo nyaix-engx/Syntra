@@ -100,7 +100,7 @@ const SizeSelectModal = props => {
               backgroundColor: '#fb7ca0',
               paddingVertical: hp(1.4),
               borderRadius: hp(0.5),
-              marginBottom: Platform.OS === 'ios' ? insets.bottom : hp(4),
+              marginBottom: Platform.OS === 'ios' ? hp(4) : hp(4),
             }}>
             <Text
               style={{
