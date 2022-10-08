@@ -28,7 +28,7 @@ const SavedCardsScreen = ({navigation, route}) => {
     if (route.params?.cards) {
       setCards(route.params.cards);
     }
-    if (cards.length == 0) {
+    if (cards.length === 0) {
       Animated.timing(subTextOpacity, {
         duration: 1000,
         toValue: 1,

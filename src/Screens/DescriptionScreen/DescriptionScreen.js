@@ -4,6 +4,7 @@ import {
   Text,
   ScrollView,
   useWindowDimensions,
+  Platform,
   Pressable,
 } from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
@@ -31,9 +32,9 @@ const DescriptionScreen = () => {
   const navigation = useNavigation();
   const [size, setSize] = useState('S');
   const insets = useSafeAreaInsets();
-  let scrollY = useRef(new Animated.Value(0));
+  const scrollY = useRef(new Animated.Value(0));
   const sizes = ['S', 'M', 'L', 'XL', 'XXL'];
-  let backcolor = Animated.interpolateColors(
+  const backcolor = Animated.interpolateColors(
     scrollY.current,
     {
       inputRange: [0, hp(60)],
@@ -551,7 +552,6 @@ const DescriptionScreen = () => {
               style={{
                 display: 'flex',
                 flexDirection: 'row',
-                display: 'flex',
                 alignItems: 'center',
                 paddingVertical: hp(0.5),
               }}>
@@ -574,7 +574,6 @@ const DescriptionScreen = () => {
               style={{
                 display: 'flex',
                 flexDirection: 'row',
-                display: 'flex',
                 alignItems: 'center',
                 paddingVertical: hp(0.5),
               }}>
@@ -597,7 +596,6 @@ const DescriptionScreen = () => {
               style={{
                 display: 'flex',
                 flexDirection: 'row',
-                display: 'flex',
                 paddingVertical: hp(0.5),
                 marginBottom: hp(1),
                 alignItems: 'center',
@@ -635,7 +633,6 @@ const DescriptionScreen = () => {
                 fontFamily: 'Raleway-Medium',
                 color: 'grey',
                 fontSize: Platform.OS === 'ios' ? hp(1.7) : hp(1.7),
-                color: 'black',
               }}>
               VIEW SIMILAR
             </Text>

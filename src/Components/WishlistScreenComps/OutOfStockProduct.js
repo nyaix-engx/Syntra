@@ -20,7 +20,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 const OutOfStockProduct = props => {
   const {width} = useWindowDimensions();
   const handlePress = () => {
-    let x = props.outOfStock.filter((data, index) => {
+    const x = props.outOfStock.filter((data, index) => {
       return props.index !== index;
     });
     props.setOutOfStock([...x]);

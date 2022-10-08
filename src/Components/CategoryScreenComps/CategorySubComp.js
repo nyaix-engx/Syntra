@@ -7,7 +7,7 @@ import Fontisto from 'react-native-vector-icons/Fontisto';
 
 const CategorySubComp = props => {
   const rowHeight2 = useRef(new Animated.Value(hp(0)));
-  let rotateZ = Animated.interpolateNode(rowHeight2.current, {
+  const rotateZ = Animated.interpolateNode(rowHeight2.current, {
     inputRange: [0, hp(props.sub.items ? props.sub.items.length * 8 : 0)],
     outputRange: ['0deg', '180deg'],
     extrapolate: Extrapolate.CLAMP,
@@ -29,9 +29,11 @@ const CategorySubComp = props => {
   }, [props.subTitleState]);
 
   const subClick = () => {
-    let newState = props.subTitleState.map((value, index) => {
+    const newState = props.subTitleState.map((value, index) => {
       if (index === props.index) {
-        if (!!value) props.hideDrop(props.rowHeight1.current, props.height1Raw);
+        if (value) {
+          props.hideDrop(props.rowHeight1.current, props.height1Raw);
+        }
         return !value;
       } else {
         return false;

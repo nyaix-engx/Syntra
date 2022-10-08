@@ -1,5 +1,5 @@
 import React, {useState, useRef, useEffect} from 'react';
-import {View, Text, Pressable, ScrollView, Image} from 'react-native';
+import {View, Text, Pressable, ScrollView, Image, Platform} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -70,7 +70,7 @@ const ShoppingBagScreen = ({navigation}) => {
     }
     setTotal(totalPrice);
     if (couponApplied) {
-      let discountAmount = 0.05 * totalPrice;
+      const discountAmount = 0.05 * totalPrice;
       setDiscount(discountAmount);
       setTotalAmount(totalPrice - discountAmount);
     } else {

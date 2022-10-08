@@ -38,7 +38,7 @@ const CategoryComp = props => {
     }
   }, [props.categoryTitleState]);
   const _onSingleTap = () => {
-    let newState = props.categoryTitleState.map((value, index) => {
+    const newState = props.categoryTitleState.map((value, index) => {
       if (index === props.index) {
         if (!!value) {
           setSubTitleState(
@@ -71,7 +71,7 @@ const CategoryComp = props => {
     });
     props.setCategoryTitleState(newState);
   };
-  let interpolatedValue = Animated.interpolateNode(rowHeight1.current, {
+  const interpolatedValue = Animated.interpolateNode(rowHeight1.current, {
     inputRange: [
       0,
       hp(

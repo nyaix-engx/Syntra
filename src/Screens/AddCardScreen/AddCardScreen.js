@@ -82,7 +82,7 @@ const AddCardScreen = ({route, navigation}) => {
     }
   };
   const handleCardNumber = number => {
-    let cardNumb = number
+    const cardNumb = number
       .replace(/\s?/g, '')
       .replace(/(\d{4})/g, '$1 ')
       .trim();

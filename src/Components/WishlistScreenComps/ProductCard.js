@@ -27,7 +27,7 @@ const ProductCard = props => {
     );
   }, []);
   const handlePress = () => {
-    let x = props.wishlist.filter((item, index) => {
+    const x = props.wishlist.filter((item, index) => {
       return props.index !== index;
     });
     props.setWishlist([...x]);

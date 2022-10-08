@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from 'react-native-modal';
-import {View, Text, ScrollView, Pressable, Image, Platform} from 'react-native';
+import {View, Text, Pressable, Image, Platform} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
@@ -10,7 +10,7 @@ import Button from './Button';
 const ConfirmModal = props => {
   const insets = useSafeAreaInsets();
   const handlePress = () => {
-    let x = props.items.filter((data, itemIndex) => {
+    const x = props.items.filter((data, itemIndex) => {
       return itemIndex !== props.index;
     });
     props.setItems([...x]);
