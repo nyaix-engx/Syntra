@@ -1,16 +1,12 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  ScrollView,
-  Pressable,
-} from 'react-native';
-import NavigationHeader from '../../Components/NavigationHeader';
-import ListingCard from '../../Components/ListingCard';
+import {View, Text, ScrollView, Pressable, StyleSheet} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import {SafeAreaView} from 'react-native-safe-area-context';
+
+import NavigationHeader from '../../Components/NavigationHeader';
+import ListingCard from '../../Components/ListingCard';
 import ShowFiltersModal from '../../Components/ShowFiltersModal';
 import SortByModal from '../../Components/SortByModal';
 
@@ -125,8 +121,14 @@ const ListingPage = () => {
           </View>
         </Pressable>
       </View>
-      <ShowFiltersModal showModal={showFilterModal} setShowModal={()=>setShowFilterModal(false)} />
-      <SortByModal showModal={showSortModal} setShowModal={()=>setShowSortModal(false)} />
+      <ShowFiltersModal
+        showModal={showFilterModal}
+        setShowModal={() => setShowFilterModal(false)}
+      />
+      <SortByModal
+        showModal={showSortModal}
+        setShowModal={() => setShowSortModal(false)}
+      />
     </SafeAreaView>
   );
 };

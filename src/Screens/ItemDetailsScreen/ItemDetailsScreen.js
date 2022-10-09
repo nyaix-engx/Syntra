@@ -3,6 +3,7 @@ import {View, Text, ScrollView, Pressable, Image} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+
 import BackButtonTitle from '../../Components/BackButtonTitle';
 import PaymentInformationModal from '../../Components/PaymentInformationModal';
 

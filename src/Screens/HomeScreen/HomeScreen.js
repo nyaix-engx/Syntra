@@ -1,21 +1,24 @@
 import React, {useRef} from 'react';
 import {View, StyleSheet, Pressable, ScrollView, Platform} from 'react-native';
-import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-// import Logo from '../../Assets/Svg/logo.svg';
-import Logo from '../../Components/SVG/Logo';
+import Animated, {Extrapolate} from 'react-native-reanimated';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import Feather from 'react-native-vector-icons/Feather';
+import {Divider} from '@ui-kitten/components';
+
 import CategoriesSlider from '../../Components/HomeScreenComps/CategoriesSlider';
 import Carousel from '../../Components/HomeScreenComps/Carousel';
-import {Divider} from '@ui-kitten/components';
 import ContentCards from '../../Components/HomeScreenComps/ContentCards';
 import ContentContainer from '../../Components/HomeScreenComps/ContentContainer';
-import Animated, {Extrapolate} from 'react-native-reanimated';
 import RowColContainer from '../../Components/HomeScreenComps/RowColContainer';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {imageArray} from '../../Utils/arrays';
 import FadingBackScrollCard from '../../Components/FadingBackScrollCard';
 import FadingBackScroll from '../../Components/FadingbackScroll';
-import Feather from 'react-native-vector-icons/Feather';
+
+import {imageArray} from '../../Utils/arrays';
 
 const HomeScreen = props => {
   const scrollY = useRef(new Animated.Value(0));
@@ -73,7 +76,7 @@ const HomeScreen = props => {
   };
   const handleScroll = e => {};
   return (
-    <SafeAreaView style={{backgroundColor: 'white'}}>
+    <SafeAreaView style={styles.container}>
       <View>
         <View style={styles.homeHeader}>
           <View style={styles.menuIconWrap}>
@@ -84,46 +87,25 @@ const HomeScreen = props => {
                 radius: hp(3.5),
                 borderless: true,
               }}>
-              <Ionicons
-                name="md-menu-outline"
-                style={{
-                  fontSize: hp(3.5),
-                  color: 'black',
-                }}
-              />
+              <Ionicons name="md-menu-outline" style={styles.menuOutlineIcon} />
             </Pressable>
-          </View>
-          <View style={styles.logoWrap}>
-            {/* <Logo width={hp(12)} height={hp(12)} /> */}
           </View>
           <View style={styles.headerIconsWrap}>
             <View style={styles.headerIconWrap}>
               <Pressable onPress={() => props.navigation.push('SearchPage')}>
-                <Feather size={hp(3)} name="search" style={{color: 'black'}} />
+                <Feather size={hp(3)} name="search" style={styles.searchIcon} />
               </Pressable>
             </View>
             <View style={styles.headerIconWrap}>
               <Pressable
                 onPress={() => props.navigation.push('NotificationsPage')}>
-                <Feather
-                  name="bell"
-                  style={{
-                    fontSize: hp(3.2),
-                    color: 'black',
-                  }}
-                />
+                <Feather name="bell" style={styles.bellIcon} />
               </Pressable>
             </View>
             <View style={styles.headerIconWrap}>
               <Pressable
                 onPress={() => props.navigation.push('ShoppingBagPage')}>
-                <Feather
-                  name="shopping-bag"
-                  style={{
-                    fontSize: hp(3),
-                    color: 'black',
-                  }}
-                />
+                <Feather name="shopping-bag" style={styles.shoppingBagIcon} />
               </Pressable>
             </View>
           </View>
@@ -149,20 +131,15 @@ const HomeScreen = props => {
         stickyHeaderIndices={[0]}
         decelerationRate={'normal'}
         bounces={false}
-        contentContainerStyle={{
-          backgroundColor: '#f7f7f8',
-          paddingBottom: Platform.OS === 'android' ? hp(4) : 0,
-        }}>
-        <View style={{height: hp(13)}}>
+        contentContainerStyle={styles.scrollViewContentStyle}>
+        <View style={styles.categoriesSliderContentWrapper}>
           <Animated.View
-            style={{
-              height: hp(13),
-              zIndex: 1,
-              transform: [{translateY: categoriesSlider}],
-              display: 'flex',
-              justifyContent: 'center',
-              backgroundColor: 'white',
-            }}>
+            style={[
+              styles.categoriesSliderWrapper,
+              {
+                transform: [{translateY: categoriesSlider}],
+              },
+            ]}>
             <CategoriesSlider />
           </Animated.View>
         </View>
@@ -174,7 +151,7 @@ const HomeScreen = props => {
         />
         <ContentContainer heading="FEATURED BRANDS">
           <ScrollView
-            style={{paddingHorizontal: hp(2.5)}}
+            style={styles.featuredScrollView}
             horizontal={true}
             showsHorizontalScrollIndicator={false}>
             {renderCards(brandsArray, true, true)}
@@ -182,7 +159,7 @@ const HomeScreen = props => {
         </ContentContainer>
         <ContentContainer heading="DEALS OF THE DAY">
           <ScrollView
-            style={{paddingHorizontal: hp(2.5)}}
+            style={styles.featuredScrollView}
             horizontal={true}
             showsHorizontalScrollIndicator={false}>
             {renderCards(dealsArray, false, true)}
@@ -205,6 +182,7 @@ const HomeScreen = props => {
 };
 
 const styles = StyleSheet.create({
+  container: {backgroundColor: 'white'},
   homeHeader: {
     display: 'flex',
     flexDirection: 'row',
@@ -213,6 +191,19 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderBottomColor: '#e8e8e8',
     borderBottomWidth: hp(0.2),
+  },
+  menuOutlineIcon: {
+    fontSize: hp(3.5),
+    color: 'black',
+  },
+  searchIcon: {color: 'black'},
+  bellIcon: {
+    fontSize: hp(3.2),
+    color: 'black',
+  },
+  shoppingBagIcon: {
+    fontSize: hp(3),
+    color: 'black',
   },
   carousel: {
     height: hp(50),
@@ -226,26 +217,31 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   menuIcon: {width: hp(4.5), height: hp(4.5), color: 'black'},
-  logoWrap: {
-    width: '40%',
-    flex: 4,
+  scrollViewContentStyle: {
+    backgroundColor: '#f7f7f8',
+    paddingBottom: Platform.OS === 'android' ? hp(4) : 0,
+  },
+  categoriesSliderContentWrapper: {height: hp(13)},
+  categoriesSliderWrapper: {
+    height: hp(13),
+    zIndex: 1,
     display: 'flex',
-    paddingHorizontal: hp(1),
     justifyContent: 'center',
+    backgroundColor: 'white',
   },
   headerIconsWrap: {
-    width: '40%',
-    flex: 4,
+    flex: 8,
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
   },
   headerIconWrap: {
-    flex: 1,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    marginRight: wp(5),
   },
+  featuredScrollView: {paddingHorizontal: hp(2.5)},
 });
 
 export default HomeScreen;
