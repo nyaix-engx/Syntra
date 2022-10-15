@@ -5,7 +5,7 @@ import {iconsSet1, iconsSet2} from '../../Utils/tabbarIcons';
 
 const MyTabBar = ({state, descriptors, navigation}) => {
   return (
-    <View style={{backgroundColor: 'white'}}>
+    <View style={tabBarStyles.content}>
       <View style={tabBarStyles.container}>
         {state.routes.map((route, index) => {
           const {options} = descriptors[route.key];
@@ -53,18 +53,8 @@ const MyTabBar = ({state, descriptors, navigation}) => {
                 <Text
                   style={
                     isFocused
-                      ? {
-                          color: '#fb7ca0',
-                          fontSize: hp(1.6),
-                          textAlign: 'center',
-                          fontFamily: 'Poppins-Medium',
-                        }
-                      : {
-                          color: 'black',
-                          fontSize: hp(1.4),
-                          textAlign: 'center',
-                          fontFamily: 'Poppins-Medium',
-                        }
+                      ? tabBarStyles.focusedText
+                      : tabBarStyles.unfocusedText
                   }>
                   {label}
                 </Text>
@@ -78,6 +68,7 @@ const MyTabBar = ({state, descriptors, navigation}) => {
 };
 
 const tabBarStyles = StyleSheet.create({
+  content: {backgroundColor: 'white'},
   container: {
     flexDirection: 'row',
     marginBottom: Platform.OS === 'ios' ? hp(2) : 0,
@@ -97,6 +88,18 @@ const tabBarStyles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  focusedText: {
+    color: '#fb7ca0',
+    fontSize: hp(1.6),
+    textAlign: 'center',
+    fontFamily: 'Poppins-Medium',
+  },
+  unfocusedText: {
+    color: 'black',
+    fontSize: hp(1.4),
+    textAlign: 'center',
+    fontFamily: 'Poppins-Medium',
   },
 });
 

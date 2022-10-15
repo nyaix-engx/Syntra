@@ -1,9 +1,16 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
 import Modal from 'react-native-modal';
-import {View, Text, ScrollView, Pressable} from 'react-native';
+import {View, Text, ScrollView, Pressable, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import FilterCheck from './FilterCheck';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+
+import FilterRadio from './WishlistScreenComps/FilterRadio';
+import PriceSlider from '../Components/PriceSlider';
+import ScaleAnimation from './ScaleAnimation';
+import Button from './Button';
+import FilterCheck from './FilterCheck';
+
 import {
   Discount,
   filterCategories,
@@ -12,10 +19,6 @@ import {
   Brands,
   DeliveryTime,
 } from '../Utils/arrays';
-import FilterRadio from './WishlistScreenComps/FilterRadio';
-import PriceSlider from '../Components/PriceSlider';
-import ScaleAnimation from './ScaleAnimation';
-import Button from './Button';
 
 const ShowFiltersModal = props => {
   const insets = useSafeAreaInsets();
@@ -25,7 +28,6 @@ const ShowFiltersModal = props => {
   const [brandFilters, setBrandFilters] = useState([]);
   const [discount, setDiscount] = useState('10% and above');
   const [deliveryTime, setDeliveryTime] = useState('By Tomorrow');
-  const [priceRange, setPriceRange] = useState({});
 
   const handlePress = () => {
     setSizeFilters([]);
@@ -33,7 +35,6 @@ const ShowFiltersModal = props => {
     setBrandFilters([]);
     setDiscount('');
     setDeliveryTime('');
-    setPriceRange({});
   };
   const getFilterCategories = () => {
     return filterCategories.map((data, index) => {
@@ -41,24 +42,19 @@ const ShowFiltersModal = props => {
         <Pressable
           key={index}
           onPress={() => setFilterState(index)}
-          style={{
-            width: '100%',
-            height: hp(8),
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'flex-start',
-            paddingHorizontal: hp(1),
-            backgroundColor: index === filterState ? 'white' : '#f5f5f5',
-            borderBottomWidth: hp(0.05),
-            borderBottomColor: '#d1d1d1',
-          }}>
+          style={[
+            styles.filterButton,
+            {
+              backgroundColor: index === filterState ? 'white' : '#f5f5f5',
+            },
+          ]}>
           <Text
-            style={{
-              fontSize: hp(1.7),
-              fontFamily: 'Poppins-Medium',
-              fontWeight: index === filterState ? '800' : '100',
-              color: 'black',
-            }}>
+            style={[
+              styles.filterButtonText,
+              {
+                fontWeight: index === filterState ? '800' : '100',
+              },
+            ]}>
             {data}
           </Text>
         </Pressable>
@@ -124,77 +120,30 @@ const ShowFiltersModal = props => {
       isVisible={props.showModal}
       setShowModal={props.setShowModal}
       onBackdropPress={props.setShowModal}
-      style={{
-        display: 'flex',
-        justifyContent: 'flex-end',
-        padding: 0,
-        margin: 0,
-        backgroundColor: 'white',
-      }}>
-      <View style={{flex: 1, marginTop: insets.top}}>
-        <View
-          style={{
-            flex: 1,
-            display: 'flex',
-            flexDirection: 'row',
-            borderBottomWidth: hp(0.1),
-            borderBottomColor: '#c9c9c9',
-          }}>
-          <View
-            style={{
-              flex: 1,
-              display: 'flex',
-              justifyContent: 'center',
-              paddingHorizontal: hp(1),
-            }}>
-            <Text
-              style={{
-                fontFamily: 'Raleway-Medium',
-                fontWeight: '600',
-                fontSize: hp(2),
-                color: '#363636',
-              }}>
-              FILTERS
-            </Text>
+      style={styles.modalStyles}>
+      <View style={[styles.modalContent, {marginTop: insets.top}]}>
+        <View style={styles.modalHeader}>
+          <View style={styles.filtersView}>
+            <Text style={styles.filterText}>FILTERS</Text>
           </View>
-          <View
-            style={{
-              flex: 1,
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'flex-end',
-              paddingHorizontal: hp(1),
-            }}>
-            <Pressable onPress={handlePress} style={{padding: hp(2)}}>
-              <Text
-                style={{
-                  fontFamily: 'Raleway-Medium',
-                  fontWeight: '600',
-                  fontSize: hp(1.8),
-                  color: '#fb7ca0',
-                }}>
-                CLEAR ALL
-              </Text>
+          <View style={styles.clearAllView}>
+            <Pressable onPress={handlePress} style={styles.clearAllButton}>
+              <Text style={styles.clearAllText}>CLEAR ALL</Text>
             </Pressable>
           </View>
         </View>
-        <View
-          style={{
-            flex: 9,
-            display: 'flex',
-            flexDirection: 'row',
-          }}>
-          <View style={{flex: 3}}>
+        <View style={styles.content}>
+          <View style={styles.scrollContentWrapper}>
             <ScrollView
-              style={{flex: 1}}
+              style={styles.scrollStyle}
               showsVerticalScrollIndicator={false}
               bounces={false}>
               {getFilterCategories()}
             </ScrollView>
           </View>
-          <View style={{flex: 6}}>
+          <View style={styles.selectedView}>
             <ScrollView
-              style={{flex: 1}}
+              style={styles.selectedScrollStyle}
               showsVerticalScrollIndicator={false}
               bounces={false}>
               {getSelectedView()}
@@ -202,55 +151,23 @@ const ShowFiltersModal = props => {
           </View>
         </View>
         <View
-          style={{
-            flex: 0.8,
-            display: 'flex',
-            flexDirection: 'row',
-            marginBottom: insets.bottom,
-          }}>
-          <View style={{flex: 1}}>
+          style={[
+            styles.ctaWrapper,
+            {
+              marginBottom: insets.bottom,
+            },
+          ]}>
+          <View style={styles.ctaContainer}>
             <ScaleAnimation onPress={() => props.setShowModal()} scaleTo={0.9}>
-              <Button
-                viewProps={{
-                  width: '100%',
-                  height: '100%',
-                  display: 'flex',
-                  flexDirection: 'row',
-                  justifyContent: 'center',
-                  backgroundColor: '#c9c9c9',
-                }}>
-                <Text
-                  style={{
-                    fontSize: hp(2),
-                    fontFamily: 'Raleway-Medium',
-                    fontWeight: '600',
-                    color: 'white',
-                  }}>
-                  CLOSE
-                </Text>
+              <Button viewProps={styles.closeButton}>
+                <Text style={styles.buttonText}>CLOSE</Text>
               </Button>
             </ScaleAnimation>
           </View>
-          <View style={{flex: 1}}>
+          <View style={styles.ctaContainer}>
             <ScaleAnimation onPress={() => {}} scaleTo={0.9}>
-              <Button
-                viewProps={{
-                  width: '100%',
-                  height: '100%',
-                  display: 'flex',
-                  flexDirection: 'row',
-                  justifyContent: 'center',
-                  backgroundColor: '#fb7ca0',
-                }}>
-                <Text
-                  style={{
-                    fontSize: hp(2),
-                    fontFamily: 'Raleway-Medium',
-                    fontWeight: '600',
-                    color: 'white',
-                  }}>
-                  APPLY
-                </Text>
+              <Button viewProps={styles.applyButton}>
+                <Text style={styles.buttonText}>APPLY</Text>
               </Button>
             </ScaleAnimation>
           </View>
@@ -259,5 +176,101 @@ const ShowFiltersModal = props => {
     </Modal>
   );
 };
+
+const styles = StyleSheet.create({
+  modalStyles: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    padding: 0,
+    margin: 0,
+    backgroundColor: 'white',
+  },
+  modalContent: {flex: 1},
+  modalHeader: {
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'row',
+    borderBottomWidth: hp(0.1),
+    borderBottomColor: '#c9c9c9',
+  },
+  filtersView: {
+    flex: 1,
+    display: 'flex',
+    justifyContent: 'center',
+    paddingHorizontal: hp(1),
+  },
+  filterText: {
+    fontFamily: 'Raleway-Medium',
+    fontWeight: '600',
+    fontSize: hp(2),
+    color: '#363636',
+  },
+  clearAllView: {
+    flex: 1,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+    paddingHorizontal: hp(1),
+  },
+  clearAllText: {
+    fontFamily: 'Raleway-Medium',
+    fontWeight: '600',
+    fontSize: hp(1.8),
+    color: '#fb7ca0',
+  },
+  clearAllButton: {padding: hp(2)},
+  content: {
+    flex: 9,
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  scrollContentWrapper: {flex: 3},
+  scrollStyle: {flex: 1},
+  selectedView: {flex: 6},
+  selectedScrollStyle: {flex: 1},
+  ctaWrapper: {
+    flex: 0.8,
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  ctaContainer: {flex: 1},
+  closeButton: {
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    backgroundColor: '#c9c9c9',
+  },
+  buttonText: {
+    fontSize: hp(2),
+    fontFamily: 'Raleway-Medium',
+    fontWeight: '600',
+    color: 'white',
+  },
+  applyButton: {
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    backgroundColor: '#fb7ca0',
+  },
+  filterButton: {
+    width: '100%',
+    height: hp(8),
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    paddingHorizontal: hp(1),
+    borderBottomWidth: hp(0.05),
+    borderBottomColor: '#d1d1d1',
+  },
+  filterButtonText: {
+    fontSize: hp(1.7),
+    fontFamily: 'Poppins-Medium',
+    color: 'black',
+  },
+});
 
 export default ShowFiltersModal;

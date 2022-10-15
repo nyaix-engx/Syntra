@@ -1,16 +1,18 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {View, Text, ScrollView} from 'react-native';
+import {View, Text, ScrollView, StyleSheet} from 'react-native';
+import Animated, {EasingNode} from 'react-native-reanimated';
+import LottieView from 'lottie-react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import Entypo from 'react-native-vector-icons/Entypo';
+
 import BackButtonTitle from '../../Components/BackButtonTitle';
 import CreditCard from '../../Components/CreditCard';
-import LottieView from 'lottie-react-native';
-import {cardData} from '../../Utils/arrays';
 import ScaleAnimation from '../../Components/ScaleAnimation';
-import Entypo from 'react-native-vector-icons/Entypo';
 import Button from '../../Components/Button';
-import Animated, {EasingNode} from 'react-native-reanimated';
 import EntryAnimation from '../../Components/EntryAnimation';
+
+import {cardData} from '../../Utils/arrays';
 
 const SavedCardsScreen = ({navigation, route}) => {
   const [cards, setCards] = useState(cardData);
@@ -43,53 +45,45 @@ const SavedCardsScreen = ({navigation, route}) => {
         lottieAnimation.play();
       }, 1000);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [route.params?.cards, cards]);
 
   const getContent = () => {
     return (
       <>
         {!cards.length > 0 ? (
-          <View style={{flex: 1, backgroundColor: 'white'}}>
+          <View style={styles.emptyContentView}>
             <Animated.View
-              style={{
-                height: hp(20),
-                justifyContent: 'center',
-                alignItems: 'center',
-                transform: [{scale: scaleLottie}],
-              }}>
+              style={[
+                styles.emptyLottieView,
+                {
+                  transform: [{scale: scaleLottie}],
+                },
+              ]}>
               <LottieView
                 source={require('../../Assets/lottie/visa_master.json')}
-                style={{height: hp(15), width: hp(15)}}
+                style={styles.emptyLottieStyle}
                 ref={animation => {
                   lottieAnimation = animation;
                 }}
                 loop={false}
               />
             </Animated.View>
-            <View style={{paddingVertical: hp(2)}}>
-              <Text
-                style={{
-                  textAlign: 'center',
-                  fontFamily: 'Raleway-Medium',
-                  fontSize: hp(1.8),
-                  fontWeight: '600',
-                  color: 'black',
-                  marginBottom: hp(1),
-                }}>
+            <View style={styles.emptyLottieTextView}>
+              <Text style={styles.emptyLottieText}>
                 SAVE YOUR CREDIT/DEBIT CARDS
               </Text>
               <Animated.Text
-                style={{
-                  textAlign: 'center',
-                  fontFamily: 'ArchitectsDaughter-Regular',
-                  color: 'grey',
-                  fontSize: hp(1.8),
-                  opacity: subTextOpacity,
-                }}>
+                style={[
+                  styles.lottieSmallText,
+                  {
+                    opacity: subTextOpacity,
+                  },
+                ]}>
                 It's convenient to pay with saved cards.
               </Animated.Text>
             </View>
-            <View style={{paddingVertical: hp(3), alignItems: 'center'}}>
+            <View style={styles.addCardView}>
               <ScaleAnimation
                 onPress={() =>
                   navigation.navigate('AddCardPage', {
@@ -98,70 +92,38 @@ const SavedCardsScreen = ({navigation, route}) => {
                   })
                 }
                 scaleTo={0.9}>
-                <View
-                  style={{
-                    backgroundColor: 'white',
-                    paddingVertical: hp(1.5),
-                    paddingHorizontal: hp(5),
-                    borderColor: '#e0e0e0',
-                    borderWidth: hp(0.1),
-                  }}>
-                  <Text
-                    style={{
-                      color: 'blue',
-                      fontFamily: 'Poppins-Medium',
-                      fontSize: hp(2),
-                    }}>
-                    ADD CARD
-                  </Text>
+                <View style={styles.addCardTextView}>
+                  <Text style={styles.addCardText}>ADD CARD</Text>
                 </View>
               </ScaleAnimation>
             </View>
           </View>
         ) : (
           <ScrollView
-            style={{flex: 1}}
+            style={styles.scrollViewStyle}
             ref={scrollRef}
             showsVerticalScrollIndicator={false}
             onScroll={handleScroll}
             scrollEventThrottle={16}
             bounces={false}>
-            <View style={{paddingHorizontal: hp(2), paddingVertical: hp(2)}}>
-              <View style={{paddingHorizontal: hp(2)}}>
-                <ScaleAnimation
-                  onPress={() =>
-                    navigation.navigate('AddCardPage', {
-                      type: 'ADD',
-                      cards,
-                    })
-                  }
-                  scaleTo={0.9}>
-                  <Button
-                    viewProps={{
-                      backgroundColor: '#fb7ca0',
-                      paddingVertical: hp(1.8),
-                      borderRadius: hp(0.5),
-                      marginBottom: hp(2),
-                    }}>
-                    <Entypo
-                      name="add-to-list"
-                      size={hp(3)}
-                      style={{color: '#ffffff'}}
-                    />
-                    <Text
-                      style={{
-                        fontFamily: 'Raleway-Medium',
-                        fontWeight: '600',
-                        fontSize: hp(1.9),
-                        paddingHorizontal: hp(2),
-                        textAlign: 'center',
-                        color: '#ffffff',
-                      }}>
-                      ADD CARD
-                    </Text>
-                  </Button>
-                </ScaleAnimation>
-              </View>
+            <View style={styles.scrollViewContentStyle}>
+              <ScaleAnimation
+                onPress={() =>
+                  navigation.navigate('AddCardPage', {
+                    type: 'ADD',
+                    cards,
+                  })
+                }
+                scaleTo={0.9}>
+                <Button viewProps={styles.plusCard}>
+                  <Entypo
+                    name="add-to-list"
+                    size={hp(3)}
+                    style={styles.addIcon}
+                  />
+                  <Text style={styles.plusCardText}>ADD CARD</Text>
+                </Button>
+              </ScaleAnimation>
               <View>
                 {cards.map((data, index) => {
                   return (
@@ -186,13 +148,71 @@ const SavedCardsScreen = ({navigation, route}) => {
   };
 
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <View style={{flex: 0.8}}>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.header}>
         <BackButtonTitle title="SAVED CARDS" />
       </View>
-      <View style={{flex: 8, backgroundColor: '#F4F4F4'}}>{getContent()}</View>
+      <View style={styles.content}>{getContent()}</View>
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {flex: 1},
+  header: {flex: 0.8},
+  content: {flex: 8, backgroundColor: '#F4F4F4'},
+  emptyContentView: {flex: 1, backgroundColor: 'white'},
+  emptyLottieView: {
+    height: hp(20),
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  emptyLottieStyle: {height: hp(15), width: hp(15)},
+  emptyLottieTextView: {paddingVertical: hp(2)},
+  emptyLottieText: {
+    textAlign: 'center',
+    fontFamily: 'Raleway-Medium',
+    fontSize: hp(1.8),
+    fontWeight: '600',
+    color: 'black',
+    marginBottom: hp(1),
+  },
+  lottieSmallText: {
+    textAlign: 'center',
+    fontFamily: 'ArchitectsDaughter-Regular',
+    color: 'grey',
+    fontSize: hp(1.8),
+  },
+  addCardView: {paddingVertical: hp(3), alignItems: 'center'},
+  addCardTextView: {
+    backgroundColor: 'white',
+    paddingVertical: hp(1.5),
+    paddingHorizontal: hp(5),
+    borderColor: '#e0e0e0',
+    borderWidth: hp(0.1),
+  },
+  addCardText: {
+    color: 'blue',
+    fontFamily: 'Poppins-Medium',
+    fontSize: hp(2),
+  },
+  scrollViewStyle: {flex: 1},
+  scrollViewContentStyle: {paddingHorizontal: hp(2), paddingVertical: hp(2)},
+  plusCard: {
+    backgroundColor: '#fb7ca0',
+    paddingVertical: hp(1.8),
+    borderRadius: hp(0.5),
+    marginBottom: hp(2),
+  },
+  addIcon: {color: '#ffffff'},
+  plusCardText: {
+    fontFamily: 'Raleway-Medium',
+    fontWeight: '600',
+    fontSize: hp(1.9),
+    paddingHorizontal: hp(2),
+    textAlign: 'center',
+    color: '#ffffff',
+  },
+});
 
 export default SavedCardsScreen;

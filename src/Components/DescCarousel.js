@@ -7,22 +7,17 @@ import {
   Image,
   useWindowDimensions,
   Animated,
+  StyleSheet,
 } from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import {imageArray} from '../Utils/arrays';
 import {useNavigation} from '@react-navigation/native';
+
+import {imageArray} from '../Utils/arrays';
 
 const Paginator = ({data, scrollX}) => {
   const {width} = useWindowDimensions();
   return (
-    <View
-      style={{
-        height: '6%',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'row',
-      }}>
+    <View style={styles.dotContainer}>
       {data.map((item, index) => {
         const inputRange = [
           (index - 1) * width,
@@ -44,14 +39,13 @@ const Paginator = ({data, scrollX}) => {
         return (
           <Animated.View
             key={index}
-            style={{
-              height: hp(1),
-              width: dotWidth,
-              borderRadius: hp(1),
-              backgroundColor: '#949494',
-              marginHorizontal: hp(0.7),
-              opacity: dotOpacity,
-            }}
+            style={[
+              styles.dotView,
+              {
+                width: dotWidth,
+                opacity: dotOpacity,
+              },
+            ]}
           />
         );
       })}
@@ -59,7 +53,7 @@ const Paginator = ({data, scrollX}) => {
   );
 };
 
-const Carousel = (props) => {
+const Carousel = props => {
   const scrollX = useRef(new Animated.Value(0)).current;
   const [currentIndex, setCurrentIndex] = useState(0);
   const viewConfig = useRef({viewAreaCoveragePercentThreshold: 50}).current;
@@ -71,7 +65,7 @@ const Carousel = (props) => {
     return (
       <Pressable
         onPress={() => navigation.push('ImageDisplayPage', {imageArray})}>
-          <Image source={item.img} style={{width, height: '100%'}} />
+        <Image source={item.img} style={[{width}, styles.productImage]} />
       </Pressable>
     );
   };
@@ -83,10 +77,10 @@ const Carousel = (props) => {
   return (
     <View style={props.style}>
       <FlatList
-        style={{height: '90%'}}
+        style={styles.flatlistStyle}
         data={imageArray}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id}
+        keyExtractor={item => item.id}
         horizontal
         pagingEnabled
         showsHorizontalScrollIndicator={false}
@@ -113,5 +107,23 @@ const Carousel = (props) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  flatlistStyle: {height: '90%'},
+  productImage: {height: '100%'},
+  dotContainer: {
+    height: '6%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  dotView: {
+    height: hp(1),
+    borderRadius: hp(1),
+    backgroundColor: '#949494',
+    marginHorizontal: hp(0.7),
+  },
+});
 
 export default Carousel;

@@ -1,7 +1,13 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import * as React from 'react';
-import {Image, FlatList, Dimensions, Animated, View} from 'react-native';
-const {width} = Dimensions.get('screen');
-import {carouselImages} from '../../Utils/arrays';
+import {
+  Image,
+  FlatList,
+  Dimensions,
+  Animated,
+  View,
+  StyleSheet,
+} from 'react-native';
 import {
   FlingGestureHandler,
   Directions,
@@ -9,10 +15,11 @@ import {
 } from 'react-native-gesture-handler';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
+import {carouselImages} from '../../Utils/arrays';
+
 const VISIBLE_ITEMS = 3;
 
 export default function NewCarousel() {
-  const [data, setData] = React.useState(carouselImages);
   const scrollXIndex = React.useRef(new Animated.Value(0)).current;
   const scrollXAnimated = React.useRef(new Animated.Value(0)).current;
   const width = Dimensions.get('window').width;
@@ -36,7 +43,7 @@ export default function NewCarousel() {
         direction={Directions.LEFT}
         onHandlerStateChange={ev => {
           if (ev.nativeEvent.state === State.END) {
-            if (index === data.length - 1) {
+            if (index === carouselImages.length - 1) {
               return;
             }
             setActiveIndex(index + 1);
@@ -54,12 +61,10 @@ export default function NewCarousel() {
             }
           }}>
           <FlatList
-            data={data}
+            data={carouselImages}
             keyExtractor={item => item.img}
             horizontal
-            contentContainerStyle={{
-              flex: 1,
-            }}
+            contentContainerStyle={styles.flatlistContainerStyle}
             scrollEnabled={false}
             removeClippedSubviews={false}
             CellRendererComponent={({
@@ -69,9 +74,9 @@ export default function NewCarousel() {
               style,
               ...props
             }) => {
-              const newStyle = [style, {zIndex: data.length - index}];
+              const newStyle = [style, {zIndex: carouselImages.length - index}];
               return (
-                <View style={newStyle} index={index} {...props}>
+                <View style={newStyle} index={`index_${index}`} {...props}>
                   {children}
                 </View>
               );
@@ -93,24 +98,27 @@ export default function NewCarousel() {
 
               return (
                 <Animated.View
-                  style={{
-                    position: 'absolute',
-                    left: (width - (width - hp(8))) / 2,
-                    opacity,
-                    transform: [
-                      {
-                        translateX,
-                      },
-                      {scale},
-                    ],
-                  }}>
+                  style={[
+                    styles.animatedView,
+                    {
+                      left: (width - (width - hp(8))) / 2,
+                      opacity,
+                      transform: [
+                        {
+                          translateX,
+                        },
+                        {scale},
+                      ],
+                    },
+                  ]}>
                   <Image
                     source={item.img}
-                    style={{
-                      width: width - hp(8),
-                      height: hp(50),
-                      borderRadius: hp(1),
-                    }}
+                    style={[
+                      styles.imageStyle,
+                      {
+                        width: width - hp(8),
+                      },
+                    ]}
                   />
                 </Animated.View>
               );
@@ -121,3 +129,16 @@ export default function NewCarousel() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  flatlistContainerStyle: {
+    flex: 1,
+  },
+  animatedView: {
+    position: 'absolute',
+  },
+  imageStyle: {
+    height: hp(50),
+    borderRadius: hp(1),
+  },
+});

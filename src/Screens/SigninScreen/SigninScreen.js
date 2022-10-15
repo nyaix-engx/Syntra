@@ -1,63 +1,34 @@
 import React from 'react';
 import {StyleSheet, View, Text, Pressable, Platform} from 'react-native';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import Fontisto from 'react-native-vector-icons/Fontisto';
 
 import AuthInput from '../../Components/Authentication/AuthInput';
 import Facebook from '../../Components/SVG/Socials/Facebook';
 import Google from '../../Components/SVG/Socials/Google';
 import Apple from '../../Components/SVG/Socials/Apple';
 import SocialIconWrapper from '../../Components/Authentication/SocialIconWrapper';
-import Fontisto from 'react-native-vector-icons/Fontisto';
 
 const SigninScreen = props => {
   return (
     <View style={styles.wrapper}>
-      <View
-        style={{
-          flex: 1,
-          display: 'flex',
-          justifyContent: 'center',
-        }}>
+      <View style={styles.loginView}>
         <Text style={styles.headingText}>Login</Text>
       </View>
-      <View
-        style={{
-          flex: 2,
-          display: 'flex',
-          justifyContent: 'center',
-        }}>
+      <View style={styles.authInputView}>
         <AuthInput signup={false} />
       </View>
-      <View
-        style={{
-          flex: 1,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
+      <View style={styles.loginButtonView}>
         <Pressable
           style={styles.button}
           onPress={() => props.setIsSigned(true)}>
           <Text style={styles.signin}>LOG IN</Text>
         </Pressable>
       </View>
-      <View
-        style={{
-          flex: 0.7,
-          display: 'flex',
-          justifyContent: 'center',
-        }}>
+      <View style={styles.loginText}>
         <Text style={styles.choiceText}>Or, Login With</Text>
       </View>
-      <View
-        style={{
-          flex: 0.8,
-          display: 'flex',
-          justifyContent: 'center',
-        }}>
+      <View style={styles.socialIconsWrapper}>
         <View style={styles.iconsContainer}>
           <SocialIconWrapper>
             <Google height={hp(3.5)} width={hp(3.5)} />
@@ -70,43 +41,12 @@ const SigninScreen = props => {
           </SocialIconWrapper>
         </View>
       </View>
-      <View
-        style={{
-          flex: 1,
-          display: 'flex',
-          justifyContent: 'center',
-        }}>
-        <View
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            flex: 1,
-          }}>
-          <View
-            style={{
-              flex: 4,
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'flex-end',
-            }}>
-            <Text
-              style={{
-                fontFamily: 'Raleway-Medium',
-                fontWeight: '600',
-                textAlign: 'center',
-                fontSize: hp(1.6),
-                color: 'black',
-              }}>
-              SWIPE RIGHT FOR SIGN UP
-            </Text>
+      <View style={styles.swipeRightViewWrapper}>
+        <View style={styles.swipeRightViewContainer}>
+          <View style={styles.swipeRightTextView}>
+            <Text style={styles.swipeRightText}>SWIPE RIGHT FOR SIGN UP</Text>
           </View>
-          <View
-            style={{
-              flex: 1.4,
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
+          <View style={styles.arrowRightView}>
             <Fontisto size={hp(2)} name="arrow-right" />
           </View>
         </View>
@@ -167,5 +107,60 @@ const styles = StyleSheet.create({
     marginVertical: Platform.OS === 'android' ? hp(12) : hp(16),
     marginHorizontal: hp(4.5),
     display: 'flex',
+  },
+  loginView: {
+    flex: 1,
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  authInputView: {
+    flex: 2,
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  loginButtonView: {
+    flex: 1,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  loginText: {
+    flex: 0.7,
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  socialIconsWrapper: {
+    flex: 0.8,
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  swipeRightViewWrapper: {
+    flex: 1,
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  swipeRightViewContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    flex: 1,
+  },
+  swipeRightTextView: {
+    flex: 4,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+  },
+  swipeRightText: {
+    fontFamily: 'Raleway-Medium',
+    fontWeight: '600',
+    textAlign: 'center',
+    fontSize: hp(1.6),
+    color: 'black',
+  },
+  arrowRightView: {
+    flex: 1.4,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

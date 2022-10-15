@@ -7,9 +7,11 @@ import {
   Platform,
   Image,
   ImageBackground,
+  StyleSheet,
 } from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import Fontisto from 'react-native-vector-icons/Fontisto';
+
 import CategorySubComp from './CategorySubComp';
 import {categoryImages, categoryBanner} from '../../Utils/arrays';
 
@@ -36,11 +38,12 @@ const CategoryComp = props => {
         props.scrollRef.current.scrollTo({y: 0, animated: true});
       hideDrop(rowHeight1.current, 0);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.categoryTitleState]);
   const _onSingleTap = () => {
     const newState = props.categoryTitleState.map((value, index) => {
       if (index === props.index) {
-        if (!!value) {
+        if (value) {
           setSubTitleState(
             new Array(
               props.category.subCategory
@@ -120,69 +123,36 @@ const CategoryComp = props => {
   };
 
   return (
-    <Animated.View style={{marginBottom: hp(0.3)}}>
+    <Animated.View style={styles.container}>
       <Pressable onPress={props.category.subCategory && _onSingleTap}>
         <ImageBackground
           source={categoryBanner[props.index].img}
-          style={{
-            height: props.height,
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            backgroundColor: colors[props.index],
-            position: 'relative',
-          }}>
-          <View
-            style={{
-              height: '100%',
-              width: '35%',
-              display: 'flex',
-            }}>
-            <View style={{display: 'flex', flexDirection: 'row', flex: 1}}>
-              <View
-                style={{
-                  flex: 8,
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'flex-start',
-                  paddingLeft: hp(2),
-                }}>
-                <Text
-                  style={{
-                    fontSize: Platform.OS === 'android' ? hp(2.2) : hp(2.2),
-                    fontFamily: 'Poppins-Medium',
-                    fontWeight: '300',
-                    color: 'black',
-                    backgroundColor: 'white',
-                    paddingVertical: hp(0.3),
-                    paddingHorizontal: hp(1.2),
-                    borderRadius: 10,
-                    lineHeight: 25,
-                  }}>
+          style={[
+            styles.imageBackgroundStyle,
+            {
+              backgroundColor: colors[props.index],
+              height: props.height,
+            },
+          ]}>
+          <View style={styles.leftSectionView}>
+            <View style={styles.leftSectionContentWrapper}>
+              <View style={styles.categoryTitleView}>
+                <Text style={styles.categoryTitleText}>
                   {props.category.title}
                 </Text>
               </View>
-              <View
-                style={{
-                  flex: 1,
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}>
+              <View style={styles.chevronDownIconView}>
                 {props.category.subCategory && (
                   <Animated.View
-                    style={{
-                      transform: [{rotateZ: interpolatedValue}],
-                      width: hp(2),
-                      height: hp(2),
-                    }}>
+                    style={[
+                      {
+                        transform: [{rotateZ: interpolatedValue}],
+                      },
+                      styles.chevronDownIconWrapper,
+                    ]}>
                     <Fontisto
                       name="angle-down"
-                      style={{
-                        fontSize:
-                          Platform.ios === 'android' ? hp(1.6) : hp(1.4),
-                        color: 'black',
-                      }}
+                      style={styles.chevronDownIcon}
                     />
                   </Animated.View>
                 )}
@@ -190,13 +160,12 @@ const CategoryComp = props => {
             </View>
           </View>
           <View
-            style={{
-              height: props.height,
-              width: '30%',
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginRight: hp(2),
-            }}>
+            style={[
+              styles.imageView,
+              {
+                height: props.height,
+              },
+            ]}>
             <Image
               resizeMode="contain"
               source={categoryImages[props.index].img}
@@ -218,5 +187,59 @@ const CategoryComp = props => {
     </Animated.View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {marginBottom: hp(0.3)},
+  imageBackgroundStyle: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    position: 'relative',
+  },
+  leftSectionView: {
+    height: '100%',
+    width: '35%',
+    display: 'flex',
+  },
+  leftSectionContentWrapper: {display: 'flex', flexDirection: 'row', flex: 1},
+  categoryTitleView: {
+    flex: 8,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    paddingLeft: hp(2),
+  },
+  categoryTitleText: {
+    fontSize: Platform.OS === 'android' ? hp(2.2) : hp(2.2),
+    fontFamily: 'Poppins-Medium',
+    fontWeight: '300',
+    color: 'black',
+    backgroundColor: 'white',
+    paddingVertical: hp(0.3),
+    paddingHorizontal: hp(1.2),
+    borderRadius: 10,
+    lineHeight: 25,
+  },
+  chevronDownIconView: {
+    flex: 1,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  chevronDownIconWrapper: {
+    width: hp(2),
+    height: hp(2),
+  },
+  chevronDownIcon: {
+    fontSize: Platform.ios === 'android' ? hp(1.6) : hp(1.4),
+    color: 'black',
+  },
+  imageView: {
+    width: '30%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: hp(2),
+  },
+});
 
 export {CategoryComp as default};

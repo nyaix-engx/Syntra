@@ -13,22 +13,17 @@ import {Avatar, Divider} from '@ui-kitten/components';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import Feather from 'react-native-vector-icons/Feather';
+
 import Instagram from '../SVG/Drawer/Instagram';
 import Twitter from '../SVG/Drawer/Twitter';
 import Facebook from '../SVG/Drawer/Facebook';
-import {useNavigation} from '@react-navigation/native';
 
 const CustomDrawer = ({navigation}) => {
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.header}>
-        <View
-          style={{
-            flex: 1,
-            flexDirection: 'column',
-            justifyContent: 'center',
-          }}>
-          <View style={{marginVertical: hp(1)}}>
+        <View style={styles.imageViewWrapper}>
+          <View style={styles.imageView}>
             <Avatar
               ImageComponent={() => (
                 <Image
@@ -38,23 +33,15 @@ const CustomDrawer = ({navigation}) => {
               )}
             />
           </View>
-          <View style={{marginVertical: hp(1)}}>
-            <Text
-              style={{
-                fontSize: Platform.OS === 'android' ? hp(2.2) : hp(2),
-                color: '#000000',
-                fontFamily: 'Raleway-Medium',
-                fontWeight: '600',
-              }}>
-              Hugh Jackman
-            </Text>
+          <View style={styles.imageView}>
+            <Text style={styles.personNameText}>Hugh Jackman</Text>
           </View>
         </View>
       </View>
       <Divider />
       <View style={styles.tabWrapper}>
         <DrawerItem
-          style={{display: 'flex', justifyContent: 'center'}}
+          style={styles.drawerItemStyle}
           label="HOME"
           activeTintColor="yellow"
           activeBackgroundColor="purple"
@@ -65,7 +52,7 @@ const CustomDrawer = ({navigation}) => {
           onPress={() => navigation.navigate('Home')}
         />
         <DrawerItem
-          style={{display: 'flex', justifyContent: 'center'}}
+          style={styles.drawerItemStyle}
           label="PROFILE"
           activeTintColor="yellow"
           activeBackgroundColor="purple"
@@ -76,7 +63,7 @@ const CustomDrawer = ({navigation}) => {
           onPress={() => navigation.navigate('Profile')}
         />
         <DrawerItem
-          style={{display: 'flex'}}
+          style={styles.drawerItemStyle}
           label="ORDERS"
           activeTintColor="yellow"
           activeBackgroundColor="purple"
@@ -91,7 +78,7 @@ const CustomDrawer = ({navigation}) => {
           onPress={() => navigation.navigate('OrdersPage')}
         />
         <DrawerItem
-          style={{display: 'flex', justifyContent: 'center'}}
+          style={styles.drawerItemStyle}
           label="WISHLIST"
           activeTintColor="yellow"
           activeBackgroundColor="purple"
@@ -104,33 +91,11 @@ const CustomDrawer = ({navigation}) => {
       </View>
       <Divider />
       <View style={styles.social}>
-        <View
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            flex: 1,
-            alignItems: 'center',
-            backgroundColor: '#cacaca',
-          }}>
-          <Text
-            style={{
-              fontSize: hp(2.2),
-              color: 'white',
-              fontFamily: 'Raleway-Medium',
-              fontWeight: '600',
-            }}>
-            Follow us on
-          </Text>
+        <View style={styles.followUsTextView}>
+          <Text style={styles.followUsText}>Follow us on</Text>
         </View>
-        <View
-          style={{
-            display: 'flex',
-            flex: 2,
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <View style={{marginHorizontal: hp(2)}}>
+        <View style={styles.socialIconsWrapper}>
+          <View style={styles.socialIconView}>
             <Pressable
               android_ripple={{
                 color: '#cccccc',
@@ -140,7 +105,7 @@ const CustomDrawer = ({navigation}) => {
               <Facebook width={hp(6)} height={hp(6)} />
             </Pressable>
           </View>
-          <View style={{marginHorizontal: hp(2)}}>
+          <View style={styles.socialIconView}>
             <Pressable
               android_ripple={{
                 color: '#cccccc',
@@ -150,7 +115,7 @@ const CustomDrawer = ({navigation}) => {
               <Instagram width={hp(6)} height={hp(6)} />
             </Pressable>
           </View>
-          <View style={{marginHorizontal: hp(2)}}>
+          <View style={styles.socialIconView}>
             <Pressable
               android_ripple={{
                 color: '#cccccc',
@@ -165,7 +130,7 @@ const CustomDrawer = ({navigation}) => {
       <Divider />
       <View style={styles.footer}>
         <DrawerItem
-          style={{display: 'flex', justifyContent: 'center'}}
+          style={styles.drawerItemStyle}
           label="LOGOUT"
           activeTintColor="yellow"
           activeBackgroundColor="purple"
@@ -181,6 +146,7 @@ const CustomDrawer = ({navigation}) => {
 };
 
 const styles = StyleSheet.create({
+  container: {flex: 1},
   header: {
     display: 'flex',
     paddingHorizontal: hp(2),
@@ -206,6 +172,40 @@ const styles = StyleSheet.create({
   footer: {
     flex: 0.5,
   },
+  imageViewWrapper: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+  },
+  imageView: {marginVertical: hp(1)},
+  personNameText: {
+    fontSize: Platform.OS === 'android' ? hp(2.2) : hp(2),
+    color: '#000000',
+    fontFamily: 'Raleway-Medium',
+    fontWeight: '600',
+  },
+  drawerItemStyle: {display: 'flex', justifyContent: 'center'},
+  followUsTextView: {
+    display: 'flex',
+    justifyContent: 'center',
+    flex: 1,
+    alignItems: 'center',
+    backgroundColor: '#cacaca',
+  },
+  followUsText: {
+    fontSize: hp(2.2),
+    color: 'white',
+    fontFamily: 'Raleway-Medium',
+    fontWeight: '600',
+  },
+  socialIconsWrapper: {
+    display: 'flex',
+    flex: 2,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  socialIconView: {marginHorizontal: hp(2)},
 });
 
 export default CustomDrawer;

@@ -1,5 +1,5 @@
 import React, {useRef, useEffect} from 'react';
-import {View, Text, Pressable, Platform} from 'react-native';
+import {View, Text, Pressable, Platform, StyleSheet} from 'react-native';
 import {Divider} from '@ui-kitten/components';
 import Animated, {Extrapolate} from 'react-native-reanimated';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
@@ -26,6 +26,7 @@ const CategorySubComp = props => {
     } else {
       props.hideDrop(rowHeight2.current, 0);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.subTitleState]);
 
   const subClick = () => {
@@ -44,22 +45,9 @@ const CategorySubComp = props => {
   const getSubItems = subItems => {
     return subItems.map((item, index) => {
       return (
-        <View key={index}>
-          <View
-            style={{
-              height: hp(8),
-              paddingLeft: hp(10),
-              display: 'flex',
-              justifyContent: 'center',
-            }}>
-            <Text
-              style={{
-                fontSize: Platform.ios === 'android' ? hp(2) : hp(1.6),
-                fontFamily: 'Poppins-Light',
-                color: 'black',
-              }}>
-              {item}
-            </Text>
+        <View key={`index_${index}`}>
+          <View style={styles.itemTextView}>
+            <Text style={styles.itemText}>{item}</Text>
           </View>
           <Divider />
         </View>
@@ -69,39 +57,19 @@ const CategorySubComp = props => {
   return (
     <React.Fragment>
       <Pressable onPress={props.sub.items && subClick}>
-        <View
-          style={{
-            height: hp(8),
-            paddingLeft: hp(5),
-            display: 'flex',
-            justifyContent: 'center',
-            flexDirection: 'row',
-          }}>
-          <View style={{flex: 3, display: 'flex', justifyContent: 'center'}}>
-            <Text
-              style={{
-                fontSize: Platform.ios === 'android' ? hp(2) : hp(1.6),
-                fontFamily: 'Poppins-Light',
-                color: 'black',
-              }}>
-              {props.sub.title}
-            </Text>
+        <View style={styles.categorySubView}>
+          <View style={styles.categorySubTitleView}>
+            <Text style={styles.categorySubText}>{props.sub.title}</Text>
           </View>
           {props.sub.items && (
             <Animated.View
-              style={{
-                transform: [{rotateZ}],
-                flex: 1,
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <Fontisto
-                name="angle-down"
-                style={{
-                  fontSize: Platform.ios === 'android' ? hp(1.6) : hp(1.4),
-                }}
-              />
+              style={[
+                styles.angleDownView,
+                {
+                  transform: [{rotateZ}],
+                },
+              ]}>
+              <Fontisto name="angle-down" style={styles.angleDownIcon} />
             </Animated.View>
           )}
         </View>
@@ -117,5 +85,41 @@ const CategorySubComp = props => {
     </React.Fragment>
   );
 };
+
+const styles = StyleSheet.create({
+  categorySubView: {
+    height: hp(8),
+    paddingLeft: hp(5),
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'row',
+  },
+  categorySubTitleView: {flex: 3, display: 'flex', justifyContent: 'center'},
+  categorySubText: {
+    fontSize: Platform.ios === 'android' ? hp(2) : hp(1.6),
+    fontFamily: 'Poppins-Light',
+    color: 'black',
+  },
+  angleDownView: {
+    flex: 1,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  angleDownIcon: {
+    fontSize: Platform.ios === 'android' ? hp(1.6) : hp(1.4),
+  },
+  itemTextView: {
+    height: hp(8),
+    paddingLeft: hp(10),
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  itemText: {
+    fontSize: Platform.ios === 'android' ? hp(2) : hp(1.6),
+    fontFamily: 'Poppins-Light',
+    color: 'black',
+  },
+});
 
 export default CategorySubComp;

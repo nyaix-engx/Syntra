@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
-import {View, Text, Pressable} from 'react-native';
+import {View, Text, Pressable, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import {CreditCardsLogo} from '../Utils/arrays';
 import {useNavigation} from '@react-navigation/native';
+
 import ConfirmModal from './ConfirmModal';
+import {CreditCardsLogo} from '../Utils/arrays';
 
 const CreditCard = ({data, index, cards, setCards, scrollY, scrollRef}) => {
   const navigation = useNavigation();
@@ -31,90 +32,23 @@ const CreditCard = ({data, index, cards, setCards, scrollY, scrollRef}) => {
     }
   };
   return (
-    <View
-      style={{
-        paddingTop: hp(2),
-        paddingHorizontal: hp(2),
-        paddingBottom: hp(1),
-        backgroundColor: 'white',
-        borderRadius: hp(0.5),
-        borderColor: '#cfcfcf',
-        borderWidth: hp(0.1),
-        marginBottom: hp(2),
-      }}>
-      <View style={{alignItems: 'flex-end'}}>{getLogo(data.type)}</View>
-      <View style={{marginBottom: hp(2)}}>
-        <Text
-          style={{
-            fontFamily: 'Poppins-Medium',
-            fontSize: hp(1.6),
-            color: '#bababa',
-            marginBottom: hp(0.5),
-          }}>
-          CARD NUMBER
-        </Text>
-        <Text
-          style={{
-            fontFamily: 'Poppins-Medium',
-            fontSize: hp(1.8),
-            color: 'black',
-          }}>
-          {data.number}
-        </Text>
+    <View style={styles.container}>
+      <View style={styles.logoView}>{getLogo(data.type)}</View>
+      <View style={styles.cardNumberView}>
+        <Text style={styles.cardDataTitle}>CARD NUMBER</Text>
+        <Text style={styles.cardData}>{data.number}</Text>
       </View>
-      <View
-        style={{
-          marginBottom: hp(2),
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-        }}>
+      <View style={styles.cardRow}>
         <View>
-          <Text
-            style={{
-              fontFamily: 'Poppins-Medium',
-              fontSize: hp(1.6),
-              color: '#bababa',
-              marginBottom: hp(0.5),
-            }}>
-            NAME ON CARD
-          </Text>
-          <Text
-            style={{
-              fontFamily: 'Poppins-Medium',
-              fontSize: hp(1.8),
-              color: 'black',
-            }}>
-            {data.name}
-          </Text>
+          <Text style={styles.nameOnCardText}>NAME ON CARD</Text>
+          <Text style={styles.cardData}>{data.name}</Text>
         </View>
         <View>
-          <Text
-            style={{
-              fontFamily: 'Poppins-Medium',
-              fontSize: hp(1.6),
-              color: '#bababa',
-              marginBottom: hp(0.5),
-            }}>
-            VALIDITY
-          </Text>
-          <Text
-            style={{
-              fontFamily: 'Poppins-Medium',
-              fontSize: hp(1.8),
-              textAlign: 'center',
-              color: 'black',
-            }}>
-            {data.expiry}
-          </Text>
+          <Text style={styles.cardDataTitle}>VALIDITY</Text>
+          <Text style={styles.cardData}>{data.expiry}</Text>
         </View>
       </View>
-      <View
-        style={{
-          flexDirection: 'row',
-          borderTopColor: '#cfcfcf',
-          borderTopWidth: hp(0.1),
-          paddingVertical: hp(1),
-        }}>
+      <View style={styles.ctaWrapper}>
         <Pressable
           onPress={() => {
             navigation.navigate('AddCardPage', {
@@ -124,41 +58,13 @@ const CreditCard = ({data, index, cards, setCards, scrollY, scrollRef}) => {
               index,
             });
           }}
-          style={{
-            flex: 1,
-            borderRightColor: '#cfcfcf',
-            borderRightWidth: hp(0.05),
-            paddingVertical: hp(1),
-          }}>
-          <Text
-            style={{
-              textAlign: 'center',
-              fontFamily: 'Raleway-Medium',
-              fontWeight: '600',
-              fontSize: hp(1.9),
-              color: 'blue',
-            }}>
-            EDIT
-          </Text>
+          style={styles.ctaButton}>
+          <Text style={styles.ctaText}>EDIT</Text>
         </Pressable>
         <Pressable
           onPress={() => setShowRemoveCardModal(true)}
-          style={{
-            flex: 1,
-            borderLeftColor: '#cfcfcf',
-            borderLeftWidth: hp(0.05),
-            paddingVertical: hp(1),
-          }}>
-          <Text
-            style={{
-              textAlign: 'center',
-              fontFamily: 'Raleway-Medium',
-              fontSize: hp(1.9),
-              fontWeight: '600',
-              color: 'blue',
-            }}>
-            REMOVE
-          </Text>
+          style={styles.ctaButton}>
+          <Text style={styles.ctaText}>REMOVE</Text>
         </Pressable>
         <ConfirmModal
           heading="REMOVE CARD"
@@ -177,5 +83,61 @@ const CreditCard = ({data, index, cards, setCards, scrollY, scrollRef}) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    paddingTop: hp(2),
+    paddingHorizontal: hp(2),
+    paddingBottom: hp(1),
+    backgroundColor: 'white',
+    borderRadius: hp(0.5),
+    borderColor: '#cfcfcf',
+    borderWidth: hp(0.1),
+    marginBottom: hp(2),
+  },
+  logoView: {alignItems: 'flex-end'},
+  cardNumberView: {marginBottom: hp(2)},
+  cardDataTitle: {
+    fontFamily: 'Poppins-Medium',
+    fontSize: hp(1.6),
+    color: '#bababa',
+    marginBottom: hp(0.5),
+  },
+  cardData: {
+    fontFamily: 'Poppins-Medium',
+    fontSize: hp(1.8),
+    color: 'black',
+  },
+  cardRow: {
+    marginBottom: hp(2),
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  nameOnCardText: {
+    fontFamily: 'Poppins-Medium',
+    fontSize: hp(1.6),
+    color: '#bababa',
+    marginBottom: hp(0.5),
+  },
+  ctaWrapper: {
+    flexDirection: 'row',
+    borderTopColor: '#cfcfcf',
+    borderTopWidth: hp(0.1),
+    paddingVertical: hp(1),
+  },
+  ctaButton: {
+    flex: 1,
+    borderRightColor: '#cfcfcf',
+    borderRightWidth: hp(0.05),
+    paddingVertical: hp(1),
+  },
+  ctaText: {
+    textAlign: 'center',
+    fontFamily: 'Raleway-Medium',
+    fontWeight: '600',
+    fontSize: hp(1.9),
+    color: 'blue',
+  },
+});
 
 export default CreditCard;

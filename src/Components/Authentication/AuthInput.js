@@ -1,11 +1,6 @@
 import React, {useState, useRef} from 'react';
 import {Input, Icon} from '@ui-kitten/components';
-import {
-  Platform,
-  Pressable,
-  TouchableWithoutFeedback,
-  View,
-} from 'react-native';
+import {Platform, Pressable, View, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import Entypo from 'react-native-vector-icons/Entypo';
 
@@ -31,14 +26,7 @@ const AuthInput = props => {
   };
 
   const renderIcon1 = props => (
-    <Pressable
-      onPress={toggleSecureEntry1}
-      style={{
-        height: hp(5),
-        display: 'flex',
-        justifyContent: 'center',
-        paddingHorizontal: hp(1),
-      }}>
+    <Pressable onPress={toggleSecureEntry1} style={styles.accessoryLeftView}>
       <Entypo
         {...props}
         name={secureTextEntry1 ? 'eye-with-line' : 'eye'}
@@ -49,14 +37,7 @@ const AuthInput = props => {
   );
 
   const renderIcon2 = props => (
-    <Pressable
-      onPress={toggleSecureEntry2}
-      style={{
-        height: hp(5),
-        display: 'flex',
-        justifyContent: 'center',
-        paddingHorizontal: hp(1),
-      }}>
+    <Pressable onPress={toggleSecureEntry2} style={styles.accessoryLeftView}>
       <Entypo
         {...props}
         name={secureTextEntry2 ? 'eye-with-line' : 'eye'}
@@ -68,23 +49,17 @@ const AuthInput = props => {
 
   return (
     <React.Fragment>
-      <View style={{flex: 1}}>
-        <View style={{flex: 1, display: 'flex', justifyContent: 'center'}}>
+      <View style={styles.container}>
+        <View style={styles.inputView}>
           <Input
             placeholder="Email"
             value={email}
             ref={emailRef}
             onFocus={() => setEmailBorderColor('#fb7ca0')}
             onBlur={() => setEmailBorderColor('#c3c3c3')}
-            style={{borderRadius: hp(1.5), borderColor: emailBorderColor}}
+            style={[styles.inputStyle, {borderColor: emailBorderColor}]}
             accessoryLeft={props => (
-              <View
-                style={{
-                  height: hp(5),
-                  display: 'flex',
-                  justifyContent: 'center',
-                  paddingHorizontal: hp(1),
-                }}>
+              <View style={styles.accessoryLeftView}>
                 <Entypo
                   {...props}
                   name={'email'}
@@ -93,27 +68,17 @@ const AuthInput = props => {
                 />
               </View>
             )}
-            textStyle={{
-              fontSize: Platform.OS === 'android' ? hp(1.95) : hp(1.85),
-              paddingVertical: hp(0.5),
-              fontFamily: 'Poppins-Light',
-              fontWeight: '300',
-            }}
+            textStyle={styles.inputTextStyle}
             onChangeText={nextValue => setEmail(nextValue)}
           />
         </View>
-        <View style={{flex: 1, display: 'flex', justifyContent: 'center'}}>
+        <View style={styles.inputView}>
           <Input
             value={password}
             onFocus={() => setPasswordBorderColor('#fb7ca0')}
             onBlur={() => setPasswordBorderColor('#c3c3c3')}
-            style={{borderRadius: hp(1.5), borderColor: passwordBorderColor}}
-            textStyle={{
-              fontSize: Platform.OS === 'android' ? hp(1.95) : hp(1.85),
-              paddingVertical: hp(0.5),
-              fontFamily: 'Poppins-Light',
-              fontWeight: '300',
-            }}
+            style={[styles.inputStyle, {borderColor: passwordBorderColor}]}
+            textStyle={styles.inputTextStyle}
             placeholder="Password"
             accessoryLeft={renderIcon1}
             secureTextEntry={secureTextEntry1}
@@ -123,18 +88,13 @@ const AuthInput = props => {
           />
         </View>
         {props.signup && (
-          <View style={{flex: 1, display: 'flex', justifyContent: 'center'}}>
+          <View style={styles.inputView}>
             <Input
               value={confirmPassword}
               onFocus={() => setConfirmBorderColor('#fb7ca0')}
               onBlur={() => setConfirmBorderColor('#c3c3c3')}
-              style={{borderRadius: hp(1.5), borderColor: confirmBorderColor}}
-              textStyle={{
-                fontSize: Platform.OS === 'android' ? hp(1.95) : hp(1.85),
-                paddingVertical: hp(0.5),
-                fontFamily: 'Poppins-Light',
-                fontWeight: '300',
-              }}
+              style={[styles.inputStyle, {borderColor: confirmBorderColor}]}
+              textStyle={styles.inputTextStyle}
               placeholder="Confirm Password"
               accessoryLeft={renderIcon2}
               secureTextEntry={secureTextEntry2}
@@ -148,5 +108,25 @@ const AuthInput = props => {
     </React.Fragment>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {flex: 1},
+  inputView: {flex: 1, display: 'flex', justifyContent: 'center'},
+  inputStyle: {
+    borderRadius: hp(1.5),
+  },
+  accessoryLeftView: {
+    height: hp(5),
+    display: 'flex',
+    justifyContent: 'center',
+    paddingHorizontal: hp(1),
+  },
+  inputTextStyle: {
+    fontSize: Platform.OS === 'android' ? hp(1.95) : hp(1.85),
+    paddingVertical: hp(0.5),
+    fontFamily: 'Poppins-Light',
+    fontWeight: '300',
+  },
+});
 
 export default AuthInput;

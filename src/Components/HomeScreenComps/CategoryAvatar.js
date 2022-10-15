@@ -17,15 +17,7 @@ const CategoryAvatar = props => {
         )}
       />
       <View style={styles.avatarTextWrap}>
-        <Text
-          style={{
-            fontFamily: 'Raleway-Medium',
-            fontWeight: '500',
-            color: 'black',
-            fontSize: Platform.OS === 'android' ? hp(1.4) : hp(1.3),
-          }}>
-          {props.text}
-        </Text>
+        <Text style={styles.avatarText}>{props.text}</Text>
       </View>
     </Pressable>
   );
@@ -54,6 +46,12 @@ const styles = StyleSheet.create({
     borderRadius: hp(5),
     borderColor: '#fb7ca0',
     borderWidth: hp(0.2),
+  },
+  avatarText: {
+    fontFamily: 'Raleway-Medium',
+    fontWeight: '500',
+    color: 'black',
+    fontSize: Platform.OS === 'android' ? hp(1.4) : hp(1.3),
   },
 });
 

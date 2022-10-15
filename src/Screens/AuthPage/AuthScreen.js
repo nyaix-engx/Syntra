@@ -12,11 +12,6 @@ import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import SignupScreen from '../SignupScreen/SignupScreen';
 import SigninScreen from '../SigninScreen/SigninScreen';
 
-// const authArray = [
-//   {id: 1, component: <SigninScreen />},
-//   {id: 2, component: <SignupScreen />},
-// ];
-
 const Paginator = ({data, scrollX}) => {
   const {width} = useWindowDimensions();
   return (

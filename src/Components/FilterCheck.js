@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Pressable} from 'react-native';
+import {View, Text, Pressable, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -49,74 +49,78 @@ const FilterCheck = props => {
         onPress={() => handlePress(index)}
         key={index}
         style={{height: hp(8)}}>
-        <View
-          style={{
-            flex: 1,
-            display: 'flex',
-            flexDirection: 'row',
-            borderBottomWidth: hp(0.05),
-            borderBottomColor: '#d1d1d1',
-          }}>
-          <View
-            style={{
-              flex: 0.8,
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
+        <View style={styles.buttonView}>
+          <View style={styles.checkMarkView}>
             <Ionicons
               name="ios-checkmark"
               size={hp(3)}
               style={{color: getColor(index)}}
             />
           </View>
-          <View
-            style={{
-              flex: 2,
-              paddingLeft: hp(1),
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-            }}>
+          <View style={styles.checkTextView}>
             {props.category === 'Color' && (
               <View
-                style={{
-                  height: hp(2.5),
-                  width: hp(2.5),
-                  backgroundColor: item.code,
-                  marginRight: hp(1),
-                }}
+                style={[
+                  styles.coloredView,
+                  {
+                    backgroundColor: item.code,
+                  },
+                ]}
               />
             )}
-            <Text
-              style={{
-                fontSize: hp(1.6),
-                fontFamily: 'Poppins-Light',
-                color: 'black',
-              }}>
-              {item.first}
-            </Text>
+            <Text style={styles.checkText}>{item.first}</Text>
           </View>
-          <View
-            style={{
-              flex: 1,
-              justifyContent: 'center',
-              paddingLeft: hp(1),
-              alignItems: 'center',
-            }}>
-            <Text
-              style={{
-                fontSize: hp(1.6),
-                fontFamily: 'Poppins-Light',
-                color: '#c9c9c9',
-              }}>
-              {item.second}
-            </Text>
+          <View style={styles.numbersTextView}>
+            <Text style={styles.numbersText}>{item.second}</Text>
           </View>
         </View>
       </Pressable>
     );
   });
 };
+
+const styles = StyleSheet.create({
+  buttonView: {
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'row',
+    borderBottomWidth: hp(0.05),
+    borderBottomColor: '#d1d1d1',
+  },
+  checkMarkView: {
+    flex: 0.8,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  checkTextView: {
+    flex: 2,
+    paddingLeft: hp(1),
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  coloredView: {
+    height: hp(2.5),
+    width: hp(2.5),
+    marginRight: hp(1),
+  },
+  checkText: {
+    fontSize: hp(1.6),
+    fontFamily: 'Poppins-Light',
+    color: 'black',
+  },
+  numbersTextView: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingLeft: hp(1),
+    alignItems: 'center',
+  },
+  numbersText: {
+    fontSize: hp(1.6),
+    fontFamily: 'Poppins-Light',
+    color: '#c9c9c9',
+  },
+});
 
 export default FilterCheck;

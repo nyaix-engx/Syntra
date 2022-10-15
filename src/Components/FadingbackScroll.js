@@ -1,8 +1,9 @@
 import React, {useRef} from 'react';
-import {View, Text, Image, useWindowDimensions} from 'react-native';
-import ContentContainer from '../Components/HomeScreenComps/ContentContainer';
+import {View, Text, Image, useWindowDimensions, StyleSheet} from 'react-native';
 import Animated from 'react-native-reanimated';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
+
+import ContentContainer from '../Components/HomeScreenComps/ContentContainer';
 
 const FadingBackScroll = ({
   height,
@@ -37,48 +38,32 @@ const FadingBackScroll = ({
   return (
     <View style={style}>
       <ContentContainer heading={headingText}>
-        <View style={{position: 'relative'}}>
+        <View style={styles.contentContainer}>
           <Image
             source={backgroundImage}
             resizeMode="stretch"
-            style={{
-              position: 'absolute',
-              height: height || hp(40),
-              width,
-            }}
+            style={[
+              styles.backgroundImage,
+              {
+                height: height || hp(40),
+                width,
+              },
+            ]}
           />
           <Animated.View
-            style={{
-              position: 'absolute',
-              backgroundColor: color,
-              width: hp(60),
-              height: height || hp(40),
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-            }}>
-            <View
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                flex: 1,
-                paddingHorizontal: hp(2),
-                width: '40%',
-              }}>
-              <Text
-                style={{
-                  color: 'white',
-                  fontSize: hp(3),
-                  fontWeight: '500',
-                  fontFamily: 'Raleway-Medium',
-                }}>
-                {coverText}
-              </Text>
+            style={[
+              styles.animatedFilm,
+              {
+                backgroundColor: color,
+                height: height || hp(40),
+              },
+            ]}>
+            <View style={styles.coverTextView}>
+              <Text style={styles.coverText}>{coverText}</Text>
             </View>
           </Animated.View>
           <Animated.ScrollView
-            style={{paddingHorizontal: hp(3), top: (height - cardHeight) / 2}}
+            style={[{top: (height - cardHeight) / 2}, styles.scrollStyle]}
             onScroll={Animated.event([
               {
                 nativeEvent: {
@@ -92,7 +77,7 @@ const FadingBackScroll = ({
             showsHorizontalScrollIndicator={false}
             scrollEventThrottle={16}
             bounces={false}
-            contentContainerStyle={{paddingLeft: hp(15)}}>
+            contentContainerStyle={styles.scrollContentStyle}>
             {renderCards(array)}
           </Animated.ScrollView>
         </View>
@@ -100,5 +85,35 @@ const FadingBackScroll = ({
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  contentContainer: {position: 'relative'},
+  backgroundImage: {
+    position: 'absolute',
+  },
+  animatedFilm: {
+    position: 'absolute',
+    width: hp(60),
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+  },
+  coverTextView: {
+    display: 'flex',
+    justifyContent: 'center',
+    flex: 1,
+    paddingHorizontal: hp(2),
+    width: '40%',
+  },
+  coverText: {
+    color: 'white',
+    fontSize: hp(3),
+    fontWeight: '500',
+    fontFamily: 'Raleway-Medium',
+  },
+  scrollStyle: {paddingHorizontal: hp(3)},
+  scrollContentStyle: {paddingLeft: hp(15)},
+});
 
 export default FadingBackScroll;

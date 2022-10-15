@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
-import {View, Text, Pressable} from 'react-native';
+import {View, Text, Pressable, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import AddressRemoveModal from './AddressRemoveModal';
 import {useNavigation} from '@react-navigation/native';
+
+import AddressRemoveModal from './AddressRemoveModal';
 
 const AddressCard = props => {
   const navigation = useNavigation();
@@ -30,182 +31,152 @@ const AddressCard = props => {
   };
 
   return (
-    <View
-      style={{
-        paddingTop: hp(2),
-        paddingHorizontal: hp(2),
-        paddingBottom: hp(1),
-        backgroundColor: 'white',
-        borderRadius: hp(0.5),
-        borderColor: '#cfcfcf',
-        borderWidth: hp(0.1),
-        marginBottom: hp(2),
-      }}>
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          marginBottom: hp(2),
-        }}>
-        <Text
-          style={{
-            fontSize: hp(1.8),
-            fontFamily: 'Poppins-Medium',
-            color: 'black',
-          }}>
-          {props.data.name}
-        </Text>
-        <View
-          style={{
-            backgroundColor: '#cfcfcf',
-            paddingHorizontal: hp(1),
-            paddingVertical: hp(0.5),
-            borderRadius: hp(2),
-          }}>
-          <Text
-            style={{
-              fontSize: hp(1.6),
-              fontFamily: 'Poppins-Medium',
-              color: 'black',
-            }}>
-            {props.data.type}
-          </Text>
+    <View style={styles.container}>
+      <View style={styles.cardHeaderView}>
+        <Text style={styles.headerName}>{props.data.name}</Text>
+        <View style={styles.addressTypeView}>
+          <Text style={styles.addressTypeText}>{props.data.type}</Text>
         </View>
       </View>
-      <View style={{marginBottom: hp(2)}}>
-        <Text
-          style={{
-            fontFamily: 'Poppins-Light',
-            fontSize: hp(1.7),
-            color: 'black',
-          }}>
-          {props.data.address}
-        </Text>
-        <Text
-          style={{
-            fontFamily: 'Poppins-Light',
-            fontSize: hp(1.7),
-            color: 'black',
-          }}>
+      <View style={styles.addressView}>
+        <Text style={styles.addressText}>{props.data.address}</Text>
+        <Text style={styles.addressText}>
           {props.data.city} - {props.data.pincode}
         </Text>
-        <Text
-          style={{
-            fontFamily: 'Poppins-Light',
-            fontSize: hp(1.7),
-            marginBottom: hp(2),
-            color: 'black',
-          }}>
-          {props.data.state}
-        </Text>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}>
-          <Text
-            style={{
-              fontFamily: 'Poppins-Light',
-              fontSize: hp(1.7),
-              color: 'black',
-            }}>
-            Mobile: {props.data.mobile}
-          </Text>
+        <Text style={styles.stateText}>{props.data.state}</Text>
+        <View style={styles.defaultView}>
+          <Text style={styles.addressText}>Mobile: {props.data.mobile}</Text>
           {!props.data.default ? (
             <Pressable onPress={handlePress}>
-              <Text
-                style={{
-                  fontFamily: 'Poppins-Medium',
-                  fontSize: hp(1.7),
-                  color: '#34a880',
-                }}>
-                SET AS DEFAULT
-              </Text>
+              <Text style={styles.setDefaultText}>SET AS DEFAULT</Text>
             </Pressable>
           ) : (
-            <Text
-              style={{
-                fontFamily: 'Poppins-Medium',
-                fontSize: hp(1.7),
-                color: '#fb7ca0',
-              }}>
-              DEFAULT
-            </Text>
+            <Text style={styles.defaultText}>DEFAULT</Text>
           )}
         </View>
       </View>
-      <View>
-        <View
-          style={{
-            flexDirection: 'row',
-            borderTopColor: '#cfcfcf',
-            borderTopWidth: hp(0.1),
-            paddingTop: hp(1),
-          }}>
-          <Pressable
-            onPress={() =>
-              navigation.navigate('AddNewAddressPage', {
-                type: 'EDIT',
-                data: props.data,
-                index: props.index,
-                userAddresses: props.userAddresses,
-              })
-            }
-            style={{
-              flex: 1,
-              borderRightColor: '#cfcfcf',
-              borderRightWidth: hp(0.05),
-              paddingVertical: hp(1),
-            }}>
-            <Text
-              style={{
-                textAlign: 'center',
-                fontFamily: 'Raleway-Medium',
-                fontWeight: '600',
-                fontSize: hp(1.9),
-                color: 'blue',
-              }}>
-              EDIT
-            </Text>
-          </Pressable>
-          <Pressable
-            onPress={() => setShowRemoveAddressModal(true)}
-            style={{
-              flex: 1,
-              borderLeftColor: '#cfcfcf',
-              borderLeftWidth: hp(0.05),
-              paddingVertical: hp(1),
-            }}>
-            <Text
-              style={{
-                textAlign: 'center',
-                fontFamily: 'Raleway-Medium',
-                fontWeight: '600',
-                fontSize: hp(1.9),
-                color: 'black',
-              }}>
-              REMOVE
-            </Text>
-          </Pressable>
-          <AddressRemoveModal
-            heading="Remove Address"
-            text="Are you sure you want to delete this address?"
-            confirmButtonText="REMOVE"
-            cancelButtonText="CANCEL"
-            showModal={showRemoveAddressModal}
-            setShowModal={() => setShowRemoveAddressModal(false)}
-            items={props.userAddresses}
-            setItems={props.setUserAddresses}
-            index={props.index}
-            scrollY={props.scrollY}
-            scrollRef={props.scrollRef}
-          />
-        </View>
+      <View style={styles.ctaView}>
+        <Pressable
+          onPress={() =>
+            navigation.navigate('AddNewAddressPage', {
+              type: 'EDIT',
+              data: props.data,
+              index: props.index,
+              userAddresses: props.userAddresses,
+            })
+          }
+          style={styles.ctaButton}>
+          <Text style={styles.editText}>EDIT</Text>
+        </Pressable>
+        <Pressable
+          onPress={() => setShowRemoveAddressModal(true)}
+          style={styles.ctaButton}>
+          <Text style={styles.removeText}>REMOVE</Text>
+        </Pressable>
+        <AddressRemoveModal
+          heading="Remove Address"
+          text="Are you sure you want to delete this address?"
+          confirmButtonText="REMOVE"
+          cancelButtonText="CANCEL"
+          showModal={showRemoveAddressModal}
+          setShowModal={() => setShowRemoveAddressModal(false)}
+          items={props.userAddresses}
+          setItems={props.setUserAddresses}
+          index={props.index}
+          scrollY={props.scrollY}
+          scrollRef={props.scrollRef}
+        />
       </View>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    paddingTop: hp(2),
+    paddingHorizontal: hp(2),
+    paddingBottom: hp(1),
+    backgroundColor: 'white',
+    borderRadius: hp(0.5),
+    borderColor: '#cfcfcf',
+    borderWidth: hp(0.1),
+    marginBottom: hp(2),
+  },
+  cardHeaderView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: hp(2),
+  },
+  headerName: {
+    fontSize: hp(1.8),
+    fontFamily: 'Poppins-Medium',
+    color: 'black',
+  },
+  addressTypeView: {
+    backgroundColor: '#cfcfcf',
+    paddingHorizontal: hp(1),
+    paddingVertical: hp(0.5),
+    borderRadius: hp(2),
+  },
+  addressTypeText: {
+    fontSize: hp(1.6),
+    fontFamily: 'Poppins-Medium',
+    color: 'black',
+  },
+  addressView: {marginBottom: hp(2)},
+  addressText: {
+    fontFamily: 'Poppins-Light',
+    fontSize: hp(1.7),
+    color: 'black',
+  },
+  stateText: {
+    fontFamily: 'Poppins-Light',
+    fontSize: hp(1.7),
+    marginBottom: hp(2),
+    color: 'black',
+  },
+  defaultView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  setDefaultText: {
+    fontFamily: 'Poppins-Medium',
+    fontSize: hp(1.7),
+    color: '#34a880',
+  },
+  defaultText: {
+    fontFamily: 'Poppins-Medium',
+    fontSize: hp(1.7),
+    color: '#fb7ca0',
+  },
+  ctaView: {
+    flexDirection: 'row',
+    borderTopColor: '#cfcfcf',
+    borderTopWidth: hp(0.1),
+    paddingTop: hp(1),
+  },
+  ctaButton: {
+    flex: 1,
+    borderRightColor: '#cfcfcf',
+    borderRightWidth: hp(0.05),
+    paddingVertical: hp(1),
+  },
+  editText: {
+    textAlign: 'center',
+    fontFamily: 'Raleway-Medium',
+    fontWeight: '600',
+    fontSize: hp(1.9),
+    color: 'blue',
+  },
+  removeText: {
+    textAlign: 'center',
+    fontFamily: 'Raleway-Medium',
+    fontWeight: '600',
+    fontSize: hp(1.9),
+    color: 'black',
+  },
+});
 
 export default AddressCard;

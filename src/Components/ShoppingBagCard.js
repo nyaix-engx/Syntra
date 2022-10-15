@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, Image, Pressable} from 'react-native';
+import {View, Text, Image, Pressable, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import SizeSelectModal from './SizeSelectModal';
@@ -23,183 +23,55 @@ const ShoppingBagCard = ({
     setShowConfirmModal(true);
   };
   return (
-    <View
-      style={{
-        height: hp(30),
-        paddingHorizontal: hp(1),
-        backgroundColor: 'white',
-        borderRadius: hp(0.5),
-        borderColor: '#fb7ca0',
-        borderWidth: hp(0.1),
-        marginBottom: hp(1),
-      }}>
-      <View
-        style={{
-          flex: 5,
-          display: 'flex',
-          flexDirection: 'row',
-          borderBottomColor: '#757575',
-          borderBottomWidth: hp(0.05),
-          paddingVertical: hp(1),
-        }}>
-        <View style={{flex: 4}}>
-          <Image source={data.image} style={{width: '100%', height: '100%'}} />
+    <View style={styles.container}>
+      <View style={styles.contentView}>
+        <View style={styles.imageView}>
+          <Image source={data.image} style={styles.image} />
         </View>
-        <View
-          style={{
-            flex: 6,
-            paddingHorizontal: hp(1),
-          }}>
-          <View style={{marginBottom: hp(1.5)}}>
-            <Text
-              style={{
-                fontSize: hp(1.8),
-                fontFamily: 'Poppins-Medium',
-                marginBottom: hp(0.3),
-                color: 'black',
-              }}>
-              {data.company}
-            </Text>
-            <Text
-              style={{
-                fontFamily: 'Poppins-Light',
-                marginBottom: hp(0.3),
-                fontSize: hp(1.5),
-                color: 'black',
-              }}>
-              {data.title}
-            </Text>
-            <Text
-              style={{
-                fontFamily: 'Poppins-Light',
-                fontSize: hp(1.5),
-                color: 'grey',
-              }}>
-              Sold By: BEST UNITED PVT LTD
-            </Text>
+        <View style={styles.rightSection}>
+          <View style={styles.productDataView}>
+            <Text style={styles.brandTitle}>{data.company}</Text>
+            <Text style={styles.productDesc}>{data.title}</Text>
+            <Text style={styles.soldBy}>Sold By: BEST UNITED PVT LTD</Text>
           </View>
-          <View
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              marginBottom: hp(1),
-            }}>
+          <View style={styles.dropdownWrapper}>
             <Pressable
               onPress={() => setShowSizeModal(true)}
-              style={{
-                alignSelf: 'flex-start',
-                paddingHorizontal: hp(0.5),
-                paddingVertical: hp(0.5),
-                borderRadius: hp(0.2),
-                marginRight: hp(1),
-                backgroundColor: '#d4d4d4',
-              }}>
-              <View
-                style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                }}>
-                <Text
-                  style={{
-                    fontSize: hp(1.6),
-                    fontFamily: 'Poppins-Medium',
-                    marginRight: hp(0.5),
-                    color: 'black',
-                  }}>
-                  Size : {size}
-                </Text>
+              style={styles.sizeButton}>
+              <View style={styles.sizeButtonView}>
+                <Text style={styles.sizeButtonText}>Size : {size}</Text>
                 <Ionicons
                   name="caret-down-sharp"
                   size={hp(1.5)}
-                  style={{color: 'black'}}
+                  style={styles.caretIcon}
                 />
               </View>
             </Pressable>
             <Pressable
               onPress={() => setShowQuantityModal(true)}
-              style={{
-                alignSelf: 'flex-start',
-                paddingHorizontal: hp(0.5),
-                paddingVertical: hp(0.5),
-                borderRadius: hp(0.2),
-                backgroundColor: '#d4d4d4',
-              }}>
-              <View
-                style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                }}>
-                <Text
-                  style={{
-                    fontSize: hp(1.6),
-                    fontFamily: 'Poppins-Medium',
-                    marginRight: hp(0.5),
-                    color: 'black',
-                  }}>
-                  Qty: {quantity}
-                </Text>
+              style={styles.sizeButton}>
+              <View style={styles.sizeButtonView}>
+                <Text style={styles.sizeButtonText}>Qty: {quantity}</Text>
                 <Ionicons
                   name="caret-down-sharp"
                   size={hp(1.5)}
-                  style={{color: 'black'}}
+                  style={styles.caretIcon}
                 />
               </View>
             </Pressable>
           </View>
-          <View>
-            <Text
-              style={{
-                fontSize: hp(1.9),
-                fontFamily: 'Poppins-Medium',
-                color: 'black',
-              }}>
-              ${data.price}
-            </Text>
+          <View style={styles.priceView}>
+            <Text style={styles.price}>${data.price}</Text>
           </View>
         </View>
       </View>
-      <View style={{flex: 1.5, display: 'flex', flexDirection: 'row'}}>
-        <View style={{flex: 1, flexDirection: 'row', paddingVertical: hp(0.5)}}>
-          <Pressable
-            onPress={handlePress}
-            style={{
-              flex: 2,
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              borderRightColor: '#757575',
-              borderRightWidth: hp(0.025),
-            }}>
-            <Text
-              style={{
-                fontFamily: 'Raleway-Medium',
-                fontWeight: '600',
-                fontSize: hp(1.6),
-                color: '#000000',
-              }}>
-              REMOVE
-            </Text>
+      <View style={styles.ctaWrapper}>
+        <View style={styles.ctaContainer}>
+          <Pressable onPress={handlePress} style={styles.removeButton}>
+            <Text style={styles.removeButtonText}>REMOVE</Text>
           </Pressable>
-          <Pressable
-            style={{
-              flex: 3,
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              borderLeftColor: '#757575',
-              borderLeftWidth: hp(0.025),
-            }}>
-            <Text
-              style={{
-                fontFamily: 'Raleway-Medium',
-                fontWeight: '600',
-                color: '#fb7ca0',
-                fontSize: hp(1.6),
-              }}>
-              MOVE TO WISHLIST
-            </Text>
+          <Pressable style={styles.wishlistButton}>
+            <Text style={styles.wishlistText}>MOVE TO WISHLIST</Text>
           </Pressable>
         </View>
       </View>
@@ -234,5 +106,110 @@ const ShoppingBagCard = ({
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    height: hp(30),
+    paddingHorizontal: hp(1),
+    backgroundColor: 'white',
+    borderRadius: hp(0.5),
+    borderColor: '#fb7ca0',
+    borderWidth: hp(0.1),
+    marginBottom: hp(1),
+  },
+  contentView: {
+    flex: 5,
+    display: 'flex',
+    flexDirection: 'row',
+    borderBottomColor: '#757575',
+    borderBottomWidth: hp(0.05),
+    paddingVertical: hp(1),
+  },
+  imageView: {flex: 4},
+  image: {width: '100%', height: '100%'},
+  rightSection: {
+    flex: 6,
+    paddingHorizontal: hp(1),
+  },
+  productDataView: {marginBottom: hp(1.5)},
+  brandTitle: {
+    fontSize: hp(1.8),
+    fontFamily: 'Poppins-Medium',
+    marginBottom: hp(0.3),
+    color: 'black',
+  },
+  productDesc: {
+    fontFamily: 'Poppins-Light',
+    marginBottom: hp(0.3),
+    fontSize: hp(1.5),
+    color: 'black',
+  },
+  soldBy: {
+    fontFamily: 'Poppins-Light',
+    fontSize: hp(1.5),
+    color: 'grey',
+  },
+  dropdownWrapper: {
+    display: 'flex',
+    flexDirection: 'row',
+    marginBottom: hp(1),
+  },
+  sizeButton: {
+    alignSelf: 'flex-start',
+    paddingHorizontal: hp(0.5),
+    paddingVertical: hp(0.5),
+    borderRadius: hp(0.2),
+    marginRight: hp(1),
+    backgroundColor: '#d4d4d4',
+  },
+  sizeButtonView: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  sizeButtonText: {
+    fontSize: hp(1.6),
+    fontFamily: 'Poppins-Medium',
+    marginRight: hp(0.5),
+    color: 'black',
+  },
+  caretIcon: {color: 'black'},
+  priceView: {marginTop: hp(1)},
+  price: {
+    fontSize: hp(1.9),
+    fontFamily: 'Poppins-Medium',
+    color: 'black',
+  },
+  ctaWrapper: {flex: 1.5, display: 'flex', flexDirection: 'row'},
+  ctaContainer: {flex: 1, flexDirection: 'row', paddingVertical: hp(0.5)},
+  removeButton: {
+    flex: 2,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRightColor: '#757575',
+    borderRightWidth: hp(0.025),
+  },
+  removeButtonText: {
+    fontFamily: 'Raleway-Medium',
+    fontWeight: '600',
+    fontSize: hp(1.6),
+    color: '#000000',
+  },
+  wishlistButton: {
+    flex: 3,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderLeftColor: '#757575',
+    borderLeftWidth: hp(0.025),
+  },
+  wishlistText: {
+    fontFamily: 'Raleway-Medium',
+    fontWeight: '600',
+    color: '#fb7ca0',
+    fontSize: hp(1.6),
+  },
+});
 
 export default ShoppingBagCard;
