@@ -153,6 +153,7 @@ const CategoryComp = props => {
                     <Fontisto
                       name="angle-down"
                       style={styles.chevronDownIcon}
+                      color="black"
                     />
                   </Animated.View>
                 )}

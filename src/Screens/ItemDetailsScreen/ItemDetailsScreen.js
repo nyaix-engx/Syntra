@@ -10,6 +10,7 @@ import {
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 import BackButtonTitle from '../../Components/BackButtonTitle';
 import PaymentInformationModal from '../../Components/PaymentInformationModal';
@@ -116,10 +117,7 @@ const ItemDetailsScreen = ({navigation, route}) => {
                     <Text style={styles.bankInfoText}>Credit Instantly</Text>
                   </View>
                   <View style={styles.bankLogoWrapper}>
-                    <Image
-                      source={require('../../Assets/Images/sbi.png')}
-                      style={styles.bankLogoImage}
-                    />
+                    <FontAwesome name="bank" size={hp(3)} color={'blue'} />
                   </View>
                 </View>
               </View>
