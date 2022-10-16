@@ -7,6 +7,7 @@ import {
   Animated,
   View,
   StyleSheet,
+  Platform,
 } from 'react-native';
 import {
   FlingGestureHandler,
@@ -37,7 +38,7 @@ export default function NewCarousel() {
   });
 
   return (
-    <View style={{height: hp(50)}}>
+    <View style={styles.container}>
       <FlingGestureHandler
         key="left"
         direction={Directions.LEFT}
@@ -112,6 +113,7 @@ export default function NewCarousel() {
                     },
                   ]}>
                   <Image
+                    resizeMode="center"
                     source={item.img}
                     style={[
                       styles.imageStyle,
@@ -131,14 +133,18 @@ export default function NewCarousel() {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    height: Platform.OS === 'android' ? hp(37) : hp(35.5),
+  },
   flatlistContainerStyle: {
     flex: 1,
+    paddingVertical: Platform.OS === 'android' ? hp(2.3) : hp(0),
   },
   animatedView: {
     position: 'absolute',
   },
   imageStyle: {
-    height: hp(50),
+    height: Platform.OS === 'android' ? hp(32) : hp(35),
     borderRadius: hp(1),
   },
 });

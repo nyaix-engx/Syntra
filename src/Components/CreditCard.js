@@ -63,7 +63,7 @@ const CreditCard = ({data, index, cards, setCards, scrollY, scrollRef}) => {
         </Pressable>
         <Pressable
           onPress={() => setShowRemoveCardModal(true)}
-          style={styles.ctaButton}>
+          style={styles.removeButton}>
           <Text style={styles.ctaText}>REMOVE</Text>
         </Pressable>
         <ConfirmModal
@@ -137,6 +137,10 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     fontSize: hp(1.9),
     color: 'blue',
+  },
+  removeButton: {
+    flex: 1,
+    paddingVertical: hp(1),
   },
 });
 

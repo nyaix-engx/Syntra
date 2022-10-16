@@ -210,14 +210,13 @@ const styles = StyleSheet.create({
     paddingLeft: hp(2),
   },
   categoryTitleText: {
-    fontSize: Platform.OS === 'android' ? hp(2.2) : hp(2.2),
+    fontSize: Platform.OS === 'android' ? hp(2.2) : hp(2),
     fontFamily: 'Poppins-Medium',
-    fontWeight: '300',
+    fontWeight: '600',
     color: 'black',
-    backgroundColor: 'white',
     paddingVertical: hp(0.3),
     paddingHorizontal: hp(1.2),
-    borderRadius: 10,
+    borderRadius: hp(2),
     lineHeight: 25,
   },
   chevronDownIconView: {

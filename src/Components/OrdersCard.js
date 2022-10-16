@@ -12,13 +12,7 @@ const OrdersCard = ({data}) => {
   return (
     <View style={styles.container}>
       <View style={styles.headerView}>
-        <View style={styles.iconImageView}>
-          <Image
-            resizeMethod="resize"
-            source={data.iconImage}
-            style={styles.iconImage}
-          />
-        </View>
+        <View style={styles.iconImageView}>{data.iconImage}</View>
         <View style={styles.headerContentView}>
           <Text style={styles.headerTitleText}>{data.type}</Text>
           <Text style={styles.dateText}>{data.date}</Text>
@@ -75,6 +69,7 @@ const styles = StyleSheet.create({
   headerTitleText: {
     fontFamily: 'Poppins-Medium',
     fontSize: hp(1.8),
+    color: 'black',
     marginBottom: hp(0.3),
   },
   dateText: {

@@ -188,7 +188,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRightColor: '#757575',
-    borderRightWidth: hp(0.025),
+    borderRightWidth: hp(0.05),
   },
   removeButtonText: {
     fontFamily: 'Raleway-Medium',

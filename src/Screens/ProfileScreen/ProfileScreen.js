@@ -126,6 +126,7 @@ const ProfileScreen = props => {
           }
           ListHeaderComponent={
             <ImageBackground
+              resizeMode="stretch"
               source={require('../../Assets/Images/Categories/banner_2.jpg')}
               style={styles.headerImageBackgroundView}>
               <View
@@ -203,7 +204,7 @@ const styles = StyleSheet.create({
   avatarText: {
     fontFamily: 'Poppins-Medium',
     fontSize: hp(2.3),
-    color: 'white',
+    color: 'black',
   },
   listItemText: {
     fontSize: hp(1.6),

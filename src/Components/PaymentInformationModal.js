@@ -4,6 +4,7 @@ import {View, Text, Pressable, Image, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Fontisto from 'react-native-vector-icons/Fontisto';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const PaymentInformationModal = props => {
   const insets = useSafeAreaInsets();
@@ -71,10 +72,7 @@ const PaymentInformationModal = props => {
           </View>
           <View style={styles.bankAccountView}>
             <View style={styles.bankAccountContent}>
-              <Image
-                source={require('../Assets/Images/sbi.png')}
-                style={styles.bankAccountIcon}
-              />
+              <FontAwesome name="bank" size={hp(2.5)} color={'blue'} />
               <Text style={styles.bankText}>Paid by SBI Netbanking</Text>
             </View>
           </View>
@@ -169,14 +167,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#e6ecf2',
-    paddingVertical: hp(1.5),
+    paddingVertical: hp(2.5),
+    paddingHorizontal: hp(2.5),
     borderRadius: hp(0.5),
   },
-  bankAccountIcon: {width: hp(4), height: hp(4), marginHorizontal: hp(2)},
   bankText: {
     fontFamily: 'RalewayRoman-Medium',
     fontSize: hp(1.9),
     color: 'black',
+    marginLeft: hp(2.5),
   },
 });
 

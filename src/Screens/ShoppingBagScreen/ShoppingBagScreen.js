@@ -23,6 +23,8 @@ import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Fontisto from 'react-native-vector-icons/Fontisto';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import BackButtonTitle from '../../Components/BackButtonTitle';
 import ShoppingBagCard from '../../Components/ShoppingBagCard';
@@ -67,7 +69,6 @@ const ShoppingBagScreen = () => {
       totalPrice = totalPrice + data.price;
     });
     if (shoppingItems.length === 0) {
-      console.log('run');
       translateY.value = withRepeat(
         withTiming(hp(-2), {duration: 1200, easing: Easing.linear}),
         -1,
@@ -189,9 +190,10 @@ const ShoppingBagScreen = () => {
               <View style={styles.offersView}>
                 <View style={styles.offersHeader}>
                   <View style={styles.offersImageView}>
-                    <Image
-                      source={require('../../Assets/Images/offer.png')}
+                    <MaterialCommunityIcons
+                      size={hp(2.5)}
                       style={styles.offersImage}
+                      name="offer"
                     />
                   </View>
                   <View>
@@ -250,8 +252,9 @@ const ShoppingBagScreen = () => {
                 {couponApplied ? (
                   <>
                     <View style={styles.couponImageView}>
-                      <Image
-                        source={require('../../Assets/Images/coupon.png')}
+                      <MaterialIcons
+                        size={hp(2.5)}
+                        name="local-offer"
                         style={styles.couponImage}
                       />
                     </View>

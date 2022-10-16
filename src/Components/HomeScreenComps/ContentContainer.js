@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   headingTextView: {
-    paddingHorizontal: hp(2),
+    paddingHorizontal: hp(2.5),
     height: hp(7),
     display: 'flex',
     justifyContent: 'center',

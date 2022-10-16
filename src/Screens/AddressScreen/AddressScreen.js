@@ -77,7 +77,7 @@ const AddressScreen = ({navigation, route}) => {
     if (userAddresses.length > 0) {
       return (
         <>
-          <View style={{paddingHorizontal: hp(4), paddingVertical: hp(2)}}>
+          <View style={{paddingVertical: hp(2)}}>
             <CustomButton
               userAddresses={userAddresses}
               navigation={navigation}

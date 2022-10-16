@@ -249,7 +249,7 @@ const styles = StyleSheet.create({
   cardContentHeading: {
     fontFamily: 'Poppins-Medium',
     fontSize: hp(1.6),
-    color: 'grey',
+    color: 'white',
     marginBottom: hp(0.5),
   },
   cardContentText: {

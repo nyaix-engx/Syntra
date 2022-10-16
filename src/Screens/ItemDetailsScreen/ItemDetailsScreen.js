@@ -60,13 +60,7 @@ const ItemDetailsScreen = ({navigation, route}) => {
                       data.type === 'Delivered' ? '#34a880' : '#eb4034',
                   },
                 ]}>
-                <View style={styles.iconWrapper}>
-                  <Image
-                    resizeMethod="resize"
-                    source={data.iconImage}
-                    style={styles.iconStyle}
-                  />
-                </View>
+                <View style={styles.iconWrapper}>{data.iconImage}</View>
                 <View style={styles.statusTextWrapper}>
                   <View style={styles.imageSubtitleView}>
                     <Text style={styles.statusTextTitle}>{data.type}</Text>
@@ -155,6 +149,7 @@ const ItemDetailsScreen = ({navigation, route}) => {
               <View style={styles.updatesContentView}>
                 <MaterialIcons
                   name="call"
+                  color="black"
                   size={hp(3)}
                   style={styles.updatesContentIcon}
                 />
@@ -164,6 +159,7 @@ const ItemDetailsScreen = ({navigation, route}) => {
                 <MaterialIcons
                   name="mail"
                   size={hp(3)}
+                  color="black"
                   style={styles.updatesContentIcon}
                 />
                 <Text style={styles.updatesContentText}>

@@ -70,7 +70,7 @@ const AddressCard = props => {
         </Pressable>
         <Pressable
           onPress={() => setShowRemoveAddressModal(true)}
-          style={styles.ctaButton}>
+          style={styles.removeButton}>
           <Text style={styles.removeText}>REMOVE</Text>
         </Pressable>
         <AddressRemoveModal
@@ -176,6 +176,11 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     fontSize: hp(1.9),
     color: 'black',
+  },
+  removeButton: {
+    flex: 1,
+    borderRightColor: '#cfcfcf',
+    paddingVertical: hp(1),
   },
 });
 

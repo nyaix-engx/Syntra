@@ -6,10 +6,12 @@ import {
   ScrollView,
   Image,
   StyleSheet,
+  ImageBackground,
 } from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {Avatar, Input} from '@ui-kitten/components';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import BackButtonTitle from '../../Components/BackButtonTitle';
 import ScaleAnimation from '../../Components/ScaleAnimation';
@@ -40,7 +42,11 @@ const EditProfileScreen = ({navigation, route}) => {
           showsVerticalScrollIndicator={false}
           bounces={false}
           contentContainerStyle={styles.scrollStyle}>
-          <View style={styles.imageViewWrapper}>
+          <ImageBackground
+            style={styles.imageViewWrapper}
+            resizeMode="stretch"
+            resizeMethod="scale"
+            source={require('../../Assets/Images/Categories/banner_2.jpg')}>
             <View style={styles.avatarWrapper}>
               <Avatar
                 ImageComponent={() => (
@@ -53,13 +59,15 @@ const EditProfileScreen = ({navigation, route}) => {
               <Pressable
                 onPress={() => setUploadImageModal(true)}
                 style={styles.imageButton}>
-                <Image
-                  source={require('../../Assets/Images/camera.png')}
+                <MaterialIcons
+                  size={hp(2.5)}
+                  color="#fb7ca0"
+                  name="photo-camera"
                   style={styles.cameraImage}
                 />
               </Pressable>
             </View>
-          </View>
+          </ImageBackground>
           <View style={styles.inputRowWrapper}>
             <Input
               value={mobile}
@@ -188,7 +196,7 @@ const styles = StyleSheet.create({
     paddingVertical: hp(1),
   },
   imageViewWrapper: {
-    height: hp(20),
+    height: hp(27),
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -200,11 +208,13 @@ const styles = StyleSheet.create({
     borderRadius: hp(1),
   },
   avatarImage: {
-    width: hp(15),
-    height: hp(15),
-    borderRadius: hp(7.5),
+    width: hp(18),
+    height: hp(18),
+    borderRadius: hp(9),
+    borderColor: '#b9b9b9',
+    borderWidth: hp(0.1),
   },
-  imageButton: {position: 'absolute', right: 0},
+  imageButton: {position: 'absolute', right: hp(1)},
   cameraImage: {width: hp(5), height: hp(5)},
   inputRowWrapper: {paddingHorizontal: hp(3)},
   inputStyle: {

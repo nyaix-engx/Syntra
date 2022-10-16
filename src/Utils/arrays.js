@@ -1,5 +1,9 @@
 import React from 'react';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+
 import Aero from '../Components/SVG/Brands/Aero';
 import Crocs from '../Components/SVG/Brands/Crocs';
 import Diesel from '../Components/SVG/Brands/Diesel';
@@ -27,7 +31,7 @@ export const topBrandsArray = [
   },
   {
     img: require('../Assets/Images/Brands/3.jpg'),
-    logo: <Versace width={hp(9)} height={hp(9)} viewBox="0 0 250 50" />,
+    logo: <LV width={hp(6)} height={hp(4)} />,
   },
   {
     img: require('../Assets/Images/Brands/4.jpg'),
@@ -698,7 +702,7 @@ export const interestArray = [
   {
     brand: 'Campus Sutra',
     category: 'Tshirts',
-    image: require('../Assets/Images/polo.png'),
+    image: require('../Assets/Images/polo.jpg'),
   },
   {
     brand: 'Moda Rapido',
@@ -811,7 +815,7 @@ export const shoppingBagItems = [
     size: 'M',
     qty: '1',
     price: 21,
-    image: require('../Assets/Images/polo.png'),
+    image: require('../Assets/Images/polo.jpg'),
     type: 'type2',
     quantity: 1,
   },
@@ -828,7 +832,7 @@ export const wishlistItems = [
     brand: 'HERE&NOW',
     price: 20,
     discount: 10,
-    image: require('../Assets/Images/polo.png'),
+    image: require('../Assets/Images/polo.jpg'),
   },
   {
     brand: 'WROGN',
@@ -858,7 +862,7 @@ export const outOfStockItems = [
   {
     brand: 'Adidas',
     price: 28,
-    image: require('../Assets/Images/polo.png'),
+    image: require('../Assets/Images/polo.jpg'),
   },
 ];
 
@@ -866,16 +870,22 @@ export const ordersData = [
   {
     type: 'Delivered',
     date: 'On Tue, 15 Jan 2021',
-    iconImage: require('../Assets/Images/delivery.png'),
+    iconImage: (
+      <MaterialCommunityIcons
+        size={hp(3.5)}
+        name="truck-check-outline"
+        color="black"
+      />
+    ),
     productTitle: 'HRX by Hrithik Roshan',
     productSubtitle: 'Ultralyte Men Red Polo',
-    productImage: require('../Assets/Images/polo.png'),
+    productImage: require('../Assets/Images/polo.jpg'),
     size: 'M',
   },
   {
     type: 'Cancelled',
     date: 'On Thu, 19 Feb 2021 as per your request',
-    iconImage: require('../Assets/Images/cancel.png'),
+    iconImage: <MaterialIcons size={hp(3.5)} name="cancel" color="#f56e73" />,
     productTitle: 'US Polo Assn.',
     productSubtitle: 'Men Navy Blue Shirt',
     refund: 'Rs 1379 on Sat, 20 Feb',
@@ -885,7 +895,7 @@ export const ordersData = [
   {
     type: 'Returned',
     date: 'On Thu, 19 Feb 2021 as per your request',
-    iconImage: require('../Assets/Images/back.png'),
+    iconImage: <AntDesign size={hp(3.5)} name="back" color="black" />,
     refund: 'Rs 600 on Sat, 23 Feb',
     productTitle: 'WROGN',
     productSubtitle: 'Men Navy Blue Shirt',
@@ -896,19 +906,19 @@ export const ordersData = [
 
 export const carouselImages = [
   {
-    img: require('../Assets/carousel3.png'),
+    img: require('../Assets/carousel1.jpg'),
     id: 1,
   },
   {
-    img: require('../Assets/carousel1.png'),
+    img: require('../Assets/carousel3.jpg'),
     id: 2,
   },
   {
-    img: require('../Assets/carousel4.png'),
+    img: require('../Assets/carousel4.jpg'),
     id: 3,
   },
   {
-    img: require('../Assets/carousel2.png'),
+    img: require('../Assets/carousel2.jpg'),
     id: 4,
   },
 ];

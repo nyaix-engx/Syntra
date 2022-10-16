@@ -13,6 +13,7 @@ const FadingBackScrollCard = ({height}) => {
       ]}>
       <View style={styles.imageView}>
         <Image
+          resizeMode="cover"
           style={styles.image}
           source={require('../Assets/Images/jeans.jpg')}
         />

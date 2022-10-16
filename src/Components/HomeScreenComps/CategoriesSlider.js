@@ -32,7 +32,7 @@ const CategoriesSlider = () => {
         text="TROUSERS"
       />
       <CategoryAvatar
-        img={require('../../Assets/Images/polo.png')}
+        img={require('../../Assets/Images/polo.jpg')}
         text="POLO"
       />
     </ScrollView>

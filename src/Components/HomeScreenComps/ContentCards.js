@@ -7,7 +7,9 @@ const ContentCards = props => {
   return (
     <Pressable style={{height: props.height}}>
       <Layout level="2" style={styles.card}>
-        {props.header && <View style={styles.headerView}>{props.header}</View>}
+        {props.header && (
+          <View style={styles.headerView}>{props.data.header}</View>
+        )}
         <Image source={props.data.img} style={styles.imageStyle} />
         {props.footer && (
           <View style={styles.footerTextView}>

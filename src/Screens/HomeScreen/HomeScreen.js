@@ -11,6 +11,13 @@ import Feather from 'react-native-vector-icons/Feather';
 import {Divider} from '@ui-kitten/components';
 
 import CategoriesSlider from '../../Components/HomeScreenComps/CategoriesSlider';
+import Versace from '../../Components/SVG/Brands/Versace';
+import Aero from '../../Components/SVG/Brands/Aero';
+import Crocs from '../../Components/SVG/Brands/Crocs';
+import LV from '../../Components/SVG/Brands/LV';
+import Diesel from '../../Components/SVG/Brands/Diesel';
+import Lee from '../../Components/SVG/Brands/Lee';
+
 import Carousel from '../../Components/HomeScreenComps/Carousel';
 import ContentCards from '../../Components/HomeScreenComps/ContentCards';
 import ContentContainer from '../../Components/HomeScreenComps/ContentContainer';
@@ -37,14 +44,17 @@ const HomeScreen = props => {
     {
       img: require('../../Assets/Images/scroll1.jpg'),
       footerText: 'Upto 30% Off',
+      header: <Versace width={hp(9)} height={hp(9)} viewBox="0 0 250 50" />,
     },
     {
       img: require('../../Assets/Images/scroll2.jpg'),
       footerText: 'Upto 30% Off',
+      header: <Aero width={hp(10)} height={hp(8)} />,
     },
     {
       img: require('../../Assets/Images/scroll3.jpg'),
       footerText: 'Upto 30% Off',
+      header: <Crocs width={hp(8)} height={hp(8)} />,
     },
   ];
 
@@ -52,14 +62,17 @@ const HomeScreen = props => {
     {
       img: require('../../Assets/Images/deal1.jpg'),
       footerText: 'Extra 150 Off',
+      header: <LV width={hp(6)} height={hp(4)} />,
     },
     {
       img: require('../../Assets/Images/deal2.jpg'),
       footerText: 'Buy 2 Get 10% Off',
+      header: <Diesel width={hp(7)} height={hp(5)} viewBox="0 0 240 130" />,
     },
     {
       img: require('../../Assets/Images/deal3.jpg'),
       footerText: 'Min 30% Off on kids wear',
+      header: <Lee width={hp(6)} height={hp(6)} />,
     },
   ];
   const renderCards = (arr, headerState, footerState) => {
@@ -162,7 +175,7 @@ const HomeScreen = props => {
             style={styles.featuredScrollView}
             horizontal={true}
             showsHorizontalScrollIndicator={false}>
-            {renderCards(dealsArray, false, true)}
+            {renderCards(dealsArray, true, true)}
           </ScrollView>
         </ContentContainer>
         <FadingBackScroll
@@ -239,9 +252,9 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: wp(5),
+    marginRight: wp(6),
   },
-  featuredScrollView: {paddingHorizontal: hp(2.5)},
+  featuredScrollView: {marginHorizontal: hp(2.5)},
 });
 
 export default HomeScreen;

@@ -19,7 +19,7 @@ const WriteReviewScreen = () => {
         <View style={styles.imageView}>
           <View style={styles.imageContentWrapper}>
             <Image
-              source={require('../../Assets/Images/polo.png')}
+              source={require('../../Assets/Images/polo.jpg')}
               style={styles.imageStyle}
             />
           </View>
