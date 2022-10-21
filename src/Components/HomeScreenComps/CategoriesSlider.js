@@ -10,29 +10,32 @@ const CategoriesSlider = () => {
       horizontal={true}
       showsHorizontalScrollIndicator={false}
       contentContainerStyle={styles.contentContainerStyle}>
-      <CategoryAvatar img={require('../../Assets/Images/men.jpg')} text="MEN" />
       <CategoryAvatar
-        img={require('../../Assets/Images/women.jpg')}
+        img={{uri: 'https://dummyimage.com/100x100/000/fb7ca0'}}
+        text="MEN"
+      />
+      <CategoryAvatar
+        img={{uri: 'https://dummyimage.com/100x100/000/fb7ca0'}}
         text="WOMEN"
       />
       <CategoryAvatar
-        img={require('../../Assets/Images/kids.jpg')}
+        img={{uri: 'https://dummyimage.com/100x100/000/fb7ca0'}}
         text="KIDS"
       />
       <CategoryAvatar
-        img={require('../../Assets/Images/shirt.jpg')}
+        img={{uri: 'https://dummyimage.com/100x100/000/fb7ca0'}}
         text="SHIRTS"
       />
       <CategoryAvatar
-        img={require('../../Assets/Images/jeans.jpg')}
+        img={{uri: 'https://dummyimage.com/100x100/000/fb7ca0'}}
         text="JEANS"
       />
       <CategoryAvatar
-        img={require('../../Assets/Images/trousers.jpg')}
+        img={{uri: 'https://dummyimage.com/100x100/000/fffb7ca0f'}}
         text="TROUSERS"
       />
       <CategoryAvatar
-        img={require('../../Assets/Images/polo.jpg')}
+        img={{uri: 'https://dummyimage.com/100x100/000/fb7ca0'}}
         text="POLO"
       />
     </ScrollView>

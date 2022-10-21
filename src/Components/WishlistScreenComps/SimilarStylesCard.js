@@ -8,7 +8,7 @@ const SimilarStylesCard = () => {
       <View style={styles.imageView}>
         <Image
           style={styles.image}
-          source={require('../../Assets/Images/jeans.jpg')}
+          source={{uri: 'https://dummyimage.com/300x400/000/fb7ca0'}}
         />
       </View>
       <View style={styles.productContentView}>

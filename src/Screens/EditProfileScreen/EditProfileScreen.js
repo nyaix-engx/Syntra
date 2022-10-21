@@ -46,13 +46,13 @@ const EditProfileScreen = ({navigation, route}) => {
             style={styles.imageViewWrapper}
             resizeMode="stretch"
             resizeMethod="scale"
-            source={require('../../Assets/Images/Categories/banner_2.jpg')}>
+            source={{uri: 'https://dummyimage.com/600x300/000/fb7ca0'}}>
             <View style={styles.avatarWrapper}>
               <Avatar
                 ImageComponent={() => (
                   <Image
                     style={styles.avatarImage}
-                    source={require('../../Assets/Images/avatar.jpeg')}
+                    source={{uri: 'https://dummyimage.com/300x300/000/fb7ca0'}}
                   />
                 )}
               />

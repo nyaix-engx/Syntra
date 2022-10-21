@@ -1,9 +1,5 @@
 import React from 'react';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-
 import Aero from '../Components/SVG/Brands/Aero';
 import Crocs from '../Components/SVG/Brands/Crocs';
 import Diesel from '../Components/SVG/Brands/Diesel';
@@ -22,39 +18,39 @@ import Maestro from '../Components/SVG/CreditCards/Maestro';
 
 export const topBrandsArray = [
   {
-    img: require('../Assets/Images/Brands/1.jpg'),
+    img: {uri: 'https://dummyimage.com/350x350/000/fb7ca0'},
     logo: <Versace width={hp(9)} height={hp(9)} viewBox="0 0 250 50" />,
   },
   {
-    img: require('../Assets/Images/Brands/2.jpg'),
+    img: {uri: 'https://dummyimage.com/350x350/000/fb7ca0'},
     logo: <Aero width={hp(10)} height={hp(8)} />,
   },
   {
-    img: require('../Assets/Images/Brands/3.jpg'),
+    img: {uri: 'https://dummyimage.com/350x350/000/fb7ca0'},
     logo: <LV width={hp(6)} height={hp(4)} />,
   },
   {
-    img: require('../Assets/Images/Brands/4.jpg'),
+    img: {uri: 'https://dummyimage.com/350x350/000/fb7ca0'},
     logo: <Crocs width={hp(8)} height={hp(8)} />,
   },
   {
-    img: require('../Assets/Images/Brands/5.jpg'),
+    img: {uri: 'https://dummyimage.com/350x350/000/fb7ca0'},
     logo: <Diesel width={hp(7)} height={hp(5)} viewBox="0 0 240 130" />,
   },
   {
-    img: require('../Assets/Images/Brands/6.jpg'),
+    img: {uri: 'https://dummyimage.com/350x350/000/fb7ca0'},
     logo: <Lee width={hp(6)} height={hp(6)} />,
   },
   {
-    img: require('../Assets/Images/Brands/7.jpg'),
+    img: {uri: 'https://dummyimage.com/350x350/000/fb7ca0'},
     logo: <LV width={hp(6)} height={hp(4)} />,
   },
   {
-    img: require('../Assets/Images/Brands/8.jpg'),
+    img: {uri: 'https://dummyimage.com/350x350/000/fb7ca0'},
     logo: <Versace width={hp(9)} height={hp(9)} viewBox="0 0 250 50" />,
   },
   {
-    img: require('../Assets/Images/Brands/9.jpg'),
+    img: {uri: 'https://dummyimage.com/350x350/000/fb7ca0'},
     logo: <HM width={hp(7)} height={hp(7)} />,
   },
 ];
@@ -184,15 +180,15 @@ export const categories = [
 
 export const imageArray = [
   {
-    img: require('../Assets/Images/men.jpg'),
+    img: {uri: 'https://dummyimage.com/500x600/000/fb7ca0'},
     id: '1',
   },
   {
-    img: require('../Assets/Images/women.jpg'),
+    img: {uri: 'https://dummyimage.com/500x600/000/fb7ca0'},
     id: '2',
   },
   {
-    img: require('../Assets/Images/kids.jpg'),
+    img: {uri: 'https://dummyimage.com/500x600/000/fb7ca0'},
     id: '3',
   },
 ];
@@ -649,19 +645,19 @@ export const DeliveryTime = [
 
 export const categoryBanner = [
   {
-    img: require('../Assets/Images/Categories/banner_1.jpg'),
+    img: {uri: 'https://dummyimage.com/800x200/000/fb7ca0'},
   },
   {
-    img: require('../Assets/Images/Categories/banner_2.jpg'),
+    img: {uri: 'https://dummyimage.com/800x200/000/fb7ca0'},
   },
   {
-    img: require('../Assets/Images/Categories/banner_3.jpg'),
+    img: {uri: 'https://dummyimage.com/800x200/000/fb7ca0'},
   },
   {
-    img: require('../Assets/Images/Categories/banner_4.jpg'),
+    img: {uri: 'https://dummyimage.com/800x200/000/fb7ca0'},
   },
   {
-    img: require('../Assets/Images/Categories/banner_5.jpg'),
+    img: {uri: 'https://dummyimage.com/800x200/000/fb7ca0'},
   },
 ];
 
@@ -669,22 +665,22 @@ export const interestArray = [
   {
     brand: 'Jack & Jones',
     category: 'Jeans',
-    image: require('../Assets/Images/jeans.jpg'),
+    image: {uri: 'https://dummyimage.com/100x100/000/fb7ca0'},
   },
   {
     brand: 'Campus Sutra',
     category: 'Tshirts',
-    image: require('../Assets/Images/polo.jpg'),
+    image: {uri: 'https://dummyimage.com/100x100/000/fb7ca0'},
   },
   {
     brand: 'Moda Rapido',
     category: 'Tshirts',
-    image: require('../Assets/Images/shirt.jpg'),
+    image: {uri: 'https://dummyimage.com/100x100/000/fb7ca0'},
   },
   {
     brand: 'HRX',
     category: 'Tshirts',
-    image: require('../Assets/Images/shirt.jpg'),
+    image: {uri: 'https://dummyimage.com/100x100/000/fb7ca0'},
   },
 ];
 
@@ -767,7 +763,7 @@ export const shoppingBagItems = [
     size: '26',
     qty: '1',
     price: 20,
-    image: require('../Assets/Images/jeans.jpg'),
+    image: {uri: 'https://dummyimage.com/200x400/000/fb7ca0'},
     type: 'type1',
     quantity: 1,
   },
@@ -777,7 +773,7 @@ export const shoppingBagItems = [
     size: 'XL',
     qty: '1',
     price: 24,
-    image: require('../Assets/Images/tshirts.jpg'),
+    image: {uri: 'https://dummyimage.com/200x400/000/fb7ca0'},
     type: 'type2',
     quantity: 1,
   },
@@ -787,7 +783,7 @@ export const shoppingBagItems = [
     size: 'M',
     qty: '1',
     price: 21,
-    image: require('../Assets/Images/polo.jpg'),
+    image: {uri: 'https://dummyimage.com/200x400/000/fb7ca0'},
     type: 'type2',
     quantity: 1,
   },
@@ -798,25 +794,25 @@ export const wishlistItems = [
     brand: 'Roadster',
     price: 50,
     discount: 20,
-    image: require('../Assets/Images/tshirts.jpg'),
+    image: {uri: 'https://dummyimage.com/400x500/000/fb7ca0'},
   },
   {
     brand: 'HERE&NOW',
     price: 20,
     discount: 10,
-    image: require('../Assets/Images/polo.jpg'),
+    image: {uri: 'https://dummyimage.com/400x500/000/fb7ca0'},
   },
   {
     brand: 'WROGN',
     price: 25,
     discount: 10,
-    image: require('../Assets/Images/shirt.jpg'),
+    image: {uri: 'https://dummyimage.com/400x500/000/fb7ca0'},
   },
   {
     brand: 'ether',
     price: 20,
     discount: 10,
-    image: require('../Assets/Images/trousers.jpg'),
+    image: {uri: 'https://dummyimage.com/400x500/000/fb7ca0'},
   },
 ];
 
@@ -824,17 +820,17 @@ export const outOfStockItems = [
   {
     brand: 'ether',
     price: 23,
-    image: require('../Assets/Images/trousers.jpg'),
+    image: {uri: 'https://dummyimage.com/400x500/000/fb7ca0'},
   },
   {
     brand: 'Nike',
     price: 17,
-    image: require('../Assets/Images/footwear.jpg'),
+    image: {uri: 'https://dummyimage.com/400x500/000/fb7ca0'},
   },
   {
     brand: 'Adidas',
     price: 28,
-    image: require('../Assets/Images/polo.jpg'),
+    image: {uri: 'https://dummyimage.com/400x500/000/fb7ca0'},
   },
 ];
 
@@ -844,7 +840,7 @@ export const ordersData = [
     date: 'On Tue, 15 Jan 2021',
     productTitle: 'HRX by Hrithik Roshan',
     productSubtitle: 'Ultralyte Men Red Polo',
-    productImage: require('../Assets/Images/polo.jpg'),
+    productImage: {uri: 'https://dummyimage.com/200x200/000/fb7ca0'},
     size: 'M',
   },
   {
@@ -853,7 +849,7 @@ export const ordersData = [
     productTitle: 'US Polo Assn.',
     productSubtitle: 'Men Navy Blue Shirt',
     refund: 'Rs 1379 on Sat, 20 Feb',
-    productImage: require('../Assets/Images/shirt.jpg'),
+    productImage: {uri: 'https://dummyimage.com/200x200/000/fb7ca0'},
     size: 'M',
   },
   {
@@ -862,26 +858,26 @@ export const ordersData = [
     refund: 'Rs 600 on Sat, 23 Feb',
     productTitle: 'WROGN',
     productSubtitle: 'Men Navy Blue Shirt',
-    productImage: require('../Assets/Images/shirt.jpg'),
+    productImage: {uri: 'https://dummyimage.com/200x200/000/fb7ca0'},
     size: 'M',
   },
 ];
 
 export const carouselImages = [
   {
-    img: require('../Assets/carousel1.jpg'),
+    img: {uri: 'https://dummyimage.com/500x500/000/fb7ca0'},
     id: 1,
   },
   {
-    img: require('../Assets/carousel3.jpg'),
+    img: {uri: 'https://dummyimage.com/500x500/000/fb7ca0'},
     id: 2,
   },
   {
-    img: require('../Assets/carousel4.jpg'),
+    img: {uri: 'https://dummyimage.com/500x500/000/fb7ca0'},
     id: 3,
   },
   {
-    img: require('../Assets/carousel2.jpg'),
+    img: {uri: 'https://dummyimage.com/500x500/000/fb7ca0'},
     id: 4,
   },
 ];

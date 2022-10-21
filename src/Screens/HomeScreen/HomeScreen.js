@@ -51,17 +51,17 @@ const HomeScreen = props => {
 
   const brandsArray = [
     {
-      img: require('../../Assets/Images/scroll1.jpg'),
+      img: {uri: 'https://dummyimage.com/400x300/000/fb7ca0'},
       footerText: 'Upto 30% Off',
       header: <Versace width={hp(9)} height={hp(9)} viewBox="0 0 250 50" />,
     },
     {
-      img: require('../../Assets/Images/scroll2.jpg'),
+      img: {uri: 'https://dummyimage.com/400x300/000/fb7ca0'},
       footerText: 'Upto 30% Off',
       header: <Aero width={hp(10)} height={hp(8)} />,
     },
     {
-      img: require('../../Assets/Images/scroll3.jpg'),
+      img: {uri: 'https://dummyimage.com/400x300/000/fb7ca0'},
       footerText: 'Upto 30% Off',
       header: <Crocs width={hp(8)} height={hp(8)} />,
     },
@@ -69,17 +69,17 @@ const HomeScreen = props => {
 
   const dealsArray = [
     {
-      img: require('../../Assets/Images/deal1.jpg'),
+      img: {uri: 'https://dummyimage.com/400x300/000/fb7ca0'},
       footerText: 'Extra 150 Off',
       header: <LV width={hp(6)} height={hp(4)} />,
     },
     {
-      img: require('../../Assets/Images/deal2.jpg'),
+      img: {uri: 'https://dummyimage.com/400x300/000/fb7ca0'},
       footerText: 'Buy 2 Get 10% Off',
       header: <Diesel width={hp(7)} height={hp(5)} viewBox="0 0 240 130" />,
     },
     {
-      img: require('../../Assets/Images/deal3.jpg'),
+      img: {uri: 'https://dummyimage.com/400x300/000/fb7ca0'},
       footerText: 'Min 30% Off on kids wear',
       header: <Lee width={hp(6)} height={hp(6)} />,
     },
@@ -208,7 +208,7 @@ const HomeScreen = props => {
         <FadingBackScroll
           height={hp(35)}
           headingText={'ITEMS YOU HAVE VIEWED'}
-          backgroundImage={require('../../Assets/Images/background.jpg')}
+          backgroundImage={{uri: 'https://dummyimage.com/600x500/fb7ca0/fff'}}
           coverText="Recently Viewed"
           cardComponent={FadingBackScrollCard}
           array={brandsArray}

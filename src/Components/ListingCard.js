@@ -32,7 +32,7 @@ const ListingCard = () => {
               width: (width - hp(0.5)) / 2,
             },
           ]}
-          source={require('../Assets/Images/men.jpg')}
+          source={{uri: 'https://dummyimage.com/400x500/000/fb7ca0'}}
         />
       </View>
       <View style={styles.listImageContent}>

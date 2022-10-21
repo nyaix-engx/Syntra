@@ -28,7 +28,7 @@ const CustomDrawer = ({navigation}) => {
               ImageComponent={() => (
                 <Image
                   style={styles.tinyLogo}
-                  source={require('../../Assets/Images/avatar.jpeg')}
+                  source={{uri: 'https://dummyimage.com/200x200/000/fb7ca0'}}
                 />
               )}
             />

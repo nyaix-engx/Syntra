@@ -147,7 +147,7 @@ const AddCardScreen = ({route, navigation}) => {
           <Text style={styles.contentHeading}>Add New Credit/ Debit Card</Text>
         </View>
         <ImageBackground
-          source={require('../../Assets/Images/cardBack.jpeg')}
+          source={{uri: 'https://dummyimage.com/400x300/000/fb7ca0'}}
           style={styles.cardImageBackground}
           imageStyle={styles.cardImage}>
           <View style={styles.cardContentWrapper}>

@@ -12,7 +12,6 @@ import FadingBackScroll from '../../Components/FadingbackScroll';
 import FadingBackScrollCard from '../../Components/FadingBackScrollCard';
 
 import {interestArray} from '../../Utils/arrays';
-import BACK_IMG from '../../Assets/Images/background.jpg';
 
 const Header = () => {
   const navigation = useNavigation();
@@ -53,15 +52,15 @@ const Header = () => {
 const SearchScreen = () => {
   const brandsArray = [
     {
-      img: require('../../Assets/Images/scroll1.jpg'),
+      img: {uri: 'https://dummyimage.com/300x400/000/fb7ca0'},
       footerText: 'Upto 30% Off',
     },
     {
-      img: require('../../Assets/Images/scroll2.jpg'),
+      img: {uri: 'https://dummyimage.com/300x400/000/fb7ca0'},
       footerText: 'Upto 30% Off',
     },
     {
-      img: require('../../Assets/Images/scroll3.jpg'),
+      img: {uri: 'https://dummyimage.com/300x400/000/fb7ca0'},
       footerText: 'Upto 30% Off',
     },
   ];
@@ -92,7 +91,7 @@ const SearchScreen = () => {
           style={{marginBottom: hp(2)}}
           height={hp(34)}
           headingText={'ITEMS YOU HAVE VIEWED'}
-          backgroundImage={BACK_IMG}
+          backgroundImage={{uri: 'https://dummyimage.com/600x500/000/fb7ca0'}}
           coverText="RECENTLY VIEWED"
           cardComponent={FadingBackScrollCard}
           array={brandsArray}
@@ -101,7 +100,7 @@ const SearchScreen = () => {
           style={{marginBottom: hp(2)}}
           height={hp(34)}
           headingText={'RECOMMENDED FOR YOU'}
-          backgroundImage={BACK_IMG}
+          backgroundImage={{uri: 'https://dummyimage.com/600x500/000/fb7ca0'}}
           coverText="NEW ARRIVALS"
           cardComponent={FadingBackScrollCard}
           array={brandsArray}

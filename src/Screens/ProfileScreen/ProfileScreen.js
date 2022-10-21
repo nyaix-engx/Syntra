@@ -127,7 +127,7 @@ const ProfileScreen = props => {
           ListHeaderComponent={
             <ImageBackground
               resizeMode="stretch"
-              source={require('../../Assets/Images/Categories/banner_2.jpg')}
+              source={{uri: 'https://dummyimage.com/600x300/000/fb7ca0'}}
               style={styles.headerImageBackgroundView}>
               <View
                 style={[
@@ -140,7 +140,9 @@ const ProfileScreen = props => {
                   ImageComponent={() => (
                     <Image
                       style={styles.tinyLogo}
-                      source={require('../../Assets/Images/avatar.jpeg')}
+                      source={{
+                        uri: 'https://dummyimage.com/300x300/000/fb7ca0',
+                      }}
                     />
                   )}
                 />
