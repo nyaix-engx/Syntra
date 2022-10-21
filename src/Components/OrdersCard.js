@@ -1,7 +1,10 @@
 import React from 'react';
-import {View, Text, Image, Pressable, StyleSheet} from 'react-native';
+import {View, Text, Pressable, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {useNavigation} from '@react-navigation/native';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import ReviewStars from './ReviewStars';
 import OrderCardItem from './WishlistScreenComps/OrderCardItem';
@@ -9,10 +12,26 @@ import OrderCardItem from './WishlistScreenComps/OrderCardItem';
 const OrdersCard = ({data}) => {
   const navigation = useNavigation();
 
+  const getIcon = type => {
+    switch (type) {
+      case 'Delivered':
+        return (
+          <MaterialCommunityIcons
+            size={hp(3.5)}
+            name="truck-check-outline"
+            color="black"
+          />
+        );
+      case 'Cancelled':
+        return <MaterialIcons size={hp(3.5)} name="cancel" color="#f56e73" />;
+      case 'Returned':
+        return <AntDesign size={hp(3.5)} name="back" color="black" />;
+    }
+  };
   return (
     <View style={styles.container}>
       <View style={styles.headerView}>
-        <View style={styles.iconImageView}>{data.iconImage}</View>
+        <View style={styles.iconImageView}>{getIcon(data.type)}</View>
         <View style={styles.headerContentView}>
           <Text style={styles.headerTitleText}>{data.type}</Text>
           <Text style={styles.dateText}>{data.date}</Text>

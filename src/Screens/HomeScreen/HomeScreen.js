@@ -1,5 +1,13 @@
 import React, {useRef} from 'react';
-import {View, StyleSheet, Pressable, ScrollView, Platform} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Pressable,
+  ScrollView,
+  Platform,
+  Dimensions,
+  Image,
+} from 'react-native';
 import Animated, {Extrapolate} from 'react-native-reanimated';
 import {
   heightPercentageToDP as hp,
@@ -9,6 +17,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Feather from 'react-native-vector-icons/Feather';
 import {Divider} from '@ui-kitten/components';
+import Carousel from 'react-native-snap-carousel';
 
 import CategoriesSlider from '../../Components/HomeScreenComps/CategoriesSlider';
 import Versace from '../../Components/SVG/Brands/Versace';
@@ -18,17 +27,17 @@ import LV from '../../Components/SVG/Brands/LV';
 import Diesel from '../../Components/SVG/Brands/Diesel';
 import Lee from '../../Components/SVG/Brands/Lee';
 
-import Carousel from '../../Components/HomeScreenComps/Carousel';
 import ContentCards from '../../Components/HomeScreenComps/ContentCards';
 import ContentContainer from '../../Components/HomeScreenComps/ContentContainer';
 import RowColContainer from '../../Components/HomeScreenComps/RowColContainer';
 import FadingBackScrollCard from '../../Components/FadingBackScrollCard';
 import FadingBackScroll from '../../Components/FadingbackScroll';
 
-import {imageArray} from '../../Utils/arrays';
+import {carouselImages} from '../../Utils/arrays';
 
 const HomeScreen = props => {
   const scrollY = useRef(new Animated.Value(0));
+  const width = Dimensions.get('window').width;
 
   const diffClampScrollY = useRef(
     new Animated.diffClamp(scrollY.current, 0, hp(15)),
@@ -158,9 +167,27 @@ const HomeScreen = props => {
         </View>
         <Divider />
         <Carousel
-          style={styles.carousel}
-          imageArray={imageArray}
-          autoChange={true}
+          layout="default"
+          data={carouselImages}
+          renderItem={({item, index}) => {
+            return (
+              <View key={`index_${index}`} style={styles.carouselImageWrapper}>
+                <Image
+                  resizeMode="cover"
+                  source={item.img}
+                  style={[
+                    styles.imageStyle,
+                    {
+                      width: width - wp(8),
+                      marginHorizontal: wp(4),
+                    },
+                  ]}
+                />
+              </View>
+            );
+          }}
+          sliderWidth={wp(100)}
+          itemWidth={wp(100)}
         />
         <ContentContainer heading="FEATURED BRANDS">
           <ScrollView
@@ -221,7 +248,7 @@ const styles = StyleSheet.create({
   carousel: {
     height: hp(50),
     marginVertical: hp(2),
-    backgroundColor: 'white',
+    backgroundColor: 'green',
   },
   menuIconWrap: {
     flex: 1.2,
@@ -254,7 +281,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginRight: wp(6),
   },
+  imageStyle: {
+    height: Platform.OS === 'android' ? hp(32) : hp(35),
+    borderRadius: hp(1),
+  },
   featuredScrollView: {marginHorizontal: hp(2.5)},
+  carouselImageWrapper: {
+    display: 'flex',
+    justifyContent: 'center',
+    paddingVertical: hp(3),
+  },
 });
 
 export default HomeScreen;

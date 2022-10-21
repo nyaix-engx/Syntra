@@ -69,7 +69,11 @@ const CategorySubComp = props => {
                   transform: [{rotateZ}],
                 },
               ]}>
-              <Fontisto name="angle-down" style={styles.angleDownIcon} />
+              <Fontisto
+                name="angle-down"
+                style={styles.angleDownIcon}
+                color="black"
+              />
             </Animated.View>
           )}
         </View>

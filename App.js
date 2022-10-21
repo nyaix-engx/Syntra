@@ -1,12 +1,14 @@
 import React, {useState} from 'react';
+import {StyleSheet} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {ApplicationProvider, IconRegistry} from '@ui-kitten/components';
 import {EvaIconsPack} from '@ui-kitten/eva-icons';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import MyTabBar from './src/Components/Tabbar/Tabbar';
 import * as eva from '@eva-design/eva';
+
+import MyTabBar from './src/Components/Tabbar/Tabbar';
 import HomeScreen from './src/Screens/HomeScreen/HomeScreen';
 import ProfileScreen from './src/Screens/ProfileScreen/ProfileScreen';
 import CategoryScreen from './src/Screens/CategoryScreen/CategoryScreen';
@@ -84,7 +86,7 @@ const App = () => {
             <Drawer.Navigator
               initialRouteName="HomePage"
               drawerType="front"
-              drawerStyle={isLargeScreen ? {width: '50%'} : {width: '70%'}}
+              drawerStyle={isLargeScreen ? styles.w50 : styles.w70}
               overlayColor="transparent"
               drawerContent={props => <CustomDrawer {...props} />}
               drawerContentOptions={{
@@ -97,7 +99,7 @@ const App = () => {
             <Stack.Navigator screenOptions={{headerShown: false}}>
               <Stack.Screen
                 name="Authpage"
-                component={props => (
+                children={props => (
                   <AuthScreen {...props} setIsSigned={setIsSigned} />
                 )}
               />
@@ -108,5 +110,10 @@ const App = () => {
     </SafeAreaProvider>
   );
 };
+
+const styles = StyleSheet.create({
+  w50: {width: '50%'},
+  w70: {width: '70%'},
+});
 
 export default App;

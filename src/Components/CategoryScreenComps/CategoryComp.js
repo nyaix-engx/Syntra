@@ -5,7 +5,6 @@ import {
   Text,
   Pressable,
   Platform,
-  Image,
   ImageBackground,
   StyleSheet,
 } from 'react-native';
@@ -13,7 +12,7 @@ import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 
 import CategorySubComp from './CategorySubComp';
-import {categoryImages, categoryBanner} from '../../Utils/arrays';
+import {categoryBanner} from '../../Utils/arrays';
 
 const CategoryComp = props => {
   const rowHeight1 = useRef(new Animated.Value(hp(0)));
@@ -160,7 +159,8 @@ const CategoryComp = props => {
               </View>
             </View>
           </View>
-          <View
+          {/* An image can be added here to improve the look of this accordion */}
+          {/* <View
             style={[
               styles.imageView,
               {
@@ -169,13 +169,12 @@ const CategoryComp = props => {
             ]}>
             <Image
               resizeMode="contain"
-              source={categoryImages[props.index].img}
               style={{
                 width: hp(categoryImages[props.index].width),
                 height: hp(categoryImages[props.index].height),
               }}
             />
-          </View>
+          </View> */}
         </ImageBackground>
       </Pressable>
       {props.category.subCategory && (

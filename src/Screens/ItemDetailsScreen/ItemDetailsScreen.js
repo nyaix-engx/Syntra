@@ -11,13 +11,33 @@ import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import BackButtonTitle from '../../Components/BackButtonTitle';
 import PaymentInformationModal from '../../Components/PaymentInformationModal';
 
-const ItemDetailsScreen = ({navigation, route}) => {
+const ItemDetailsScreen = ({route}) => {
   const {data} = route.params;
   const [showModal, setShowModal] = useState(false);
+
+  const getIcon = type => {
+    switch (type) {
+      case 'Delivered':
+        return (
+          <MaterialCommunityIcons
+            size={hp(3.5)}
+            name="truck-check-outline"
+            color="black"
+          />
+        );
+      case 'Cancelled':
+        return <MaterialIcons size={hp(3.5)} name="cancel" color="#f56e73" />;
+      case 'Returned':
+        return <AntDesign size={hp(3.5)} name="back" color="black" />;
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -61,7 +81,7 @@ const ItemDetailsScreen = ({navigation, route}) => {
                       data.type === 'Delivered' ? '#34a880' : '#eb4034',
                   },
                 ]}>
-                <View style={styles.iconWrapper}>{data.iconImage}</View>
+                <View style={styles.iconWrapper}>{getIcon(data.type)}</View>
                 <View style={styles.statusTextWrapper}>
                   <View style={styles.imageSubtitleView}>
                     <Text style={styles.statusTextTitle}>{data.type}</Text>

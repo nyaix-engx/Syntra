@@ -647,34 +647,6 @@ export const DeliveryTime = [
   },
 ];
 
-export const categoryImages = [
-  {
-    img: require('../Assets/Images/1.png'),
-    width: 20,
-    height: 20,
-  },
-  {
-    img: require('../Assets/Images/2.png'),
-    width: 15,
-    height: 15,
-  },
-  {
-    img: require('../Assets/Images/3.png'),
-    width: 13,
-    height: 15,
-  },
-  {
-    img: require('../Assets/Images/4.png'),
-    width: 13,
-    height: 13,
-  },
-  {
-    img: require('../Assets/Images/5.png'),
-    width: 12,
-    height: 13,
-  },
-];
-
 export const categoryBanner = [
   {
     img: require('../Assets/Images/Categories/banner_1.jpg'),
@@ -870,13 +842,6 @@ export const ordersData = [
   {
     type: 'Delivered',
     date: 'On Tue, 15 Jan 2021',
-    iconImage: (
-      <MaterialCommunityIcons
-        size={hp(3.5)}
-        name="truck-check-outline"
-        color="black"
-      />
-    ),
     productTitle: 'HRX by Hrithik Roshan',
     productSubtitle: 'Ultralyte Men Red Polo',
     productImage: require('../Assets/Images/polo.jpg'),
@@ -885,7 +850,6 @@ export const ordersData = [
   {
     type: 'Cancelled',
     date: 'On Thu, 19 Feb 2021 as per your request',
-    iconImage: <MaterialIcons size={hp(3.5)} name="cancel" color="#f56e73" />,
     productTitle: 'US Polo Assn.',
     productSubtitle: 'Men Navy Blue Shirt',
     refund: 'Rs 1379 on Sat, 20 Feb',
@@ -895,7 +859,6 @@ export const ordersData = [
   {
     type: 'Returned',
     date: 'On Thu, 19 Feb 2021 as per your request',
-    iconImage: <AntDesign size={hp(3.5)} name="back" color="black" />,
     refund: 'Rs 600 on Sat, 23 Feb',
     productTitle: 'WROGN',
     productSubtitle: 'Men Navy Blue Shirt',
