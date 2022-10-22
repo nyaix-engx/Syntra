@@ -424,6 +424,7 @@ const styles = StyleSheet.create({
   sizeButtonText: {
     fontSize: hp(2.2),
     fontFamily: 'Raleway-Medium',
+    lineHeight: 21,
   },
   modelConfigWrapper: {paddingVertical: hp(2)},
   modelConfigText: {
