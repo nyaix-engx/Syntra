@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Platform} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 
@@ -47,8 +47,12 @@ const styles = StyleSheet.create({
     fontSize: hp(1.8),
     fontFamily: 'Raleway-Medium',
     fontWeight: '500',
+    color: 'black',
   },
-  contentView: {paddingHorizontal: hp(1), paddingVertical: hp(2)},
+  contentView: {
+    paddingHorizontal: Platform.OS === 'ios' ? hp(1) : hp(2.5),
+    paddingVertical: hp(2),
+  },
   contentWrapper: {display: 'flex', flexDirection: 'row'},
   sliderView: {paddingHorizontal: hp(0.3)},
   sliderText: {

@@ -66,7 +66,12 @@ const ChangeDeliveryModal = props => {
         <View style={styles.modalHeader}>
           <Text style={styles.modalHeaderText}>CHANGE DELIVERY ADDRESS</Text>
           <Pressable onPress={props.setShowModal} style={styles.cancelButton}>
-            <Fontisto name="plus-a" size={hp(2.5)} style={styles.cancelIcon} />
+            <Fontisto
+              name="plus-a"
+              size={hp(2.5)}
+              style={styles.cancelIcon}
+              color="black"
+            />
           </Pressable>
         </View>
         <ScrollView

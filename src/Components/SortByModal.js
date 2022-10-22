@@ -36,11 +36,19 @@ const SortByModal = props => {
             <View style={styles.headerButtonsWrapper}>
               <Pressable style={styles.ascButton}>
                 <Text style={styles.buttonText}>ASC</Text>
-                <FontAwesome5 name="sort-alpha-down" size={hp(2.3)} />
+                <FontAwesome5
+                  name="sort-alpha-down"
+                  size={hp(2.3)}
+                  color="black"
+                />
               </Pressable>
               <Pressable style={styles.descButton}>
                 <Text style={styles.buttonText}>DESC</Text>
-                <FontAwesome5 name="sort-alpha-up" size={hp(2.3)} />
+                <FontAwesome5
+                  name="sort-alpha-up"
+                  size={hp(2.3)}
+                  color="black"
+                />
               </Pressable>
             </View>
           </View>

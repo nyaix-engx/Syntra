@@ -30,6 +30,7 @@ const PaymentInformationModal = props => {
                   name="plus-a"
                   size={hp(2.5)}
                   style={styles.iconStyle}
+                  color="black"
                 />
               </Pressable>
             </View>
@@ -115,7 +116,7 @@ const styles = StyleSheet.create({
   },
   rightSectionView: {flexDirection: 'row'},
   imageView: {paddingHorizontal: hp(2)},
-  headerImage: {width: hp(7), height: hp(7), borderRadius: hp(3)},
+  headerImage: {width: hp(7), height: hp(7), borderRadius: hp(3.5)},
   iconView: {justifyContent: 'center'},
   iconStyle: {transform: [{rotateZ: '45deg'}], padding: hp(0.8)},
   modalContent: {

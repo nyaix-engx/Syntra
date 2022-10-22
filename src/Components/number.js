@@ -29,9 +29,10 @@ const Number = ({selected, setSelected, size}) => {
 
 const styles = StyleSheet.create({
   container: {
-    borderRadius: hp(4),
+    borderRadius: hp(3),
     height: hp(6),
     width: hp(6),
+    display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: hp(0.06),
@@ -40,6 +41,7 @@ const styles = StyleSheet.create({
   textStyle: {
     fontFamily: 'Poppins-Medium',
     fontSize: hp(2),
+    lineHeight: 22,
   },
 });
 

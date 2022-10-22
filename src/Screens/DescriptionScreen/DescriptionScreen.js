@@ -140,6 +140,7 @@ const DescriptionScreen = () => {
                         <AntDesign
                           name="hearto"
                           size={hp(3)}
+                          color="black"
                           style={{marginRight: hp(1)}}
                         />
                         <Text style={styles.wishlistText}>WISHLIST</Text>
@@ -194,7 +195,7 @@ const DescriptionScreen = () => {
             </View>
           </View>
           <View>
-            <Text style={styles.descriptionRowText}>Style Note</Text>
+            <Text style={styles.descriptionRowTitle}>Style Note</Text>
             <Text style={styles.descriptionRowText}>
               This tee made by Moda Rapido will definitely become a go-to item
               in your wardrobe. Whether you're running errands or meeting
@@ -239,6 +240,7 @@ const DescriptionScreen = () => {
               <MaterialIcons
                 name="attach-money"
                 size={hp(3)}
+                color="black"
                 style={styles.deliveryPointsIcon}
               />
               <Text style={styles.deliveryPointsText}>
@@ -249,6 +251,7 @@ const DescriptionScreen = () => {
               <MaterialIcons
                 name="swap-horiz"
                 size={hp(3)}
+                color="black"
                 style={styles.deliveryPointsIcon}
               />
               <Text style={styles.deliveryPointsText}>
@@ -259,6 +262,7 @@ const DescriptionScreen = () => {
               <Ionicons
                 name="ios-shirt-sharp"
                 size={hp(3)}
+                color="black"
                 style={styles.deliveryPointsIcon}
               />
               <Text style={styles.deliveryPointsText}>Try & Buy available</Text>
@@ -290,23 +294,23 @@ const DescriptionScreen = () => {
           onPress={() => navigation.goBack()}
           style={styles.headerButton}>
           <View style={styles.headerIconWrapper}>
-            <Ionicons name="ios-arrow-back" size={hp(2.8)} />
+            <Ionicons name="ios-arrow-back" size={hp(2.8)} color="black" />
           </View>
         </Pressable>
         <View style={styles.headerImpIconWrapper}>
           <Pressable onPress={() => {}} style={styles.headerButton}>
             <View style={styles.headerIconWrapper}>
-              <Entypo name="share" size={hp(3)} />
+              <Entypo name="share" size={hp(3)} color="black" />
             </View>
           </Pressable>
           <Pressable onPress={() => {}} style={styles.headerButton}>
             <View style={styles.headerIconWrapper}>
-              <AntDesign name="hearto" size={hp(3)} />
+              <AntDesign name="hearto" size={hp(3)} color="black" />
             </View>
           </Pressable>
           <Pressable onPress={() => {}} style={styles.headerButton}>
             <View style={styles.headerIconWrapper}>
-              <Feather name="shopping-bag" size={hp(3)} />
+              <Feather name="shopping-bag" size={hp(3)} color="black" />
             </View>
           </Pressable>
         </View>

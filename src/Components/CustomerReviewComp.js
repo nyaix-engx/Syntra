@@ -40,6 +40,7 @@ const CustomerReview = () => {
             <Octicons
               name="thumbsup"
               size={hp(2.5)}
+              color="black"
               style={styles.thumpsupIcon}
             />
             <Text style={styles.icontext}>245</Text>
@@ -47,6 +48,7 @@ const CustomerReview = () => {
           <View style={styles.thumbsDownView}>
             <Octicons
               name="thumbsdown"
+              color="black"
               size={hp(2.5)}
               style={styles.thumpsupIcon}
             />
@@ -88,7 +90,7 @@ const styles = StyleSheet.create({
     marginRight: hp(0.5),
     color: 'black',
   },
-  itemSize: {fontSize: hp(1.5), fontFamily: 'Poppins-Medium'},
+  itemSize: {fontSize: hp(1.5), fontFamily: 'Poppins-Medium', color: 'black'},
   fitView: {marginBottom: hp(2)},
   fitTextView: {display: 'flex', flexDirection: 'row', alignItems: 'center'},
   fitText: {
@@ -98,7 +100,11 @@ const styles = StyleSheet.create({
     color: 'black',
     marginRight: hp(1),
   },
-  fitTextValue: {fontFamily: 'Poppins-Light', fontSize: hp(1.7)},
+  fitTextValue: {
+    fontFamily: 'Poppins-Light',
+    fontSize: hp(1.7),
+    color: 'black',
+  },
   commentFooter: {
     display: 'flex',
     flex: 1,
