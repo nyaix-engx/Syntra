@@ -80,7 +80,9 @@ const SearchScreen = () => {
           )}
         />
       )}
-      accessoryRight={() => <Fontisto size={hp(1.6)} name="angle-right" />}
+      accessoryRight={() => (
+        <Fontisto size={hp(1.6)} name="angle-right" color="black" />
+      )}
     />
   );
 

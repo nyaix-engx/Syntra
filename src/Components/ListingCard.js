@@ -38,7 +38,7 @@ const ListingCard = () => {
       <View style={styles.listImageContent}>
         <View style={styles.brandTitleView}>
           <Text style={styles.brandTitleText}>WROGN</Text>
-          <FontAwesome size={hp(2.5)} name="heart-o" />
+          <FontAwesome size={hp(2.5)} name="heart-o" color="#fb7ca0" />
         </View>
         <View style={styles.productInfoView}>
           <Text style={styles.productInfoText}>Men Slim Fit Jeans</Text>

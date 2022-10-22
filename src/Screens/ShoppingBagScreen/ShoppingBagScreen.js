@@ -194,6 +194,7 @@ const ShoppingBagScreen = () => {
                       size={hp(2.5)}
                       style={styles.offersImage}
                       name="offer"
+                      color="black"
                     />
                   </View>
                   <View>
@@ -275,7 +276,7 @@ const ShoppingBagScreen = () => {
                   </View>
                 )}
                 <View style={styles.angleRightView}>
-                  <Fontisto name="angle-right" size={hp(1.5)} />
+                  <Fontisto name="angle-right" size={hp(1.5)} color="black" />
                 </View>
               </Pressable>
               <View style={styles.priceDetailsView}>

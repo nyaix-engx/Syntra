@@ -28,6 +28,7 @@ const ApplyCouponModal = props => {
             <Fontisto
               name="plus-a"
               size={hp(2.5)}
+              color="black"
               style={styles.plusIconStyle}
             />
           </Pressable>

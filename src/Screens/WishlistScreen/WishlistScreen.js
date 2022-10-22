@@ -34,7 +34,7 @@ const WishlistScreen = ({route}) => {
   const scrollRef = useRef();
 
   useEffect(() => {
-    if (wishlist.length == 0 && outOfStock.length == 0) {
+    if (wishlist.length === 0 && outOfStock.length === 0) {
       Animated.timing(translateTitle.current, {
         duration: 500,
         toValue: hp(0),
@@ -210,6 +210,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins-Medium',
     fontSize: hp(1.8),
     marginBottom: hp(1),
+    color: 'black',
     marginRight: hp(0.5),
   },
   saveItemsText: {
